@@ -23,28 +23,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('user-alerts/read', 'UserAlertsController@read');
     Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
 
-    // Content Category
-    Route::delete('content-categories/destroy', 'ContentCategoryController@massDestroy')->name('content-categories.massDestroy');
-    Route::resource('content-categories', 'ContentCategoryController');
-
-    // Content Tag
-    Route::delete('content-tags/destroy', 'ContentTagController@massDestroy')->name('content-tags.massDestroy');
-    Route::resource('content-tags', 'ContentTagController');
-
-    // Content Page
-    Route::delete('content-pages/destroy', 'ContentPageController@massDestroy')->name('content-pages.massDestroy');
-    Route::post('content-pages/media', 'ContentPageController@storeMedia')->name('content-pages.storeMedia');
-    Route::post('content-pages/ckmedia', 'ContentPageController@storeCKEditorImages')->name('content-pages.storeCKEditorImages');
-    Route::resource('content-pages', 'ContentPageController');
-
-    // Faq Category
-    Route::delete('faq-categories/destroy', 'FaqCategoryController@massDestroy')->name('faq-categories.massDestroy');
-    Route::resource('faq-categories', 'FaqCategoryController');
-
-    // Faq Question
-    Route::delete('faq-questions/destroy', 'FaqQuestionController@massDestroy')->name('faq-questions.massDestroy');
-    Route::resource('faq-questions', 'FaqQuestionController');
-
     // Hostel
     Route::delete('hostels/destroy', 'HostelController@massDestroy')->name('hostels.massDestroy');
     Route::post('hostels/media', 'HostelController@storeMedia')->name('hostels.storeMedia');
@@ -60,6 +38,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Reservation
     Route::delete('reservations/destroy', 'ReservationController@massDestroy')->name('reservations.massDestroy');
     Route::resource('reservations', 'ReservationController');
+
+    // Facility
+    Route::delete('facilities/destroy', 'FacilityController@massDestroy')->name('facilities.massDestroy');
+    Route::resource('facilities', 'FacilityController');
+
+    // Payment
+    Route::delete('payments/destroy', 'PaymentController@massDestroy')->name('payments.massDestroy');
+    Route::resource('payments', 'PaymentController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -99,28 +85,6 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
     Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
 
-    // Content Category
-    Route::delete('content-categories/destroy', 'ContentCategoryController@massDestroy')->name('content-categories.massDestroy');
-    Route::resource('content-categories', 'ContentCategoryController');
-
-    // Content Tag
-    Route::delete('content-tags/destroy', 'ContentTagController@massDestroy')->name('content-tags.massDestroy');
-    Route::resource('content-tags', 'ContentTagController');
-
-    // Content Page
-    Route::delete('content-pages/destroy', 'ContentPageController@massDestroy')->name('content-pages.massDestroy');
-    Route::post('content-pages/media', 'ContentPageController@storeMedia')->name('content-pages.storeMedia');
-    Route::post('content-pages/ckmedia', 'ContentPageController@storeCKEditorImages')->name('content-pages.storeCKEditorImages');
-    Route::resource('content-pages', 'ContentPageController');
-
-    // Faq Category
-    Route::delete('faq-categories/destroy', 'FaqCategoryController@massDestroy')->name('faq-categories.massDestroy');
-    Route::resource('faq-categories', 'FaqCategoryController');
-
-    // Faq Question
-    Route::delete('faq-questions/destroy', 'FaqQuestionController@massDestroy')->name('faq-questions.massDestroy');
-    Route::resource('faq-questions', 'FaqQuestionController');
-
     // Hostel
     Route::delete('hostels/destroy', 'HostelController@massDestroy')->name('hostels.massDestroy');
     Route::post('hostels/media', 'HostelController@storeMedia')->name('hostels.storeMedia');
@@ -136,6 +100,14 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Reservation
     Route::delete('reservations/destroy', 'ReservationController@massDestroy')->name('reservations.massDestroy');
     Route::resource('reservations', 'ReservationController');
+
+    // Facility
+    Route::delete('facilities/destroy', 'FacilityController@massDestroy')->name('facilities.massDestroy');
+    Route::resource('facilities', 'FacilityController');
+
+    // Payment
+    Route::delete('payments/destroy', 'PaymentController@massDestroy')->name('payments.massDestroy');
+    Route::resource('payments', 'PaymentController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

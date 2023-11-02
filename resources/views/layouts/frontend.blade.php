@@ -102,41 +102,6 @@
                                             {{ trans('cruds.userAlert.title') }}
                                         </a>
                                     @endcan
-                                    @can('content_management_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.contentManagement.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('content_category_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.content-categories.index') }}">
-                                            {{ trans('cruds.contentCategory.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('content_tag_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.content-tags.index') }}">
-                                            {{ trans('cruds.contentTag.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('content_page_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.content-pages.index') }}">
-                                            {{ trans('cruds.contentPage.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('faq_management_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.faqManagement.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('faq_category_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.faq-categories.index') }}">
-                                            {{ trans('cruds.faqCategory.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('faq_question_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.faq-questions.index') }}">
-                                            {{ trans('cruds.faqQuestion.title') }}
-                                        </a>
-                                    @endcan
                                     @can('hostel_access')
                                         <a class="dropdown-item" href="{{ route('frontend.hostels.index') }}">
                                             {{ trans('cruds.hostel.title') }}
@@ -150,6 +115,16 @@
                                     @can('reservation_access')
                                         <a class="dropdown-item" href="{{ route('frontend.reservations.index') }}">
                                             {{ trans('cruds.reservation.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('facility_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.facilities.index') }}">
+                                            {{ trans('cruds.facility.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('payment_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.payments.index') }}">
+                                            {{ trans('cruds.payment.title') }}
                                         </a>
                                     @endcan
 

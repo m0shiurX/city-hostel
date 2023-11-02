@@ -18,7 +18,9 @@
                     @endforeach
                 </select>
                 @if($errors->has('room'))
-                    <span class="text-danger">{{ $errors->first('room') }}</span>
+                    <div class="invalid-feedback">
+                        {{ $errors->first('room') }}
+                    </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reservation.fields.room_helper') }}</span>
             </div>
@@ -30,7 +32,9 @@
                     @endforeach
                 </select>
                 @if($errors->has('user'))
-                    <span class="text-danger">{{ $errors->first('user') }}</span>
+                    <div class="invalid-feedback">
+                        {{ $errors->first('user') }}
+                    </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reservation.fields.user_helper') }}</span>
             </div>
@@ -38,7 +42,9 @@
                 <label for="down_payment">{{ trans('cruds.reservation.fields.down_payment') }}</label>
                 <input class="form-control {{ $errors->has('down_payment') ? 'is-invalid' : '' }}" type="number" name="down_payment" id="down_payment" value="{{ old('down_payment', $reservation->down_payment) }}" step="0.01">
                 @if($errors->has('down_payment'))
-                    <span class="text-danger">{{ $errors->first('down_payment') }}</span>
+                    <div class="invalid-feedback">
+                        {{ $errors->first('down_payment') }}
+                    </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reservation.fields.down_payment_helper') }}</span>
             </div>
@@ -51,7 +57,9 @@
                     </div>
                 @endforeach
                 @if($errors->has('status'))
-                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                    <div class="invalid-feedback">
+                        {{ $errors->first('status') }}
+                    </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.reservation.fields.status_helper') }}</span>
             </div>

@@ -21,17 +21,36 @@ class UpdateHostelRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'address' => [
-                'string',
-                'required',
-            ],
             'phone' => [
                 'string',
                 'required',
             ],
-            'user_id' => [
+            'address' => [
+                'string',
                 'required',
+            ],
+            'built_on' => [
+                'string',
+                'max:4',
+                'nullable',
+            ],
+            'total_seat' => [
+                'string',
+                'required',
+            ],
+            'garage' => [
+                'string',
+                'nullable',
+            ],
+            'garage_size' => [
+                'string',
+                'nullable',
+            ],
+            'facilities.*' => [
                 'integer',
+            ],
+            'facilities' => [
+                'array',
             ],
         ];
     }

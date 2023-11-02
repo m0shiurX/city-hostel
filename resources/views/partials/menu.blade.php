@@ -1,253 +1,154 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">{{ trans('panel.site_title') }}</span>
-    </a>
+<div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user (optional) -->
+    <div class="c-sidebar-brand d-md-down-none">
+        <a class="c-sidebar-brand-full h4" href="#">
+            {{ trans('panel.site_title') }}
+        </a>
+    </div>
 
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs("admin.home") ? "active" : "" }}" href="{{ route("admin.home") }}">
-                        <i class="fas fa-fw fa-tachometer-alt nav-icon">
-                        </i>
-                        <p>
-                            {{ trans('global.dashboard') }}
-                        </p>
-                    </a>
-                </li>
-                @can('user_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/permissions*") ? "menu-open" : "" }} {{ request()->is("admin/roles*") ? "menu-open" : "" }} {{ request()->is("admin/users*") ? "menu-open" : "" }}">
-                        <a class="nav-link nav-dropdown-toggle {{ request()->is("admin/permissions*") ? "active" : "" }} {{ request()->is("admin/roles*") ? "active" : "" }} {{ request()->is("admin/users*") ? "active" : "" }}" href="#">
-                            <i class="fa-fw nav-icon fas fa-users">
+    <ul class="c-sidebar-nav">
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route("admin.home") }}" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
 
-                            </i>
-                            <p>
-                                {{ trans('cruds.userManagement.title') }}
-                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('permission_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.permissions.index") }}" class="nav-link {{ request()->is("admin/permissions") || request()->is("admin/permissions/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-unlock-alt">
+                </i>
+                {{ trans('global.dashboard') }}
+            </a>
+        </li>
+        @can('hostel_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.hostels.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/hostels") || request()->is("admin/hostels/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-home c-sidebar-nav-icon">
 
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.permission.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('role_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.roles.index") }}" class="nav-link {{ request()->is("admin/roles") || request()->is("admin/roles/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-briefcase">
+                    </i>
+                    {{ trans('cruds.hostel.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('room_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.rooms.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/rooms") || request()->is("admin/rooms/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-bed c-sidebar-nav-icon">
 
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.role.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('user_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.users.index") }}" class="nav-link {{ request()->is("admin/users") || request()->is("admin/users/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-user">
+                    </i>
+                    {{ trans('cruds.room.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('facility_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.facilities.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/facilities") || request()->is("admin/facilities/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-align-left c-sidebar-nav-icon">
 
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.user.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan
-                @can('user_alert_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.user-alerts.index") }}" class="nav-link {{ request()->is("admin/user-alerts") || request()->is("admin/user-alerts/*") ? "active" : "" }}">
-                            <i class="fa-fw nav-icon fas fa-bell">
+                    </i>
+                    {{ trans('cruds.facility.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('reservation_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.reservations.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/reservations") || request()->is("admin/reservations/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-calendar-check c-sidebar-nav-icon">
 
-                            </i>
-                            <p>
-                                {{ trans('cruds.userAlert.title') }}
-                            </p>
-                        </a>
-                    </li>
-                @endcan
-                @can('content_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/content-categories*") ? "menu-open" : "" }} {{ request()->is("admin/content-tags*") ? "menu-open" : "" }} {{ request()->is("admin/content-pages*") ? "menu-open" : "" }}">
-                        <a class="nav-link nav-dropdown-toggle {{ request()->is("admin/content-categories*") ? "active" : "" }} {{ request()->is("admin/content-tags*") ? "active" : "" }} {{ request()->is("admin/content-pages*") ? "active" : "" }}" href="#">
-                            <i class="fa-fw nav-icon fas fa-book">
+                    </i>
+                    {{ trans('cruds.reservation.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('payment_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.payments.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/payments") || request()->is("admin/payments/*") ? "c-active" : "" }}">
+                    <i class="fa-fw far fa-money-bill-alt c-sidebar-nav-icon">
 
-                            </i>
-                            <p>
-                                {{ trans('cruds.contentManagement.title') }}
-                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('content_category_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.content-categories.index") }}" class="nav-link {{ request()->is("admin/content-categories") || request()->is("admin/content-categories/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-folder">
+                    </i>
+                    {{ trans('cruds.payment.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('user_alert_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.user-alerts.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/user-alerts") || request()->is("admin/user-alerts/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-bell c-sidebar-nav-icon">
 
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.contentCategory.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('content_tag_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.content-tags.index") }}" class="nav-link {{ request()->is("admin/content-tags") || request()->is("admin/content-tags/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-tags">
+                    </i>
+                    {{ trans('cruds.userAlert.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('user_management_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-users c-sidebar-nav-icon">
 
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.contentTag.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('content_page_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.content-pages.index") }}" class="nav-link {{ request()->is("admin/content-pages") || request()->is("admin/content-pages/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-file">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.contentPage.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan
-                @can('faq_management_access')
-                    <li class="nav-item has-treeview {{ request()->is("admin/faq-categories*") ? "menu-open" : "" }} {{ request()->is("admin/faq-questions*") ? "menu-open" : "" }}">
-                        <a class="nav-link nav-dropdown-toggle {{ request()->is("admin/faq-categories*") ? "active" : "" }} {{ request()->is("admin/faq-questions*") ? "active" : "" }}" href="#">
-                            <i class="fa-fw nav-icon fas fa-question">
-
-                            </i>
-                            <p>
-                                {{ trans('cruds.faqManagement.title') }}
-                                <i class="right fa fa-fw fa-angle-left nav-icon"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('faq_category_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.faq-categories.index") }}" class="nav-link {{ request()->is("admin/faq-categories") || request()->is("admin/faq-categories/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-briefcase">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.faqCategory.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('faq_question_access')
-                                <li class="nav-item">
-                                    <a href="{{ route("admin.faq-questions.index") }}" class="nav-link {{ request()->is("admin/faq-questions") || request()->is("admin/faq-questions/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-question">
-
-                                        </i>
-                                        <p>
-                                            {{ trans('cruds.faqQuestion.title') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan
-                @can('hostel_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.hostels.index") }}" class="nav-link {{ request()->is("admin/hostels") || request()->is("admin/hostels/*") ? "active" : "" }}">
-                            <i class="fa-fw nav-icon fas fa-home">
-
-                            </i>
-                            <p>
-                                {{ trans('cruds.hostel.title') }}
-                            </p>
-                        </a>
-                    </li>
-                @endcan
-                @can('room_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.rooms.index") }}" class="nav-link {{ request()->is("admin/rooms") || request()->is("admin/rooms/*") ? "active" : "" }}">
-                            <i class="fa-fw nav-icon fas fa-cogs">
-
-                            </i>
-                            <p>
-                                {{ trans('cruds.room.title') }}
-                            </p>
-                        </a>
-                    </li>
-                @endcan
-                @can('reservation_access')
-                    <li class="nav-item">
-                        <a href="{{ route("admin.reservations.index") }}" class="nav-link {{ request()->is("admin/reservations") || request()->is("admin/reservations/*") ? "active" : "" }}">
-                            <i class="fa-fw nav-icon fas fa-calendar-check">
-
-                            </i>
-                            <p>
-                                {{ trans('cruds.reservation.title') }}
-                            </p>
-                        </a>
-                    </li>
-                @endcan
-                @php($unread = \App\Models\QaTopic::unreadCount())
-                    <li class="nav-item">
-                        <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "active" : "" }} nav-link">
-                            <i class="fa-fw fa fa-envelope nav-icon">
-
-                            </i>
-                            <p>{{ trans('global.messages') }}</p>
-                            @if($unread > 0)
-                                <strong>( {{ $unread }} )</strong>
-                            @endif
-
-                        </a>
-                    </li>
-                    @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
-                        @can('profile_password_edit')
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'active' : '' }}" href="{{ route('profile.password.edit') }}">
-                                    <i class="fa-fw fas fa-key nav-icon">
-                                    </i>
-                                    <p>
-                                        {{ trans('global.change_password') }}
-                                    </p>
-                                </a>
-                            </li>
-                        @endcan
-                    @endif
-                    <li class="nav-item">
-                        <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                            <p>
-                                <i class="fas fa-fw fa-sign-out-alt nav-icon">
+                    </i>
+                    {{ trans('cruds.userManagement.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('permission_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.permissions.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/permissions") || request()->is("admin/permissions/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-unlock-alt c-sidebar-nav-icon">
 
                                 </i>
-                                <p>{{ trans('global.logout') }}</p>
-                            </p>
+                                {{ trans('cruds.permission.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('role_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.roles.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/roles") || request()->is("admin/roles/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-briefcase c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.role.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('user_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.users.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/users") || request()->is("admin/users/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-user c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.user.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+        @php($unread = \App\Models\QaTopic::unreadCount())
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
+                    <i class="c-sidebar-nav-icon fa-fw fa fa-envelope">
+
+                    </i>
+                    <span>{{ trans('global.messages') }}</span>
+                    @if($unread > 0)
+                        <strong>( {{ $unread }} )</strong>
+                    @endif
+
+                </a>
+            </li>
+            @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
+                @can('profile_password_edit')
+                    <li class="c-sidebar-nav-item">
+                        <a class="c-sidebar-nav-link {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'c-active' : '' }}" href="{{ route('profile.password.edit') }}">
+                            <i class="fa-fw fas fa-key c-sidebar-nav-icon">
+                            </i>
+                            {{ trans('global.change_password') }}
                         </a>
                     </li>
-            </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-</aside>
+                @endcan
+            @endif
+            <li class="c-sidebar-nav-item">
+                <a href="#" class="c-sidebar-nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                    <i class="c-sidebar-nav-icon fas fa-fw fa-sign-out-alt">
+
+                    </i>
+                    {{ trans('global.logout') }}
+                </a>
+            </li>
+    </ul>
+
+</div>

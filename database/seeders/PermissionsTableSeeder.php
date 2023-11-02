@@ -92,174 +92,106 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 21,
-                'title' => 'content_management_access',
-            ],
-            [
-                'id'    => 22,
-                'title' => 'content_category_create',
-            ],
-            [
-                'id'    => 23,
-                'title' => 'content_category_edit',
-            ],
-            [
-                'id'    => 24,
-                'title' => 'content_category_show',
-            ],
-            [
-                'id'    => 25,
-                'title' => 'content_category_delete',
-            ],
-            [
-                'id'    => 26,
-                'title' => 'content_category_access',
-            ],
-            [
-                'id'    => 27,
-                'title' => 'content_tag_create',
-            ],
-            [
-                'id'    => 28,
-                'title' => 'content_tag_edit',
-            ],
-            [
-                'id'    => 29,
-                'title' => 'content_tag_show',
-            ],
-            [
-                'id'    => 30,
-                'title' => 'content_tag_delete',
-            ],
-            [
-                'id'    => 31,
-                'title' => 'content_tag_access',
-            ],
-            [
-                'id'    => 32,
-                'title' => 'content_page_create',
-            ],
-            [
-                'id'    => 33,
-                'title' => 'content_page_edit',
-            ],
-            [
-                'id'    => 34,
-                'title' => 'content_page_show',
-            ],
-            [
-                'id'    => 35,
-                'title' => 'content_page_delete',
-            ],
-            [
-                'id'    => 36,
-                'title' => 'content_page_access',
-            ],
-            [
-                'id'    => 37,
-                'title' => 'faq_management_access',
-            ],
-            [
-                'id'    => 38,
-                'title' => 'faq_category_create',
-            ],
-            [
-                'id'    => 39,
-                'title' => 'faq_category_edit',
-            ],
-            [
-                'id'    => 40,
-                'title' => 'faq_category_show',
-            ],
-            [
-                'id'    => 41,
-                'title' => 'faq_category_delete',
-            ],
-            [
-                'id'    => 42,
-                'title' => 'faq_category_access',
-            ],
-            [
-                'id'    => 43,
-                'title' => 'faq_question_create',
-            ],
-            [
-                'id'    => 44,
-                'title' => 'faq_question_edit',
-            ],
-            [
-                'id'    => 45,
-                'title' => 'faq_question_show',
-            ],
-            [
-                'id'    => 46,
-                'title' => 'faq_question_delete',
-            ],
-            [
-                'id'    => 47,
-                'title' => 'faq_question_access',
-            ],
-            [
-                'id'    => 48,
                 'title' => 'hostel_create',
             ],
             [
-                'id'    => 49,
+                'id'    => 22,
                 'title' => 'hostel_edit',
             ],
             [
-                'id'    => 50,
+                'id'    => 23,
                 'title' => 'hostel_show',
             ],
             [
-                'id'    => 51,
+                'id'    => 24,
                 'title' => 'hostel_delete',
             ],
             [
-                'id'    => 52,
+                'id'    => 25,
                 'title' => 'hostel_access',
             ],
             [
-                'id'    => 53,
+                'id'    => 26,
                 'title' => 'room_create',
             ],
             [
-                'id'    => 54,
+                'id'    => 27,
                 'title' => 'room_edit',
             ],
             [
-                'id'    => 55,
+                'id'    => 28,
                 'title' => 'room_show',
             ],
             [
-                'id'    => 56,
+                'id'    => 29,
                 'title' => 'room_delete',
             ],
             [
-                'id'    => 57,
+                'id'    => 30,
                 'title' => 'room_access',
             ],
             [
-                'id'    => 58,
+                'id'    => 31,
                 'title' => 'reservation_create',
             ],
             [
-                'id'    => 59,
+                'id'    => 32,
                 'title' => 'reservation_edit',
             ],
             [
-                'id'    => 60,
+                'id'    => 33,
                 'title' => 'reservation_show',
             ],
             [
-                'id'    => 61,
+                'id'    => 34,
                 'title' => 'reservation_delete',
             ],
             [
-                'id'    => 62,
+                'id'    => 35,
                 'title' => 'reservation_access',
             ],
             [
-                'id'    => 63,
+                'id'    => 36,
+                'title' => 'facility_create',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'facility_edit',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'facility_show',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'facility_delete',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'facility_access',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'payment_create',
+            ],
+            [
+                'id'    => 42,
+                'title' => 'payment_edit',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'payment_show',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'payment_delete',
+            ],
+            [
+                'id'    => 45,
+                'title' => 'payment_access',
+            ],
+            [
+                'id'    => 46,
                 'title' => 'profile_password_edit',
             ],
         ];
