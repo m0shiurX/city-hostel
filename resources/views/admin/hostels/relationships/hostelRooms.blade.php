@@ -1,104 +1,122 @@
-<div class="m-3">
-    @can('room_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.rooms.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.room.title_singular') }}
-                </a>
-            </div>
+@can('room_create')
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route('admin.rooms.create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.room.title_singular') }}
+            </a>
         </div>
-    @endcan
-    <div class="card">
-        <div class="card-header">
-            {{ trans('cruds.room.title_singular') }} {{ trans('global.list') }}
-        </div>
+    </div>
+@endcan
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class=" table table-bordered table-striped table-hover datatable datatable-hostelRooms">
-                    <thead>
-                        <tr>
-                            <th width="10">
+<div class="card">
+    <div class="card-header">
+        {{ trans('cruds.room.title_singular') }} {{ trans('global.list') }}
+    </div>
 
-                            </th>
-                            <th>
-                                {{ trans('cruds.room.fields.id') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.room.fields.hostel') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.hostel.fields.address') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.hostel.fields.phone') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.room.fields.room_info') }}
-                            </th>
-                            <th>
-                                {{ trans('cruds.room.fields.price') }}
-                            </th>
-                            <th>
-                                &nbsp;
-                            </th>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-hostelRooms">
+                <thead>
+                    <tr>
+                        <th width="10">
+
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.id') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.hostel') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.address') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.phone') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.room_info') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.price') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.capacity') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.placement') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.room.fields.status') }}
+                        </th>
+                        <th>
+                            &nbsp;
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($rooms as $key => $room)
+                        <tr data-entry-id="{{ $room->id }}">
+                            <td>
+
+                            </td>
+                            <td>
+                                {{ $room->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->hostel->name ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->hostel->address ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->hostel->phone ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->room_info ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->price ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->capacity ?? '' }}
+                            </td>
+                            <td>
+                                {{ $room->placement ?? '' }}
+                            </td>
+                            <td>
+                                {{ App\Models\Room::STATUS_RADIO[$room->status] ?? '' }}
+                            </td>
+                            <td>
+                                @can('room_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.rooms.show', $room->id) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                @endcan
+
+                                @can('room_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.rooms.edit', $room->id) }}">
+                                        {{ trans('global.edit') }}
+                                    </a>
+                                @endcan
+
+                                @can('room_delete')
+                                    <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    </form>
+                                @endcan
+
+                            </td>
+
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($rooms as $key => $room)
-                            <tr data-entry-id="{{ $room->id }}">
-                                <td>
-
-                                </td>
-                                <td>
-                                    {{ $room->id ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $room->hostel->name ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $room->hostel->address ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $room->hostel->phone ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $room->room_info ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $room->price ?? '' }}
-                                </td>
-                                <td>
-                                    @can('room_show')
-                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.rooms.show', $room->id) }}">
-                                            {{ trans('global.view') }}
-                                        </a>
-                                    @endcan
-
-                                    @can('room_edit')
-                                        <a class="btn btn-xs btn-info" href="{{ route('admin.rooms.edit', $room->id) }}">
-                                            {{ trans('global.edit') }}
-                                        </a>
-                                    @endcan
-
-                                    @can('room_delete')
-                                        <form action="{{ route('admin.rooms.destroy', $room->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                        </form>
-                                    @endcan
-
-                                </td>
-
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
 @section('scripts')
 @parent
 <script>

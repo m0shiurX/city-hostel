@@ -11,8 +11,13 @@ class CreateHostelsTable extends Migration
         Schema::create('hostels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('address');
             $table->string('phone');
+            $table->string('address');
+            $table->string('built_on')->nullable();
+            $table->string('total_seat');
+            $table->string('garage')->nullable();
+            $table->string('garage_size')->nullable();
+            $table->longText('aminities')->nullable();
             $table->longText('note')->nullable();
             $table->timestamps();
             $table->softDeletes();

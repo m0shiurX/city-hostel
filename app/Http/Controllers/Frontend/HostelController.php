@@ -7,8 +7,8 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyHostelRequest;
 use App\Http\Requests\StoreHostelRequest;
 use App\Http\Requests\UpdateHostelRequest;
+use App\Models\Facility;
 use App\Models\Hostel;
-use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -22,7 +22,7 @@ class HostelController extends Controller
     {
         abort_if(Gate::denies('hostel_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $hostels = Hostel::with(['user', 'created_by'])->get();
+        $hostels = Hostel::with(['facilities', 'created_by'])->get();
 
         return view('frontend.hostels.index', compact('hostels'));
     }
@@ -31,15 +31,15 @@ class HostelController extends Controller
     {
         abort_if(Gate::denies('hostel_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $facilities = Facility::pluck('name', 'id');
 
-        return view('frontend.hostels.create', compact('users'));
+        return view('frontend.hostels.create', compact('facilities'));
     }
 
     public function store(StoreHostelRequest $request)
     {
         $hostel = Hostel::create($request->all());
-
+        $hostel->facilities()->sync($request->input('facilities', []));
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $hostel->id]);
         }
@@ -51,16 +51,17 @@ class HostelController extends Controller
     {
         abort_if(Gate::denies('hostel_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $facilities = Facility::pluck('name', 'id');
 
-        $hostel->load('user', 'created_by');
+        $hostel->load('facilities', 'created_by');
 
-        return view('frontend.hostels.edit', compact('hostel', 'users'));
+        return view('frontend.hostels.edit', compact('facilities', 'hostel'));
     }
 
     public function update(UpdateHostelRequest $request, Hostel $hostel)
     {
         $hostel->update($request->all());
+        $hostel->facilities()->sync($request->input('facilities', []));
 
         return redirect()->route('frontend.hostels.index');
     }
@@ -69,7 +70,7 @@ class HostelController extends Controller
     {
         abort_if(Gate::denies('hostel_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $hostel->load('user', 'created_by');
+        $hostel->load('facilities', 'created_by', 'hostelRooms');
 
         return view('frontend.hostels.show', compact('hostel'));
     }

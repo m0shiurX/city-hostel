@@ -33,6 +33,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.hostel.fields.phone') }}
+                        </th>
+                        <td>
+                            {{ $hostel->phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.hostel.fields.address') }}
                         </th>
                         <td>
@@ -41,10 +49,42 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.hostel.fields.phone') }}
+                            {{ trans('cruds.hostel.fields.built_on') }}
                         </th>
                         <td>
-                            {{ $hostel->phone }}
+                            {{ $hostel->built_on }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.hostel.fields.total_seat') }}
+                        </th>
+                        <td>
+                            {{ $hostel->total_seat }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.hostel.fields.garage') }}
+                        </th>
+                        <td>
+                            {{ $hostel->garage }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.hostel.fields.garage_size') }}
+                        </th>
+                        <td>
+                            {{ $hostel->garage_size }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.hostel.fields.aminities') }}
+                        </th>
+                        <td>
+                            {!! $hostel->aminities !!}
                         </td>
                     </tr>
                     <tr>
@@ -57,10 +97,12 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.hostel.fields.user') }}
+                            {{ trans('cruds.hostel.fields.facility') }}
                         </th>
                         <td>
-                            {{ $hostel->user->name ?? '' }}
+                            @foreach($hostel->facilities as $key => $facility)
+                                <span class="label label-info">{{ $facility->name }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

@@ -28,6 +28,25 @@ class UpdateRoomRequest extends FormRequest
             'images' => [
                 'array',
             ],
+            'capacity' => [
+                'required',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
+            'placement' => [
+                'string',
+                'nullable',
+            ],
+            'facilities.*' => [
+                'integer',
+            ],
+            'facilities' => [
+                'array',
+            ],
+            'status' => [
+                'required',
+            ],
         ];
     }
 }

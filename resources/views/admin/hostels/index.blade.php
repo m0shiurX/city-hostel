@@ -29,13 +29,25 @@
                             {{ trans('cruds.hostel.fields.name') }}
                         </th>
                         <th>
-                            {{ trans('cruds.hostel.fields.address') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.hostel.fields.phone') }}
                         </th>
                         <th>
-                            {{ trans('cruds.hostel.fields.user') }}
+                            {{ trans('cruds.hostel.fields.address') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.built_on') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.total_seat') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.garage') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.garage_size') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.hostel.fields.facility') }}
                         </th>
                         <th>
                             &nbsp;
@@ -55,13 +67,27 @@
                                 {{ $hostel->name ?? '' }}
                             </td>
                             <td>
-                                {{ $hostel->address ?? '' }}
-                            </td>
-                            <td>
                                 {{ $hostel->phone ?? '' }}
                             </td>
                             <td>
-                                {{ $hostel->user->name ?? '' }}
+                                {{ $hostel->address ?? '' }}
+                            </td>
+                            <td>
+                                {{ $hostel->built_on ?? '' }}
+                            </td>
+                            <td>
+                                {{ $hostel->total_seat ?? '' }}
+                            </td>
+                            <td>
+                                {{ $hostel->garage ?? '' }}
+                            </td>
+                            <td>
+                                {{ $hostel->garage_size ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($hostel->facilities as $key => $item)
+                                    <span class="badge badge-info">{{ $item->name }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @can('hostel_show')

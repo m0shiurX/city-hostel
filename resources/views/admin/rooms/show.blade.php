@@ -41,14 +41,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.room.fields.facilities') }}
-                        </th>
-                        <td>
-                            {!! $room->facilities !!}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.room.fields.images') }}
                         </th>
                         <td>
@@ -65,6 +57,40 @@
                         </th>
                         <td>
                             {{ $room->price }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.room.fields.capacity') }}
+                        </th>
+                        <td>
+                            {{ $room->capacity }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.room.fields.placement') }}
+                        </th>
+                        <td>
+                            {{ $room->placement }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.room.fields.facility') }}
+                        </th>
+                        <td>
+                            @foreach($room->facilities as $key => $facility)
+                                <span class="label label-info">{{ $facility->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.room.fields.status') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Room::STATUS_RADIO[$room->status] ?? '' }}
                         </td>
                     </tr>
                 </tbody>

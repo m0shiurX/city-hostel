@@ -27,12 +27,21 @@ class Room extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public const STATUS_RADIO = [
+        'booked'    => 'Booked',
+        'available' => 'Available',
+        'pending'   => 'Pending',
+        'off'       => 'off',
+    ];
+
     protected $fillable = [
         'hostel_id',
         'room_info',
-        'facilities',
         'price',
         'created_at',
+        'capacity',
+        'placement',
+        'status',
         'updated_at',
         'deleted_at',
         'created_by_id',
@@ -64,6 +73,11 @@ class Room extends Model implements HasMedia
         });
 
         return $files;
+    }
+
+    public function facilities()
+    {
+        return $this->belongsToMany(Facility::class);
     }
 
     public function created_by()

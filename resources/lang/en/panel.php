@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'site_title' => 'mess-management',
+    'site_title' => 'city-hostel',
 
 ];

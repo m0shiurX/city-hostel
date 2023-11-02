@@ -25,10 +25,14 @@ class Hostel extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'address',
         'phone',
+        'address',
+        'built_on',
+        'total_seat',
+        'garage',
+        'garage_size',
+        'aminities',
         'note',
-        'user_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -51,9 +55,9 @@ class Hostel extends Model implements HasMedia
         return $this->hasMany(Room::class, 'hostel_id', 'id');
     }
 
-    public function user()
+    public function facilities()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(Facility::class);
     }
 
     public function created_by()
