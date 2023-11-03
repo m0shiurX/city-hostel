@@ -55,6 +55,26 @@
                 </a>
             </li>
         @endcan
+        @can('category_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/categories") || request()->is("admin/categories/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.category.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('tag_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.tags.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/tags") || request()->is("admin/tags/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.tag.title') }}
+                </a>
+            </li>
+        @endcan
         @can('payment_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.payments.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/payments") || request()->is("admin/payments/*") ? "c-active" : "" }}">
