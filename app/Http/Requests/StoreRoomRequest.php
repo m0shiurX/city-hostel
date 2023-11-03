@@ -47,6 +47,12 @@ class StoreRoomRequest extends FormRequest
             'status' => [
                 'required',
             ],
+            'tags.*' => [
+                'integer',
+            ],
+            'tags' => [
+                'array',
+            ],
         ];
     }
 }

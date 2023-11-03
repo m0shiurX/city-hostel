@@ -3,13 +3,13 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.tag.title') }}
+        {{ trans('global.show') }} {{ trans('cruds.area.title') }}
     </div>
 
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.tags.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.areas.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,24 +17,24 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.tag.fields.id') }}
+                            {{ trans('cruds.area.fields.id') }}
                         </th>
                         <td>
-                            {{ $tag->id }}
+                            {{ $area->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.tag.fields.name') }}
+                            {{ trans('cruds.area.fields.name') }}
                         </th>
                         <td>
-                            {{ $tag->name }}
+                            {{ $area->name }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.tags.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.areas.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -48,14 +48,14 @@
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#tag_rooms" role="tab" data-toggle="tab">
-                {{ trans('cruds.room.title') }}
+            <a class="nav-link" href="#area_hostels" role="tab" data-toggle="tab">
+                {{ trans('cruds.hostel.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="tag_rooms">
-            @includeIf('admin.tags.relationships.tagRooms', ['rooms' => $tag->tagRooms])
+        <div class="tab-pane" role="tabpanel" id="area_hostels">
+            @includeIf('admin.areas.relationships.areaHostels', ['hostels' => $area->areaHostels])
         </div>
     </div>
 </div>

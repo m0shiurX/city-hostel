@@ -46,10 +46,21 @@ class StoreHostelRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'area_id' => [
+                'required',
+                'integer',
+            ],
             'facilities.*' => [
                 'integer',
             ],
             'facilities' => [
+                'array',
+            ],
+            'categories.*' => [
+                'integer',
+            ],
+            'categories' => [
+                'required',
                 'array',
             ],
         ];

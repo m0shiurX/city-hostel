@@ -127,6 +127,10 @@ return [
             'aminities_helper'   => ' ',
             'facility'           => 'Facility',
             'facility_helper'    => ' ',
+            'area'               => 'Area',
+            'area_helper'        => ' ',
+            'category'           => 'Category',
+            'category_helper'    => ' ',
         ],
     ],
     'room' => [
@@ -159,6 +163,8 @@ return [
             'facility_helper'   => ' ',
             'status'            => 'Status',
             'status_helper'     => ' ',
+            'tag'               => 'Tag',
+            'tag_helper'        => ' ',
         ],
     ],
     'reservation' => [
@@ -246,6 +252,22 @@ return [
     'tag' => [
         'title'          => 'Tag',
         'title_singular' => 'Tag',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'name'              => 'Name',
+            'name_helper'       => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+        ],
+    ],
+    'area' => [
+        'title'          => 'Area',
+        'title_singular' => 'Area',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',

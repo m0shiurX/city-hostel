@@ -33,10 +33,11 @@ class Hostel extends Model implements HasMedia
         'garage_size',
         'aminities',
         'note',
+        'area_id',
+        'created_by_id',
         'created_at',
         'updated_at',
         'deleted_at',
-        'created_by_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -55,9 +56,19 @@ class Hostel extends Model implements HasMedia
         return $this->hasMany(Room::class, 'hostel_id', 'id');
     }
 
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
+    }
+
     public function facilities()
     {
         return $this->belongsToMany(Facility::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 
     public function created_by()

@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\ContentCategory;
+use App\Models\Area;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class UpdateContentCategoryRequest extends FormRequest
+class UpdateAreaRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('content_category_edit');
+        return Gate::allows('area_edit');
     }
 
     public function rules()
@@ -20,10 +20,6 @@ class UpdateContentCategoryRequest extends FormRequest
             'name' => [
                 'string',
                 'required',
-            ],
-            'slug' => [
-                'string',
-                'nullable',
             ],
         ];
     }

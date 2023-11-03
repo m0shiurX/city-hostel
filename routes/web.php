@@ -55,6 +55,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('tags/destroy', 'TagController@massDestroy')->name('tags.massDestroy');
     Route::resource('tags', 'TagController', ['except' => ['show']]);
 
+    // Area
+    Route::delete('areas/destroy', 'AreaController@massDestroy')->name('areas.massDestroy');
+    Route::resource('areas', 'AreaController', ['except' => ['show']]);
+
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
@@ -124,6 +128,10 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Tag
     Route::delete('tags/destroy', 'TagController@massDestroy')->name('tags.massDestroy');
     Route::resource('tags', 'TagController', ['except' => ['show']]);
+
+    // Area
+    Route::delete('areas/destroy', 'AreaController@massDestroy')->name('areas.massDestroy');
+    Route::resource('areas', 'AreaController', ['except' => ['show']]);
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

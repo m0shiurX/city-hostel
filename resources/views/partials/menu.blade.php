@@ -15,6 +15,16 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
+        @can('area_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.areas.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/areas") || request()->is("admin/areas/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.area.title') }}
+                </a>
+            </li>
+        @endcan
         @can('hostel_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.hostels.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/hostels") || request()->is("admin/hostels/*") ? "c-active" : "" }}">
@@ -58,7 +68,7 @@
         @can('category_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/categories") || request()->is("admin/categories/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+                    <i class="fa-fw fas fa-bolt c-sidebar-nav-icon">
 
                     </i>
                     {{ trans('cruds.category.title') }}

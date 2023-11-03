@@ -47,6 +47,12 @@ class UpdateRoomRequest extends FormRequest
             'status' => [
                 'required',
             ],
+            'tags.*' => [
+                'integer',
+            ],
+            'tags' => [
+                'array',
+            ],
         ];
     }
 }

@@ -41,6 +41,18 @@
                                         {{ trans('cruds.room.fields.price') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.room.fields.capacity') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.room.fields.placement') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.room.fields.status') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.room.fields.tag') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -65,6 +77,20 @@
                                         </td>
                                         <td>
                                             {{ $room->price ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $room->capacity ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $room->placement ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\Room::STATUS_RADIO[$room->status] ?? '' }}
+                                        </td>
+                                        <td>
+                                            @foreach($room->tags as $key => $item)
+                                                <span>{{ $item->name }}</span>
+                                            @endforeach
                                         </td>
                                         <td>
                                             @can('room_show')

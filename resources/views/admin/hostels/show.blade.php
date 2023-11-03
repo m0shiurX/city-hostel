@@ -97,11 +97,29 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.hostel.fields.area') }}
+                        </th>
+                        <td>
+                            {{ $hostel->area->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.hostel.fields.facility') }}
                         </th>
                         <td>
                             @foreach($hostel->facilities as $key => $facility)
                                 <span class="label label-info">{{ $facility->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.hostel.fields.category') }}
+                        </th>
+                        <td>
+                            @foreach($hostel->categories as $key => $category)
+                                <span class="label label-info">{{ $category->name }}</span>
                             @endforeach
                         </td>
                     </tr>

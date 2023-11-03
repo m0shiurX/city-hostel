@@ -42,9 +42,9 @@ class Room extends Model implements HasMedia
         'capacity',
         'placement',
         'status',
+        'created_by_id',
         'updated_at',
         'deleted_at',
-        'created_by_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)
@@ -78,6 +78,11 @@ class Room extends Model implements HasMedia
     public function facilities()
     {
         return $this->belongsToMany(Facility::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function created_by()

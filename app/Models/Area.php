@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ContentTag extends Model
+class Area extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public $table = 'content_tags';
+    public $table = 'areas';
 
     protected $dates = [
         'created_at',
@@ -21,7 +21,6 @@ class ContentTag extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -30,5 +29,10 @@ class ContentTag extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function areaHostels()
+    {
+        return $this->hasMany(Hostel::class, 'area_id', 'id');
     }
 }

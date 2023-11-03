@@ -1,5 +1,3 @@
-@extends('layouts.admin')
-@section('content')
 @can('hostel_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -9,6 +7,7 @@
         </div>
     </div>
 @endcan
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.hostel.title_singular') }} {{ trans('global.list') }}
@@ -16,7 +15,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Hostel">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-categoryHostels">
                 <thead>
                     <tr>
                         <th width="10">
@@ -134,9 +133,6 @@
     </div>
 </div>
 
-
-
-@endsection
 @section('scripts')
 @parent
 <script>
@@ -177,7 +173,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-Hostel:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-categoryHostels:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

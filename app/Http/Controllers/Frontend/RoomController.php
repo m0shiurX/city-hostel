@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateRoomRequest;
 use App\Models\Facility;
 use App\Models\Hostel;
 use App\Models\Room;
+use App\Models\Tag;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -23,7 +24,7 @@ class RoomController extends Controller
     {
         abort_if(Gate::denies('room_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $rooms = Room::with(['hostel', 'facilities', 'created_by', 'media'])->get();
+        $rooms = Room::with(['hostel', 'facilities', 'tags', 'created_by', 'media'])->get();
 
         return view('frontend.rooms.index', compact('rooms'));
     }
@@ -36,13 +37,16 @@ class RoomController extends Controller
 
         $facilities = Facility::pluck('name', 'id');
 
-        return view('frontend.rooms.create', compact('facilities', 'hostels'));
+        $tags = Tag::pluck('name', 'id');
+
+        return view('frontend.rooms.create', compact('facilities', 'hostels', 'tags'));
     }
 
     public function store(StoreRoomRequest $request)
     {
         $room = Room::create($request->all());
         $room->facilities()->sync($request->input('facilities', []));
+        $room->tags()->sync($request->input('tags', []));
         foreach ($request->input('images', []) as $file) {
             $room->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('images');
         }
@@ -62,15 +66,18 @@ class RoomController extends Controller
 
         $facilities = Facility::pluck('name', 'id');
 
-        $room->load('hostel', 'facilities', 'created_by');
+        $tags = Tag::pluck('name', 'id');
 
-        return view('frontend.rooms.edit', compact('facilities', 'hostels', 'room'));
+        $room->load('hostel', 'facilities', 'tags', 'created_by');
+
+        return view('frontend.rooms.edit', compact('facilities', 'hostels', 'room', 'tags'));
     }
 
     public function update(UpdateRoomRequest $request, Room $room)
     {
         $room->update($request->all());
         $room->facilities()->sync($request->input('facilities', []));
+        $room->tags()->sync($request->input('tags', []));
         if (count($room->images) > 0) {
             foreach ($room->images as $media) {
                 if (! in_array($media->file_name, $request->input('images', []))) {
@@ -92,7 +99,7 @@ class RoomController extends Controller
     {
         abort_if(Gate::denies('room_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $room->load('hostel', 'facilities', 'created_by');
+        $room->load('hostel', 'facilities', 'tags', 'created_by');
 
         return view('frontend.rooms.show', compact('room'));
     }

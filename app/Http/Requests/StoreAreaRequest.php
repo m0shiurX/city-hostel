@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\ContentTag;
+use App\Models\Area;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class StoreContentTagRequest extends FormRequest
+class StoreAreaRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('content_tag_create');
+        return Gate::allows('area_create');
     }
 
     public function rules()
@@ -20,10 +20,6 @@ class StoreContentTagRequest extends FormRequest
             'name' => [
                 'string',
                 'required',
-            ],
-            'slug' => [
-                'string',
-                'nullable',
             ],
         ];
     }

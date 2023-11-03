@@ -224,6 +224,22 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 54,
+                'title' => 'area_create',
+            ],
+            [
+                'id'    => 55,
+                'title' => 'area_edit',
+            ],
+            [
+                'id'    => 56,
+                'title' => 'area_delete',
+            ],
+            [
+                'id'    => 57,
+                'title' => 'area_access',
+            ],
+            [
+                'id'    => 58,
                 'title' => 'profile_password_edit',
             ],
         ];

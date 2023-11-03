@@ -93,6 +93,16 @@
                             {{ App\Models\Room::STATUS_RADIO[$room->status] ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.room.fields.tag') }}
+                        </th>
+                        <td>
+                            @foreach($room->tags as $key => $tag)
+                                <span class="label label-info">{{ $tag->name }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
