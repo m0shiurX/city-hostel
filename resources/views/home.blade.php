@@ -54,23 +54,24 @@
                                 </tbody>
                             </table>
                         </div>
+
                         {{-- Widget - latest entries --}}
-                        <div class="{{ $settings4['column_class'] }}" style="overflow-x: auto;">
-                            <h3>{{ $settings4['chart_title'] }}</h3>
+                        <div class="{{ $settings2['column_class'] }}" style="overflow-x: auto;">
+                            <h3>{{ $settings2['chart_title'] }}</h3>
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        @foreach($settings4['fields'] as $key => $value)
+                                        @foreach($settings2['fields'] as $key => $value)
                                             <th>
-                                                {{ trans(sprintf('cruds.%s.fields.%s', $settings4['translation_key'] ?? 'pleaseUpdateWidget', $key)) }}
+                                                {{ trans(sprintf('cruds.%s.fields.%s', $settings2['translation_key'] ?? 'pleaseUpdateWidget', $key)) }}
                                             </th>
                                         @endforeach
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($settings4['data'] as $entry)
+                                    @forelse($settings2['data'] as $entry)
                                         <tr>
-                                            @foreach($settings4['fields'] as $key => $value)
+                                            @foreach($settings2['fields'] as $key => $value)
                                                 <td>
                                                     @if($value === '')
                                                         {{ $entry->{$key} }}
@@ -86,21 +87,13 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="{{ count($settings4['fields']) }}">{{ __('No entries found') }}</td>
+                                            <td colspan="{{ count($settings2['fields']) }}">{{ __('No entries found') }}</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
                             </table>
                         </div>
 
-                        <div class="{{ $chart2->options['column_class'] }}">
-                            <h3>{!! $chart2->options['chart_title'] !!}</h3>
-                            {!! $chart2->renderHtml() !!}
-                        </div>
-                        <div class="{{ $chart3->options['column_class'] }}">
-                            <h3>{!! $chart3->options['chart_title'] !!}</h3>
-                            {!! $chart3->renderHtml() !!}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -110,5 +103,5 @@
 @endsection
 @section('scripts')
 @parent
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart2->renderJs() !!}{!! $chart3->renderJs() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 @endsection

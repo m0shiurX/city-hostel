@@ -77,6 +77,41 @@
 
                                     <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
 
+                                    @can('hostel_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.hostels.index') }}">
+                                            {{ trans('cruds.hostel.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('room_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.rooms.index') }}">
+                                            {{ trans('cruds.room.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('facility_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.facilities.index') }}">
+                                            {{ trans('cruds.facility.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('reservation_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.reservations.index') }}">
+                                            {{ trans('cruds.reservation.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('category_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">
+                                            {{ trans('cruds.category.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('payment_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.payments.index') }}">
+                                            {{ trans('cruds.payment.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('user_alert_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.user-alerts.index') }}">
+                                            {{ trans('cruds.userAlert.title') }}
+                                        </a>
+                                    @endcan
                                     @can('user_management_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.userManagement.title') }}
@@ -97,34 +132,9 @@
                                             {{ trans('cruds.user.title') }}
                                         </a>
                                     @endcan
-                                    @can('user_alert_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.user-alerts.index') }}">
-                                            {{ trans('cruds.userAlert.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('hostel_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.hostels.index') }}">
-                                            {{ trans('cruds.hostel.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('room_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.rooms.index') }}">
-                                            {{ trans('cruds.room.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('reservation_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.reservations.index') }}">
-                                            {{ trans('cruds.reservation.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('facility_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.facilities.index') }}">
-                                            {{ trans('cruds.facility.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('payment_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.payments.index') }}">
-                                            {{ trans('cruds.payment.title') }}
+                                    @can('tag_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">
+                                            {{ trans('cruds.tag.title') }}
                                         </a>
                                     @endcan
 
