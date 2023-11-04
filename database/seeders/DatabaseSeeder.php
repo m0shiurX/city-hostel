@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
             AreaTableSeeder::class,
             FacilityTableSeeder::class,
+            CategoryTableSeeder::class,
+            HostelTableSeeder::class,
         ]);
     }
 }

@@ -15,21 +15,27 @@ class AreaTableSeeder extends Seeder
     {
         $areas = [
             [
+                'id'   => 1,
                 'name' => 'Old Dhaka',
             ],
             [
+                'id'   => 2,
                 'name' => 'Gulshan',
             ],
             [
+                'id'   => 3,
                 'name' => 'Mirpur',
             ],
             [
+                'id'   => 4,
                 'name' => 'Dhanmondi',
             ],
             [
+                'id'   => 5,
                 'name' => 'Uttara',
             ],
             [
+                'id'   => 6,
                 'name' => 'Banani',
             ],
 
