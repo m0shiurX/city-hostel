@@ -115,21 +115,18 @@
                 <div class="top-inner clearfix">
                     <div class="left-column pull-left">
                         <ul class="info clearfix">
-                            <li><i class="far fa-map-marker-alt"></i>Discover St, New York, NY 10012, USA</li>
-                            <li><i class="far fa-clock"></i>Mon - Sat  9.00 - 18.00</li>
-                            <li><i class="far fa-phone"></i><a href="tel:2512353256">+251-235-3256</a></li>
+                            <li><i class="far fa-map-marker-alt"></i>New Eskaton St, Dhaka 1205, BD</li>
+                            <li><i class="far fa-phone"></i><a href="tel:8801711223344">+880-1711-223344</a></li>
                         </ul>
                     </div>
                     <div class="right-column pull-right">
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-pinterest-p"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-google-plus-g"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-vimeo-v"></i></a></li>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                         </ul>
                         <div class="sign-box">
-                            <a href="signin.html"><i class="fas fa-user"></i>Sign In</a>
+                            <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
                         </div>
                     </div>
                 </div>
@@ -139,7 +136,7 @@
                 <div class="outer-box">
                     <div class="main-box">
                         <div class="logo-box">
-                            <figure class="logo"><a href="index.html"><img src="{{ asset('frontend/images/logo.png') }}" alt=""></a></figure>
+                            <figure class="logo"><a href="{{ route('public') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
                         </div>
                         <div class="menu-area clearfix">
                             <!--Mobile Navigation Toggler-->
@@ -151,17 +148,7 @@
                             <nav class="main-menu navbar-expand-md navbar-light">
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation scroll-nav clearfix">
-                                        <li class="dropdown"><a href="index-onepage.html">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Main Home</a></li>
-                                                <li><a href="index-2.html">Home Modern</a></li>
-                                                <li><a href="index-3.html">Home Map</a></li>
-                                                <li><a href="index-4.html">Home Half Map</a></li>
-                                                <li><a href="index-5.html">Home Agent</a></li>
-                                                <li><a href="index-onepage.html">OnePage Home</a></li>
-                                                <li><a href="index-rtl.html">RTL Home</a></li>
-                                            </ul>
-                                        </li>
+                                        <li class=""><a href="{{ route('public') }}">Home</a></li>
                                         <li><a href="#feature">Feature</a></li>
                                         <li><a href="#testimonial">Testimonial</a></li>
                                         <li><a href="#team">Team</a></li>
@@ -172,7 +159,7 @@
                             </nav>
                         </div>
                         <div class="btn-box">
-                            <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                            <a href="{{ route('public') }}" class="theme-btn btn-one"><span>+</span>Add Hostel</a>
                         </div>
                     </div>
                 </div>
@@ -183,7 +170,7 @@
                 <div class="outer-box">
                     <div class="main-box">
                         <div class="logo-box">
-                            <figure class="logo"><a href="index.html"><img src="{{ asset('frontend/images/logo.png') }}" alt=""></a></figure>
+                            <figure class="logo"><a href="{{ route('public') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
                         </div>
                         <div class="menu-area clearfix">
                             <nav class="main-menu clearfix">
@@ -191,7 +178,7 @@
                             </nav>
                         </div>
                         <div class="btn-box">
-                            <a href="index.html" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                            <a href="{{ route('public') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
                         </div>
                     </div>
                 </div>
@@ -205,7 +192,7 @@
             <div class="close-btn"><i class="fas fa-times"></i></div>
 
             <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="{{ asset('frontend/images/logo-2.png') }}" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="{{ route('public') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt="" title=""></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
                 <div class="contact-info">
                     <h4>Contact Info</h4>
@@ -217,11 +204,11 @@
                 </div>
                 <div class="social-links">
                     <ul class="clearfix">
-                        <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                        <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
+                        <li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                        <li><a href="#"><span class="fab fa-youtube"></span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -254,12 +241,12 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list class">
-                                        <li><a href="index.html">About Us</a></li>
-                                        <li><a href="index.html">Listing</a></li>
-                                        <li><a href="index.html">How It Works</a></li>
-                                        <li><a href="index.html">Our Services</a></li>
-                                        <li><a href="index.html">Our Blog</a></li>
-                                        <li><a href="index.html">Contact Us</a></li>
+                                        <li><a href="{{ route('public') }}">About Us</a></li>
+                                        <li><a href="{{ route('public') }}">Listing</a></li>
+                                        <li><a href="{{ route('public') }}">How It Works</a></li>
+                                        <li><a href="{{ route('public') }}">Our Services</a></li>
+                                        <li><a href="{{ route('public') }}">Our Blog</a></li>
+                                        <li><a href="{{ route('public') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -290,9 +277,9 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="info-list clearfix">
-                                        <li><i class="fas fa-map-marker-alt"></i>Flat 20, Reynolds Neck, North Helenaville, FV77 8WS</li>
-                                        <li><i class="fas fa-microphone"></i><a href="tel:23055873407">+2(305) 587-3407</a></li>
-                                        <li><i class="fas fa-envelope"></i><a href="mailto:info@example.com">info@example.com</a></li>
+                                        <li><i class="fas fa-map-marker-alt"></i>New Eskaton St, Dhaka 1205, BD</li>
+                                        <li><i class="fas fa-microphone"></i><a href="tel:8801711223344">+880-1711-223344</a></li>
+                                        <li><i class="fas fa-envelope"></i><a href="mailto:info@city-hostel.com">info@city-hostel.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -303,13 +290,13 @@
             <div class="footer-bottom">
                 <div class="auto-container">
                     <div class="inner-box clearfix">
-                        <figure class="footer-logo"><a href="index.html"><img src="{{ asset('frontend/images/footer-logo.png') }}" alt=""></a></figure>
+                        <figure class="footer-logo"><a href="{{ route('public') }}"><img src="{{ asset('frontend/images/footer-logo_new.png') }}" alt=""></a></figure>
                         <div class="copyright pull-left">
-                            <p><a href="index.html">Realshed</a> &copy; 2021 All Right Reserved</p>
+                            <p><a href="#">City Hostel</a> &copy; 2021 All Right Reserved</p>
                         </div>
                         <ul class="footer-nav pull-right clearfix">
-                            <li><a href="index.html">Terms of Service</a></li>
-                            <li><a href="index.html">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

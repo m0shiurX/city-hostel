@@ -1,10 +1,14 @@
 <?php
 
-Route::view('/', 'index');
+use App\Http\Controllers\LandingPageController;
+
+Route::get('/', 'LandingPageController@index')->name('public');
+
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
+
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
