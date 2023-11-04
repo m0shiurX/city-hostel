@@ -22,6 +22,30 @@ class UsersTableSeeder extends Seeder
                 'verification_token' => '',
                 'phone'              => '',
             ],
+            [
+                'id'                 => 2,
+                'name'               => 'Hostel Owner',
+                'email'              => 'owner@admin.com',
+                'password'           => bcrypt('password'),
+                'remember_token'     => null,
+                'approved'           => 1,
+                'verified'           => 1,
+                'verified_at'        => '2023-10-18 19:30:46',
+                'verification_token' => '',
+                'phone'              => '',
+            ],
+            [
+                'id'                 => 3,
+                'name'               => 'Student',
+                'email'              => 'student@admin.com',
+                'password'           => bcrypt('password'),
+                'remember_token'     => null,
+                'approved'           => 1,
+                'verified'           => 1,
+                'verified_at'        => '2023-10-18 19:30:46',
+                'verification_token' => '',
+                'phone'              => '',
+            ],
         ];
 
         User::insert($users);

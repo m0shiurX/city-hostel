@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Room;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Tag;
 
-class TagTableSeeder extends Seeder
+class RoomTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Tag::factory()->count(20)->create();
+        Room::factory()->count(20)->create();
     }
 }

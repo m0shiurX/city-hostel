@@ -17,14 +17,14 @@ class HostelTableSeeder extends Seeder
     {
         $hostels = [
             [
-                'name' => 'Testing Hostel',
+                'name' => 'Testing Hostel 1',
                 'phone' => '999999',
                 'address' => 'Banani, Sector 3, road #23, House #45',
                 'built_on' => '2019',
                 'total_seat' => '34',
                 'garage' => 'yes',
                 'garage_size' => '2000sqft',
-                'area_id' => 3
+                'area_id' => 1
             ],
             [
                 'name' => 'Testing Hostel 2',
@@ -34,7 +34,7 @@ class HostelTableSeeder extends Seeder
                 'total_seat' => '34',
                 'garage' => 'yes',
                 'garage_size' => '2000sqft',
-                'area_id' => 5
+                'area_id' => 6
             ],
             [
                 'name' => 'Testing Hostel 3',
@@ -44,7 +44,7 @@ class HostelTableSeeder extends Seeder
                 'total_seat' => '34',
                 'garage' => 'yes',
                 'garage_size' => '2000sqft',
-                'area_id' => 4
+                'area_id' => 2
             ],
             [
                 'name' => 'Testing Hostel 4',
