@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
             AreaTableSeeder::class,
+            TagTableSeeder::class,
             FacilityTableSeeder::class,
             CategoryTableSeeder::class,
             HostelTableSeeder::class,
