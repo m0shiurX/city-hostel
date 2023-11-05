@@ -17,9 +17,6 @@ class UsersTableSeeder extends Seeder
                 'password'           => bcrypt('password'),
                 'remember_token'     => null,
                 'approved'           => 1,
-                'verified'           => 1,
-                'verified_at'        => '2023-10-18 19:30:46',
-                'verification_token' => '',
                 'phone'              => '',
             ],
             [
@@ -29,9 +26,6 @@ class UsersTableSeeder extends Seeder
                 'password'           => bcrypt('password'),
                 'remember_token'     => null,
                 'approved'           => 1,
-                'verified'           => 1,
-                'verified_at'        => '2023-10-18 19:30:46',
-                'verification_token' => '',
                 'phone'              => '',
             ],
             [
@@ -41,9 +35,6 @@ class UsersTableSeeder extends Seeder
                 'password'           => bcrypt('password'),
                 'remember_token'     => null,
                 'approved'           => 1,
-                'verified'           => 1,
-                'verified_at'        => '2023-10-18 19:30:46',
-                'verification_token' => '',
                 'phone'              => '',
             ],
         ];
