@@ -7,7 +7,7 @@ use App\Models\Area;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
-class HomePageController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
