@@ -63,6 +63,9 @@ class StoreHostelRequest extends FormRequest
                 'required',
                 'array',
             ],
+            'featured_image' => [
+                'required',
+            ],
         ];
     }
 }

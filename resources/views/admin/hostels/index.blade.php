@@ -56,6 +56,9 @@
                             {{ trans('cruds.hostel.fields.category') }}
                         </th>
                         <th>
+                            {{ trans('cruds.hostel.fields.featured_image') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -102,6 +105,13 @@
                                 @foreach($hostel->categories as $key => $item)
                                     <span class="badge badge-info">{{ $item->name }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                @if($hostel->featured_image)
+                                    <a href="{{ $hostel->featured_image->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $hostel->featured_image->getUrl('thumb') }}">
+                                    </a>
+                                @endif
                             </td>
                             <td>
                                 @can('hostel_show')
@@ -182,7 +192,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-
+  
 })
 
 </script>

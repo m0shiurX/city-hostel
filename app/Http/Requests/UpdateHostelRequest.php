@@ -63,6 +63,9 @@ class UpdateHostelRequest extends FormRequest
                 'required',
                 'array',
             ],
+            'featured_image' => [
+                'required',
+            ],
         ];
     }
 }

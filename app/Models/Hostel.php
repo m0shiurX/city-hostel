@@ -17,6 +17,10 @@ class Hostel extends Model implements HasMedia
 
     public $table = 'hostels';
 
+    protected $appends = [
+        'featured_image',
+    ];
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -56,11 +60,6 @@ class Hostel extends Model implements HasMedia
         return $this->hasMany(Room::class, 'hostel_id', 'id');
     }
 
-    public function getAvailableRoomCountAttribute()
-    {
-        return $this->hostelRooms()->where('status', 'available')->count();
-    }
-
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');
@@ -79,5 +78,17 @@ class Hostel extends Model implements HasMedia
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    public function getFeaturedImageAttribute()
+    {
+        $file = $this->getMedia('featured_image')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 }

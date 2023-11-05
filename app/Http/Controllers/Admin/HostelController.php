@@ -24,7 +24,7 @@ class HostelController extends Controller
     {
         abort_if(Gate::denies('hostel_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $hostels = Hostel::with(['area', 'facilities', 'categories', 'created_by'])->get();
+        $hostels = Hostel::with(['area', 'facilities', 'categories', 'created_by', 'media'])->get();
 
         return view('admin.hostels.index', compact('hostels'));
     }
@@ -47,6 +47,10 @@ class HostelController extends Controller
         $hostel = Hostel::create($request->all());
         $hostel->facilities()->sync($request->input('facilities', []));
         $hostel->categories()->sync($request->input('categories', []));
+        if ($request->input('featured_image', false)) {
+            $hostel->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+        }
+
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $hostel->id]);
         }
@@ -74,6 +78,16 @@ class HostelController extends Controller
         $hostel->update($request->all());
         $hostel->facilities()->sync($request->input('facilities', []));
         $hostel->categories()->sync($request->input('categories', []));
+        if ($request->input('featured_image', false)) {
+            if (!$hostel->featured_image || $request->input('featured_image') !== $hostel->featured_image->file_name) {
+                if ($hostel->featured_image) {
+                    $hostel->featured_image->delete();
+                }
+                $hostel->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+            }
+        } elseif ($hostel->featured_image) {
+            $hostel->featured_image->delete();
+        }
 
         return redirect()->route('admin.hostels.index');
     }

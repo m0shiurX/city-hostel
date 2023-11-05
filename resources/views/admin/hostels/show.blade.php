@@ -123,6 +123,18 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.hostel.fields.featured_image') }}
+                        </th>
+                        <td>
+                            @if($hostel->featured_image)
+                                <a href="{{ $hostel->featured_image->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $hostel->featured_image->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

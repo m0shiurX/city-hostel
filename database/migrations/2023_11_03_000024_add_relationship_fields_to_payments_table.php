@@ -9,10 +9,8 @@ class AddRelationshipFieldsToPaymentsTable extends Migration
     public function up()
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->unsignedBigInteger('seat_id')->nullable();
-            $table->foreign('seat_id', 'seat_fk_9175305')->references('id')->on('rooms');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id', 'user_fk_9175308')->references('id')->on('users');
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->foreign('created_by_id', 'created_by_fk_9186855')->references('id')->on('users');
         });
     }
 }

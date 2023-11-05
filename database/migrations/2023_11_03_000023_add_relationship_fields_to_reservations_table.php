@@ -11,8 +11,8 @@ class AddRelationshipFieldsToReservationsTable extends Migration
         Schema::table('reservations', function (Blueprint $table) {
             $table->unsignedBigInteger('room_id')->nullable();
             $table->foreign('room_id', 'room_fk_9125577')->references('id')->on('rooms');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id', 'user_fk_9125578')->references('id')->on('users');
+            $table->unsignedBigInteger('created_by_id')->nullable();
+            $table->foreign('created_by_id', 'created_by_fk_9186856')->references('id')->on('users');
         });
     }
 }
