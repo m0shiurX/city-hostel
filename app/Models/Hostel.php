@@ -31,7 +31,7 @@ class Hostel extends Model implements HasMedia
         'total_seat',
         'garage',
         'garage_size',
-        'aminities',
+        'amenities',
         'note',
         'area_id',
         'created_by_id',

@@ -36,78 +36,6 @@
 <body>
     <div class="boxed_wrapper">
 
-
-        <!-- preloader -->
-        <div class="loader-wrap">
-            <div class="preloader">
-                <div class="preloader-close"><i class="far fa-times"></i></div>
-                <div id="handle-preloader" class="handle-preloader">
-                    <div class="animation-preloader">
-                        <div class="spinner"></div>
-                        <div class="txt-loading">
-                            <span data-text-preloader="r" class="letters-loading">
-                                r
-                            </span>
-                            <span data-text-preloader="e" class="letters-loading">
-                                e
-                            </span>
-                            <span data-text-preloader="a" class="letters-loading">
-                                a
-                            </span>
-                            <span data-text-preloader="l" class="letters-loading">
-                                l
-                            </span>
-                            <span data-text-preloader="s" class="letters-loading">
-                                s
-                            </span>
-                            <span data-text-preloader="h" class="letters-loading">
-                                h
-                            </span>
-                            <span data-text-preloader="e" class="letters-loading">
-                                e
-                            </span>
-                            <span data-text-preloader="d" class="letters-loading">
-                                d
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- preloader end -->
-
-
-        <!-- switcher menu -->
-        <div class="switcher">
-            <div class="switch_btn">
-                <button><i class="fas fa-palette"></i></button>
-            </div>
-            <div class="switch_menu">
-                <!-- color changer -->
-                <div class="switcher_container">
-                    <ul id="styleOptions" title="switch styling">
-                        <li>
-                            <a href="javascript: void(0)" data-theme="green" class="green-color"></a>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0)" data-theme="pink" class="pink-color"></a>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0)" data-theme="violet" class="violet-color"></a>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0)" data-theme="crimson" class="crimson-color"></a>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0)" data-theme="orange" class="orange-color"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- end switcher menu -->
-
-
         <!-- main header -->
         <header class="main-header">
             <!-- header-top -->
@@ -126,7 +54,12 @@
                             <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                         </ul>
                         <div class="sign-box">
-                            <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
+                            @guest
+                                <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
+                            @else
+                                <a href="{{ route('frontend.home') }}"><i class="fas fa-user"></i>My Dashboard</a>
+                            @endguest
+
                         </div>
                     </div>
                 </div>
@@ -223,14 +156,14 @@
             <div class="footer-top bg-color-2">
                 <div class="auto-container">
                     <div class="row clearfix">
-                        <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+                        <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
                             <div class="footer-widget about-widget">
                                 <div class="widget-title">
                                     <h3>About</h3>
                                 </div>
                                 <div class="text">
-                                    <p>Lorem ipsum dolor amet consetetur adi pisicing elit sed eiusm tempor in cididunt ut labore dolore magna aliqua enim ad minim venitam</p>
-                                    <p>Quis nostrud exercita laboris nisi ut aliquip commodo.</p>
+                                    <p class="mb-1">Welcome to the Hostel Rent Portal, your one-stop solution for hassle-free student accommodation. Our platform was created with the vision to simplify the process of finding the perfect place to stay while pursuing your academic dreams.</p>
+                                    <p>Join our community today and experience a smarter, simpler way to rent student accommodations. Your journey begins with Hostel Rent Portal.</p>
                                 </div>
                             </div>
                         </div>
@@ -242,31 +175,10 @@
                                 <div class="widget-content">
                                     <ul class="links-list class">
                                         <li><a href="{{ route('public') }}">About Us</a></li>
-                                        <li><a href="{{ route('public') }}">Listing</a></li>
-                                        <li><a href="{{ route('public') }}">How It Works</a></li>
-                                        <li><a href="{{ route('public') }}">Our Services</a></li>
-                                        <li><a href="{{ route('public') }}">Our Blog</a></li>
+                                        <li><a href="{{ route('public') }}">Current Listings</a></li>
+                                        <li><a href="{{ route('public') }}">Join as Host</a></li>
                                         <li><a href="{{ route('public') }}">Contact Us</a></li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
-                            <div class="footer-widget post-widget">
-                                <div class="widget-title">
-                                    <h3>Top News</h3>
-                                </div>
-                                <div class="post-inner">
-                                    <div class="post">
-                                        <figure class="post-thumb"><a href="blog-details.html"><img src="{{ asset('frontend/images/resource/footer-post-1.jpg') }}" alt=""></a></figure>
-                                        <h5><a href="blog-details.html">The Added Value Social Worker</a></h5>
-                                        <p>Mar 25, 2020</p>
-                                    </div>
-                                    <div class="post">
-                                        <figure class="post-thumb"><a href="blog-details.html"><img src="{{ asset('frontend/images/resource/footer-post-2.jpg') }}" alt=""></a></figure>
-                                        <h5><a href="blog-details.html">Ways to Increase Trust</a></h5>
-                                        <p>Mar 24, 2020</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -290,9 +202,9 @@
             <div class="footer-bottom">
                 <div class="auto-container">
                     <div class="inner-box clearfix">
-                        <figure class="footer-logo"><a href="{{ route('public') }}"><img src="{{ asset('frontend/images/footer-logo_new.png') }}" alt=""></a></figure>
+                        <figure class="footer-logo"><a href="{{ route('public') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
                         <div class="copyright pull-left">
-                            <p><a href="#">City Hostel</a> &copy; 2021 All Right Reserved</p>
+                            <p><a href="#">City Hostel</a> &copy; 2023 All Right Reserved</p>
                         </div>
                         <ul class="footer-nav pull-right clearfix">
                             <li><a href="#">Terms of Service</a></li>

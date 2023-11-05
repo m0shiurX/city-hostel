@@ -84,14 +84,14 @@
                             <span class="help-block">{{ trans('cruds.hostel.fields.garage_size_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="aminities">{{ trans('cruds.hostel.fields.aminities') }}</label>
-                            <textarea class="form-control ckeditor" name="aminities" id="aminities">{!! old('aminities', $hostel->aminities) !!}</textarea>
-                            @if($errors->has('aminities'))
+                            <label for="amenities">{{ trans('cruds.hostel.fields.amenities') }}</label>
+                            <textarea class="form-control ckeditor" name="amenities" id="amenities">{!! old('amenities', $hostel->amenities) !!}</textarea>
+                            @if($errors->has('amenities'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('aminities') }}
+                                    {{ $errors->first('amenities') }}
                                 </div>
                             @endif
-                            <span class="help-block">{{ trans('cruds.hostel.fields.aminities_helper') }}</span>
+                            <span class="help-block">{{ trans('cruds.hostel.fields.amenities_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label for="note">{{ trans('cruds.hostel.fields.note') }}</label>

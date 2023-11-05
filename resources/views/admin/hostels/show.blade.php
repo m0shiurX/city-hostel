@@ -81,10 +81,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.hostel.fields.aminities') }}
+                            {{ trans('cruds.hostel.fields.amenities') }}
                         </th>
                         <td>
-                            {!! $hostel->aminities !!}
+                            {!! $hostel->amenities !!}
                         </td>
                     </tr>
                     <tr>

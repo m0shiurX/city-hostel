@@ -17,7 +17,7 @@ class CreateHostelsTable extends Migration
             $table->string('total_seat');
             $table->string('garage')->nullable();
             $table->string('garage_size')->nullable();
-            $table->longText('aminities')->nullable();
+            $table->longText('amenities')->nullable();
             $table->longText('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
