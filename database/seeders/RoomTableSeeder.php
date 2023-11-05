@@ -13,6 +13,6 @@ class RoomTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Room::factory()->count(300)->create();
+        Room::factory()->count(5)->create();
     }
 }

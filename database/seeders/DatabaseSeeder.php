@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             FacilityTableSeeder::class,
             CategoryTableSeeder::class,
             HostelTableSeeder::class,
-            RoomTableSeeder::class,
         ]);
     }
 }

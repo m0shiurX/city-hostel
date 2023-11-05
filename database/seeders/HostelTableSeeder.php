@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Hostel;
+use App\Models\Room;
 use App\Models\Facility;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,83 +16,15 @@ class HostelTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $hostels = [
-            [
-                'name' => 'Testing Hostel 1',
-                'phone' => '999999',
-                'address' => 'Sector 3, road #23, House #45',
-                'built_on' => '2019',
-                'total_seat' => '34',
-                'garage' => 'yes',
-                'garage_size' => '2000 sqft',
-                'area_id' => 1
-            ],
-            [
-                'name' => 'Testing Hostel 2',
-                'phone' => '999999',
-                'address' => 'Sector 3, road #21, House #76',
-                'built_on' => '2019',
-                'total_seat' => '34',
-                'garage' => 'yes',
-                'garage_size' => '2000 sqft',
-                'area_id' => 6
-            ],
-            [
-                'name' => 'Testing Hostel 3',
-                'phone' => '999999',
-                'address' => 'Sector 3, road #20, House #4',
-                'built_on' => '2019',
-                'total_seat' => '34',
-                'garage' => 'yes',
-                'garage_size' => '2000 sqft',
-                'area_id' => 2
-            ],
-            [
-                'name' => 'Testing Hostel 4',
-                'phone' => '999999',
-                'address' => 'Sector 3, road #29, House #43',
-                'built_on' => '2019',
-                'total_seat' => '34',
-                'garage' => 'yes',
-                'garage_size' => '2000 sqft',
-                'area_id' => 3
-            ],
-            [
-                'name' => 'Testing Hostel 5',
-                'phone' => '999999',
-                'address' => 'Sector 3, road #28, House #23',
-                'built_on' => '2019',
-                'total_seat' => '34',
-                'garage' => 'yes',
-                'garage_size' => '2000 sqft',
-                'area_id' => 5
-            ],
-            [
-                'name' => 'Testing Hostel 6',
-                'phone' => '999999',
-                'address' => 'Sector 3, road #27, House #45',
-                'built_on' => '2019',
-                'total_seat' => '34',
-                'garage' => 'yes',
-                'garage_size' => '2000 sqft',
-                'area_id' => 4
-            ],
+        $categoryIds = Category::inRandomOrder()->get()->pluck('id');
+        $facilityIds = Facility::inRandomOrder()->get()->pluck('id');
 
-        ];
-
-        Hostel::insert($hostels);
-
-
-        $hostels = Hostel::all();
-
-        $hostels->each(function ($hostel) {
-            $randomCategoryIds = Category::inRandomOrder()->limit(1)->pluck('id');
-            $hostel->categories()->attach($randomCategoryIds);
-        });
-
-        $hostels->each(function ($hostel) {
-            $randomFacilityIds = Facility::inRandomOrder()->limit(3)->pluck('id'); // Retrieve 3 random Facility IDs
-            $hostel->facilities()->attach($randomFacilityIds); // Attach the random Facility IDs to the current Hostel
-        });
+        Hostel::factory()
+            ->has(Room::factory()->count(25), 'hostelRooms')
+            ->count(25)->create()
+            ->each(function (Hostel $hostel) use ($categoryIds, $facilityIds) {
+                $hostel->categories()->attach(fake()->randomElements($categoryIds));
+                $hostel->facilities()->attach(fake()->randomElements($facilityIds, 5));
+            });
     }
 }
