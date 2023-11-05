@@ -33,14 +33,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.reservation.fields.user') }}
-                        </th>
-                        <td>
-                            {{ $reservation->user->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.reservation.fields.down_payment') }}
                         </th>
                         <td>

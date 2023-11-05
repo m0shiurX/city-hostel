@@ -28,20 +28,6 @@
                             <span class="help-block">{{ trans('cruds.reservation.fields.room_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="user_id">{{ trans('cruds.reservation.fields.user') }}</label>
-                            <select class="form-control select2" name="user_id" id="user_id" required>
-                                @foreach($users as $id => $entry)
-                                    <option value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('user'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('user') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.reservation.fields.user_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label for="down_payment">{{ trans('cruds.reservation.fields.down_payment') }}</label>
                             <input class="form-control" type="number" name="down_payment" id="down_payment" value="{{ old('down_payment', '') }}" step="0.01">
                             @if($errors->has('down_payment'))

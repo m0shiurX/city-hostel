@@ -33,14 +33,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.payment.fields.seat') }}
-                        </th>
-                        <td>
-                            {{ $payment->seat->room_info ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.payment.fields.status') }}
                         </th>
                         <td>
@@ -53,14 +45,6 @@
                         </th>
                         <td>
                             {{ $payment->description }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.payment.fields.user') }}
-                        </th>
-                        <td>
-                            {{ $payment->user->name ?? '' }}
                         </td>
                     </tr>
                 </tbody>

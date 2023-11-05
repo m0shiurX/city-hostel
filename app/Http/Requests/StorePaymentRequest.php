@@ -20,20 +20,12 @@ class StorePaymentRequest extends FormRequest
             'amount' => [
                 'required',
             ],
-            'seat_id' => [
-                'required',
-                'integer',
-            ],
             'status' => [
                 'required',
             ],
             'description' => [
                 'string',
                 'nullable',
-            ],
-            'user_id' => [
-                'required',
-                'integer',
             ],
         ];
     }

@@ -7,8 +7,6 @@ use App\Http\Requests\MassDestroyPaymentRequest;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\Payment;
-use App\Models\Room;
-use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +17,7 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $payments = Payment::with(['seat', 'user'])->get();
+        $payments = Payment::with(['created_by'])->get();
 
         return view('admin.payments.index', compact('payments'));
     }
@@ -28,11 +26,7 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $seats = Room::pluck('room_info', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.payments.create', compact('seats', 'users'));
+        return view('admin.payments.create');
     }
 
     public function store(StorePaymentRequest $request)
@@ -46,13 +40,9 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $seats = Room::pluck('room_info', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $payment->load('created_by');
 
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $payment->load('seat', 'user');
-
-        return view('admin.payments.edit', compact('payment', 'seats', 'users'));
+        return view('admin.payments.edit', compact('payment'));
     }
 
     public function update(UpdatePaymentRequest $request, Payment $payment)
@@ -66,7 +56,7 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $payment->load('seat', 'user');
+        $payment->load('created_by');
 
         return view('admin.payments.show', compact('payment'));
     }

@@ -3,39 +3,36 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            @can('reservation_create')
+            @can('payment_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
-                        <a class="btn btn-success" href="{{ route('frontend.reservations.create') }}">
-                            {{ trans('global.add') }} {{ trans('cruds.reservation.title_singular') }}
+                        <a class="btn btn-success" href="{{ route('frontend.payments.create') }}">
+                            {{ trans('global.add') }} {{ trans('cruds.payment.title_singular') }}
                         </a>
                     </div>
                 </div>
             @endcan
             <div class="card">
                 <div class="card-header">
-                    {{ trans('cruds.reservation.title_singular') }} {{ trans('global.list') }}
+                    {{ trans('cruds.payment.title_singular') }} {{ trans('global.list') }}
                 </div>
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-Reservation">
+                        <table class=" table table-bordered table-striped table-hover datatable datatable-Payment">
                             <thead>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.id') }}
+                                        {{ trans('cruds.payment.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.room') }}
+                                        {{ trans('cruds.payment.fields.amount') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.room.fields.price') }}
+                                        {{ trans('cruds.payment.fields.status') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.room.fields.status') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.reservation.fields.status') }}
+                                        {{ trans('cruds.payment.fields.description') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -43,40 +40,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($reservations as $key => $reservation)
-                                    <tr data-entry-id="{{ $reservation->id }}">
+                                @foreach($payments as $key => $payment)
+                                    <tr data-entry-id="{{ $payment->id }}">
                                         <td>
-                                            {{ $reservation->id ?? '' }}
+                                            {{ $payment->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $reservation->room->room_info ?? '' }}
+                                            {{ $payment->amount ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $reservation->room->price ?? '' }}
+                                            {{ App\Models\Payment::STATUS_RADIO[$payment->status] ?? '' }}
                                         </td>
                                         <td>
-                                            @if($reservation->room)
-                                                {{ $reservation->room::STATUS_RADIO[$reservation->room->status] ?? '' }}
-                                            @endif
+                                            {{ $payment->description ?? '' }}
                                         </td>
                                         <td>
-                                            {{ App\Models\Reservation::STATUS_RADIO[$reservation->status] ?? '' }}
-                                        </td>
-                                        <td>
-                                            @can('reservation_show')
-                                                <a class="btn btn-xs btn-primary" href="{{ route('frontend.reservations.show', $reservation->id) }}">
+                                            @can('payment_show')
+                                                <a class="btn btn-xs btn-primary" href="{{ route('frontend.payments.show', $payment->id) }}">
                                                     {{ trans('global.view') }}
                                                 </a>
                                             @endcan
 
-                                            @can('reservation_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('frontend.reservations.edit', $reservation->id) }}">
+                                            @can('payment_edit')
+                                                <a class="btn btn-xs btn-info" href="{{ route('frontend.payments.edit', $payment->id) }}">
                                                     {{ trans('global.edit') }}
                                                 </a>
                                             @endcan
 
-                                            @can('reservation_delete')
-                                                <form action="{{ route('frontend.reservations.destroy', $reservation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            @can('payment_delete')
+                                                <form action="{{ route('frontend.payments.destroy', $payment->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -102,11 +94,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('reservation_delete')
+@can('payment_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('frontend.reservations.massDestroy') }}",
+    url: "{{ route('frontend.payments.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -137,7 +129,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-Reservation:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-Payment:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

@@ -6,13 +6,13 @@
 
             <div class="card">
                 <div class="card-header">
-                    {{ trans('global.show') }} {{ trans('cruds.reservation.title') }}
+                    {{ trans('global.show') }} {{ trans('cruds.payment.title') }}
                 </div>
 
                 <div class="card-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.reservations.index') }}">
+                            <a class="btn btn-default" href="{{ route('frontend.payments.index') }}">
                                 {{ trans('global.back_to_list') }}
                             </a>
                         </div>
@@ -20,40 +20,40 @@
                             <tbody>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.id') }}
+                                        {{ trans('cruds.payment.fields.id') }}
                                     </th>
                                     <td>
-                                        {{ $reservation->id }}
+                                        {{ $payment->id }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.room') }}
+                                        {{ trans('cruds.payment.fields.amount') }}
                                     </th>
                                     <td>
-                                        {{ $reservation->room->room_info ?? '' }}
+                                        {{ $payment->amount }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.down_payment') }}
+                                        {{ trans('cruds.payment.fields.status') }}
                                     </th>
                                     <td>
-                                        {{ $reservation->down_payment }}
+                                        {{ App\Models\Payment::STATUS_RADIO[$payment->status] ?? '' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.status') }}
+                                        {{ trans('cruds.payment.fields.description') }}
                                     </th>
                                     <td>
-                                        {{ App\Models\Reservation::STATUS_RADIO[$reservation->status] ?? '' }}
+                                        {{ $payment->description }}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="form-group">
-                            <a class="btn btn-default" href="{{ route('frontend.reservations.index') }}">
+                            <a class="btn btn-default" href="{{ route('frontend.payments.index') }}">
                                 {{ trans('global.back_to_list') }}
                             </a>
                         </div>

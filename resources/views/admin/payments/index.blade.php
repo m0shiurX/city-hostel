@@ -29,22 +29,10 @@
                             {{ trans('cruds.payment.fields.amount') }}
                         </th>
                         <th>
-                            {{ trans('cruds.payment.fields.seat') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.room.fields.price') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.room.fields.status') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.payment.fields.status') }}
                         </th>
                         <th>
                             {{ trans('cruds.payment.fields.description') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.payment.fields.user') }}
                         </th>
                         <th>
                             &nbsp;
@@ -64,24 +52,10 @@
                                 {{ $payment->amount ?? '' }}
                             </td>
                             <td>
-                                {{ $payment->seat->room_info ?? '' }}
-                            </td>
-                            <td>
-                                {{ $payment->seat->price ?? '' }}
-                            </td>
-                            <td>
-                                @if($payment->seat)
-                                    {{ $payment->seat::STATUS_RADIO[$payment->seat->status] ?? '' }}
-                                @endif
-                            </td>
-                            <td>
                                 {{ App\Models\Payment::STATUS_RADIO[$payment->status] ?? '' }}
                             </td>
                             <td>
                                 {{ $payment->description ?? '' }}
-                            </td>
-                            <td>
-                                {{ $payment->user->name ?? '' }}
                             </td>
                             <td>
                                 @can('payment_show')

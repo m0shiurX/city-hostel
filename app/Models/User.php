@@ -67,7 +67,7 @@ class User extends Authenticatable
                 $user->verified    = 1;
                 $user->verified_at = Carbon::now()->format(config('panel.date_format') . ' ' . config('panel.time_format'));
                 $user->save();
-            } elseif (! $user->verification_token) {
+            } elseif (!$user->verification_token) {
                 $token     = Str::random(64);
                 $usedToken = self::where('verification_token', $token)->first();
 
@@ -80,7 +80,7 @@ class User extends Authenticatable
                 $user->save();
 
                 $registrationRole = config('panel.registration_default_role');
-                if (! $user->roles()->get()->contains($registrationRole)) {
+                if (!$user->roles()->get()->contains($registrationRole)) {
                     $user->roles()->attach($registrationRole);
                 }
 

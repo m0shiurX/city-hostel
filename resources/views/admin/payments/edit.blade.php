@@ -21,20 +21,6 @@
                 <span class="help-block">{{ trans('cruds.payment.fields.amount_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="seat_id">{{ trans('cruds.payment.fields.seat') }}</label>
-                <select class="form-control select2 {{ $errors->has('seat') ? 'is-invalid' : '' }}" name="seat_id" id="seat_id" required>
-                    @foreach($seats as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('seat_id') ? old('seat_id') : $payment->seat->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('seat'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('seat') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.payment.fields.seat_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label class="required">{{ trans('cruds.payment.fields.status') }}</label>
                 @foreach(App\Models\Payment::STATUS_RADIO as $key => $label)
                     <div class="form-check {{ $errors->has('status') ? 'is-invalid' : '' }}">
@@ -58,20 +44,6 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.payment.fields.description_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="user_id">{{ trans('cruds.payment.fields.user') }}</label>
-                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
-                    @foreach($users as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('user_id') ? old('user_id') : $payment->user->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('user'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('user') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.payment.fields.user_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

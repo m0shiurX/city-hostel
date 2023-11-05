@@ -8,7 +8,6 @@ use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
 use App\Models\Room;
-use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +18,7 @@ class ReservationController extends Controller
     {
         abort_if(Gate::denies('reservation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservations = Reservation::with(['room', 'user'])->get();
+        $reservations = Reservation::with(['room', 'created_by'])->get();
 
         return view('frontend.reservations.index', compact('reservations'));
     }
@@ -30,9 +29,7 @@ class ReservationController extends Controller
 
         $rooms = Room::pluck('room_info', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('frontend.reservations.create', compact('rooms', 'users'));
+        return view('frontend.reservations.create', compact('rooms'));
     }
 
     public function store(StoreReservationRequest $request)
@@ -48,11 +45,9 @@ class ReservationController extends Controller
 
         $rooms = Room::pluck('room_info', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $reservation->load('room', 'created_by');
 
-        $reservation->load('room', 'user');
-
-        return view('frontend.reservations.edit', compact('reservation', 'rooms', 'users'));
+        return view('frontend.reservations.edit', compact('reservation', 'rooms'));
     }
 
     public function update(UpdateReservationRequest $request, Reservation $reservation)
@@ -66,7 +61,7 @@ class ReservationController extends Controller
     {
         abort_if(Gate::denies('reservation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservation->load('room', 'user');
+        $reservation->load('room', 'created_by');
 
         return view('frontend.reservations.show', compact('reservation'));
     }

@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\LandingPageController;
-
 Route::get('/', 'LandingPageController@index')->name('public');
 
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
