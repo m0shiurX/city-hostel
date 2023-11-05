@@ -112,7 +112,14 @@
                         <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="https://picsum.photos/id/1/370/250" alt=""></figure>
+                                    <figure class="image">
+                                        @if($hostel->featured_image)
+                                                <img src="{{ $hostel->featured_image->getUrl() }}">
+                                        @else
+                                            <img src="https://picsum.photos/id/1/370/250" alt="">
+                                        @endif
+
+                                    </figure>
                                     <div class="batch"><i class="icon-11"></i></div>
                                     <span class="category">{{ $hostel->categories->first()->name }}</span>
                                 </div>
