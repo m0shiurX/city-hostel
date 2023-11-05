@@ -13,7 +13,7 @@ class LandingPageController extends Controller
     {
 
         $areas = Area::select('id', 'name')->get();
-        $categories = Category::withCount('categoryHostels')->take(5)->orderByDesc('category_hostels_count')->get();
+        $categories = Category::withCount('categoryHostels')->take(5)->orderBy('id')->get();
 
         $hostels = Hostel::with(['area', 'hostelRooms' => function ($query) {
             $query->select('hostel_id', DB::raw('MIN(price) as min_price'))->groupBy('hostel_id');

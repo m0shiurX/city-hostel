@@ -82,7 +82,7 @@
                           <li>
                             <div class="category-block-one">
                                 <div class="inner-box">
-                                    <div class="icon-box"><i class="icon-1"></i></div>
+                                    <div class="icon-box"><i class="icon-{{ $category->id }}"></i></div>
                                     <h5><a href="#">{{ $category->name }}</a></h5>
                                     <span>{{ $category->category_hostels_count }}</span>
                                 </div>
@@ -113,7 +113,7 @@
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="https://picsum.photos/id/1/370/250" alt=""></figure>
-                                    <div class="batch"><i class="icon-11"></i></div>
+                                    <div class="batch"><i class="icon-{{ $hostel->categories->first()->id }}"></i></div>
                                     <span class="category">{{ $hostel->categories->first()->name }}</span>
                                 </div>
                                 <div class="lower-content">
@@ -137,7 +137,7 @@
                                     <p>{{ $hostel->address ?? '' }}</p>
                                     <ul class="more-details clearfix">
                                         <li><i class="icon-14"></i>{{ $hostel->total_seat ?? '' }} Seats</li>
-                                        <li><i class="icon-15"></i>Since {{ $hostel->built_on ?? '' }}</li>
+                                        <li class="pl-3"><i class="icon-3"></i>Since {{ $hostel->built_on ?? '' }}</li>
                                         <li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }}</li>
                                     </ul>
                                     <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See Details</a></div>
