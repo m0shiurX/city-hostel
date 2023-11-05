@@ -36,7 +36,7 @@ class CategoryTableSeeder extends Seeder
                 'name' => 'Historic Hostel',
             ],
             [
-                'name' => 'Adventure Hostel',
+                'name' => 'Shared Hostel',
             ],
 
         ];

@@ -7,7 +7,7 @@ use App\Models\Area;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class PublicController extends Controller
 {
     public function index()
     {
@@ -18,6 +18,12 @@ class HomeController extends Controller
         $hostels = Hostel::with(['area', 'hostelRooms' => function ($query) {
             $query->select('hostel_id', DB::raw('MIN(price) as min_price'))->groupBy('hostel_id');
         }])->take(3)->get();
-        return view('home', compact('hostels', 'areas', 'categories'));
+
+        return view('public.home', compact('hostels', 'areas', 'categories'));
+    }
+    public function categories()
+    {
+        $categories = Category::withCount('categoryHostels')->take(10)->orderBy('id')->get();
+        return view('public.category', compact('categories'));
     }
 }

@@ -69,7 +69,7 @@
                 <div class="outer-box">
                     <div class="main-box">
                         <div class="logo-box">
-                            <figure class="logo"><a href="{{ route('home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
+                            <figure class="logo"><a href="{{ route('public.home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
                         </div>
                         <div class="menu-area clearfix">
                             <!--Mobile Navigation Toggler-->
@@ -81,7 +81,7 @@
                             <nav class="main-menu navbar-expand-md navbar-light">
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation scroll-nav clearfix">
-                                        <li class=""><a href="{{ route('home') }}">Home</a></li>
+                                        <li class=""><a href="{{ route('public.home') }}">Home</a></li>
                                         <li><a href="#feature">Feature</a></li>
                                         <li><a href="#testimonial">Testimonial</a></li>
                                         <li><a href="#team">Team</a></li>
@@ -92,7 +92,7 @@
                             </nav>
                         </div>
                         <div class="btn-box">
-                            <a href="{{ route('home') }}" class="theme-btn btn-one"><span>+</span>Add Hostel</a>
+                            <a href="{{ route('public.home') }}" class="theme-btn btn-one"><span>+</span>Add Hostel</a>
                         </div>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                 <div class="outer-box">
                     <div class="main-box">
                         <div class="logo-box">
-                            <figure class="logo"><a href="{{ route('home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
+                            <figure class="logo"><a href="{{ route('public.home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
                         </div>
                         <div class="menu-area clearfix">
                             <nav class="main-menu clearfix">
@@ -111,7 +111,7 @@
                             </nav>
                         </div>
                         <div class="btn-box">
-                            <a href="{{ route('home') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
+                            <a href="{{ route('public.home') }}" class="theme-btn btn-one"><span>+</span>Add Listing</a>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
             <div class="close-btn"><i class="fas fa-times"></i></div>
 
             <nav class="menu-box">
-                <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt="" title=""></a></div>
+                <div class="nav-logo"><a href="{{ route('public.home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt="" title=""></a></div>
                 <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
                 <div class="contact-info">
                     <h4>Contact Info</h4>
@@ -151,6 +151,31 @@
         @yield('content')
 
 
+        <!-- subscribe-section -->
+        <section class="subscribe-section bg-color-3">
+            <div class="pattern-layer" style="background-image: url({{ asset('frontend/images/shape/shape-2.png')}});"></div>
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-6 col-md-6 col-sm-12 text-column">
+                        <div class="text">
+                            <span>Subscribe</span>
+                            <h2>Sign Up To Our Newsletter To Get The Latest News And Offers.</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 form-column">
+                        <div class="form-inner">
+                            <form action="#" method="post" class="subscribe-form">
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Enter your email" required="">
+                                    <button type="submit">Subscribe Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- subscribe-section end -->
         <!-- main-footer -->
         <footer class="main-footer" id="footer">
             <div class="footer-top bg-color-2">
@@ -174,10 +199,10 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="links-list class">
-                                        <li><a href="{{ route('home') }}">About Us</a></li>
-                                        <li><a href="{{ route('home') }}">Current Listings</a></li>
-                                        <li><a href="{{ route('home') }}">Join as Host</a></li>
-                                        <li><a href="{{ route('home') }}">Contact Us</a></li>
+                                        <li><a href="{{ route('public.home') }}">About Us</a></li>
+                                        <li><a href="{{ route('public.home') }}">Current Listings</a></li>
+                                        <li><a href="{{ route('public.home') }}">Join as Host</a></li>
+                                        <li><a href="{{ route('public.home') }}">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -202,7 +227,7 @@
             <div class="footer-bottom">
                 <div class="auto-container">
                     <div class="inner-box clearfix">
-                        <figure class="footer-logo"><a href="{{ route('home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
+                        <figure class="footer-logo"><a href="{{ route('public.home') }}"><img src="{{ asset('frontend/images/logo_new.png') }}" alt=""></a></figure>
                         <div class="copyright pull-left">
                             <p><a href="#">City Hostel</a> &copy; 2023 All Right Reserved</p>
                         </div>

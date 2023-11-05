@@ -1,6 +1,7 @@
 <?php
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'PublicController@index')->name('public.home');
+Route::get('/categories', 'PublicController@categories')->name('public.categories');
 
 Auth::routes();
 
