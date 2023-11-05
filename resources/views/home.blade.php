@@ -1,4 +1,4 @@
-@extends('layouts.landing')
+@extends('layouts.public')
 @section('content')
 <!-- banner-section -->
         <section class="banner-section" style="background-image: url({{ asset('frontend/images/banner/cover_x.jpg') }});">

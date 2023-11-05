@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'CityHostel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -36,7 +36,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'CityHostel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -87,19 +87,9 @@
                                             {{ trans('cruds.room.title') }}
                                         </a>
                                     @endcan
-                                    @can('facility_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.facilities.index') }}">
-                                            {{ trans('cruds.facility.title') }}
-                                        </a>
-                                    @endcan
                                     @can('reservation_access')
                                         <a class="dropdown-item" href="{{ route('frontend.reservations.index') }}">
                                             {{ trans('cruds.reservation.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('category_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.categories.index') }}">
-                                            {{ trans('cruds.category.title') }}
                                         </a>
                                     @endcan
                                     @can('payment_access')
@@ -112,32 +102,11 @@
                                             {{ trans('cruds.userAlert.title') }}
                                         </a>
                                     @endcan
-                                    @can('user_management_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.userManagement.title') }}
-                                        </a>
-                                    @endcan
                                     @can('permission_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.permissions.index') }}">
                                             {{ trans('cruds.permission.title') }}
                                         </a>
                                     @endcan
-                                    @can('role_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.roles.index') }}">
-                                            {{ trans('cruds.role.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('user_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.users.index') }}">
-                                            {{ trans('cruds.user.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('tag_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.tags.index') }}">
-                                            {{ trans('cruds.tag.title') }}
-                                        </a>
-                                    @endcan
-
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
