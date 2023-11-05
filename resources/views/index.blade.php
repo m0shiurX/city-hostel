@@ -113,7 +113,7 @@
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image"><img src="https://picsum.photos/id/1/370/250" alt=""></figure>
-                                    <div class="batch"><i class="icon-{{ $hostel->categories->first()->id }}"></i></div>
+                                    <div class="batch"><i class="icon-11"></i></div>
                                     <span class="category">{{ $hostel->categories->first()->name }}</span>
                                 </div>
                                 <div class="lower-content">
