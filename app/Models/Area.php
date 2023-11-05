@@ -35,4 +35,8 @@ class Area extends Model
     {
         return $this->hasMany(Hostel::class, 'area_id', 'id');
     }
+    public function getHostelCountAttribute()
+    {
+        return $this->areaHostels()->count();
+    }
 }

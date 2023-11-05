@@ -82,11 +82,9 @@
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation scroll-nav clearfix">
                                         <li class=""><a href="{{ route('public.home') }}">Home</a></li>
-                                        <li><a href="#feature">Feature</a></li>
-                                        <li><a href="#testimonial">Testimonial</a></li>
-                                        <li><a href="#team">Team</a></li>
-                                        <li><a href="#news">News</a></li>
-                                        <li><a href="#footer">Footer</a></li>
+                                        <li><a href="{{ route('public.hostel') }}">Hostels</a></li>
+                                        <li><a href="{{ route('public.categories') }}">Categories</a></li>
+                                        <li><a href="#footer">Contact</a></li>
                                     </ul>
                                 </div>
                             </nav>

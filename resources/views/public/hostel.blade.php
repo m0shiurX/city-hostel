@@ -29,50 +29,32 @@
 							<div class="widget-content">
 								<div class="select-box">
 									<select class="wide">
-										<option data-display="All Type">All Type</option>
-										<option value="1">Villa</option>
-										<option value="2">Commercial</option>
-										<option value="3">Residential</option>
+										<option data-display="All Category">All Category</option>
+										@foreach($categories as $key => $category)
+										<option value="{{ $category->id }}">{{ $category->name }}</option>
+										@endforeach
 									</select>
 								</div>
 								<div class="select-box">
 									<select class="wide">
-										<option data-display="Select Location">Select Location</option>
-										<option value="1">New York</option>
-										<option value="2">California</option>
-										<option value="3">London</option>
-										<option value="4">Maxico</option>
+										<option data-display="Any Area">Any Area</option>
+										@foreach($areas as $key => $area)
+										<option value="{{ $area->id }}">{{ $area->name }}</option>
+										@endforeach
 									</select>
 								</div>
 								<div class="select-box">
 									<select class="wide">
-										<option data-display="This Area Only">This Area Only</option>
-										<option value="1">New York</option>
-										<option value="2">California</option>
-										<option value="3">London</option>
-										<option value="4">Maxico</option>
+										<option data-display="Seats Available">Max Seats</option>
+										<option value="1">2+ seats</option>
+										<option value="2">3+ seats</option>
+										<option value="3">4+ seats</option>
+										<option value="4">5+ seats</option>
 									</select>
 								</div>
 								<div class="select-box">
 									<select class="wide">
-										<option data-display="All Type">Max Rooms</option>
-										<option value="1">2+ Rooms</option>
-										<option value="2">3+ Rooms</option>
-										<option value="3">4+ Rooms</option>
-										<option value="4">5+ Rooms</option>
-									</select>
-								</div>
-								<div class="select-box">
-									<select class="wide">
-										<option data-display="Most Popular">Most Popular</option>
-										<option value="1">Villa</option>
-										<option value="2">Commercial</option>
-										<option value="3">Residential</option>
-									</select>
-								</div>
-								<div class="select-box">
-									<select class="wide">
-										<option data-display="All Type">Select Floor</option>
+										<option data-display="Any Floor">Select Floor</option>
 										<option value="1">2x Floor</option>
 										<option value="2">3x Floor</option>
 										<option value="3">4x Floor</option>
@@ -85,7 +67,7 @@
 						</div>
 						<div class="price-filter sidebar-widget">
 							<div class="widget-title">
-								<h5>Select Price Range</h5>
+								<h5>Price Range (per month)</h5>
 							</div>
 							<div class="range-slider clearfix">
 								<div class="clearfix">
@@ -98,28 +80,22 @@
 						</div>
 						<div class="category-widget sidebar-widget">
 							<div class="widget-title">
-								<h5>Status Of Property</h5>
+								<h5>Areas in Dhaka</h5>
 							</div>
 							<ul class="category-list clearfix">
-								<li><a href="property-details.html">For Rent <span>(200)</span></a></li>
-								<li><a href="property-details.html">For Sale <span>(700)</span></a></li>
+								@foreach($areas as $key => $area)
+								<li><a href="javascript:void">{{ $area->name }} <span>({{ $area->hostel_count }})</span></a></li>
+								@endforeach
 							</ul>
 						</div>
 						<div class="category-widget sidebar-widget">
 							<div class="widget-title">
-								<h5>Amenities</h5>
+								<h5>Categories List</h5>
 							</div>
 							<ul class="category-list clearfix">
-								<li><a href="property-details.html">Air Conditioning <span>(17)</span></a></li>
-								<li><a href="property-details.html">Central Heating <span>(4)</span></a></li>
-								<li><a href="property-details.html">Cleaning Service <span>(12)</span></a></li>
-								<li><a href="property-details.html">Dining Room <span>(8)</span></a></li>
-								<li><a href="property-details.html">Dishwasher <span>(5)</span></a></li>
-								<li><a href="property-details.html">Dishwasher <span>(2)</span></a></li>
-								<li><a href="property-details.html">Family Room <span>(19)</span></a></li>
-								<li><a href="property-details.html">Onsite Parking <span>(11)</span></a></li>
-								<li><a href="property-details.html">Fireplace <span>(7)</span></a></li>
-								<li><a href="property-details.html">Hardwood Flows <span>(9)</span></a></li>
+								@foreach($categories as $key => $category)
+								<li><a href="javascript:void">{{ $category->name }} <span>({{ $category->hostel_count }})</span></a></li>
+								@endforeach
 							</ul>
 						</div>
 					</div>

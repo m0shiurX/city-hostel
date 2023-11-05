@@ -36,4 +36,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Hostel::class);
     }
+
+    public function getHostelCountAttribute()
+    {
+        return $this->categoryHostels()->count();
+    }
 }
