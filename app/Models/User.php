@@ -54,6 +54,10 @@ class User extends Authenticatable
     {
         return $this->roles()->where('id', 1)->exists();
     }
+    public function getIsHostAttribute()
+    {
+        return $this->roles()->where('id', 2)->exists();
+    }
 
     public function __construct(array $attributes = [])
     {

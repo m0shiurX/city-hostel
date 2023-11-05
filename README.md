@@ -1,3 +1,3 @@
 ** Tasks list **
-[] add featured image to hostel
+[x] add featured image to hostel
 []

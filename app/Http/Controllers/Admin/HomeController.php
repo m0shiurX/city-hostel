@@ -34,12 +34,12 @@ class HomeController
                 ->get();
         }
 
-        if (! array_key_exists('fields', $settings1)) {
+        if (!array_key_exists('fields', $settings1)) {
             $settings1['fields'] = [];
         }
 
         $settings2 = [
-            'chart_title'           => 'Total Seats',
+            'chart_title'           => 'Latest Hostels',
             'chart_type'            => 'latest_entries',
             'report_type'           => 'group_by_date',
             'model'                 => 'App\Models\Hostel',
@@ -67,10 +67,10 @@ class HomeController
                 ->get();
         }
 
-        if (! array_key_exists('fields', $settings2)) {
+        if (!array_key_exists('fields', $settings2)) {
             $settings2['fields'] = [];
         }
 
-        return view('home', compact('settings1', 'settings2'));
+        return view('admin.home', compact('settings1', 'settings2'));
     }
 }

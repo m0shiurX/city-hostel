@@ -43,6 +43,9 @@ class LoginController extends Controller
         if (auth()->user()->is_admin) {
             return '/admin';
         }
+        // if (auth()->user()->is_host) {
+        //     return '/host';
+        // }
 
         return '/home';
     }
