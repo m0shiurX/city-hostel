@@ -27,10 +27,7 @@ class CategoryTableSeeder extends Seeder
                 'name' => 'Co-Living Space',
             ],
             [
-                'name' => 'Specialty Hostel',
-            ],
-            [
-                'name' => 'Family-Style Hostel',
+                'name' => 'Family-Style',
             ],
             [
                 'name' => 'Green Hostel',
