@@ -18,7 +18,6 @@ class LandingPageController extends Controller
         $hostels = Hostel::with(['area', 'hostelRooms' => function ($query) {
             $query->select('hostel_id', DB::raw('MIN(price) as min_price'))->groupBy('hostel_id');
         }])->take(3)->get();
-
         return view('index', compact('hostels', 'areas', 'categories'));
     }
 }

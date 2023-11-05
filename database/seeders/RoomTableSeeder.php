@@ -13,6 +13,10 @@ class RoomTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Room::factory()->count(5)->create();
+        $rooms = Room::all();
+        $fakeUrl = fake()->imageUrl();
+        $rooms->each(function ($room) use ($fakeUrl) {
+            $room->addMediaFromUrl($fakeUrl)->toMediaCollection('images');
+        });
     }
 }
