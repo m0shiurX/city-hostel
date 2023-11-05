@@ -56,6 +56,11 @@ class Hostel extends Model implements HasMedia
         return $this->hasMany(Room::class, 'hostel_id', 'id');
     }
 
+    public function getAvailableRoomCountAttribute()
+    {
+        return $this->hostelRooms()->where('status', 'available')->count();
+    }
+
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');

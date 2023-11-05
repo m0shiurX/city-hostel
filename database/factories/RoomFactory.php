@@ -23,7 +23,7 @@ class RoomFactory extends Factory
             'price' =>  fake()->randomNumber(4, true),
             'capacity' => fake()->randomNumber(2, true),
             'placement' => fake()->randomElement(['Window', 'Door', 'Side Wall']),
-            'status' => 'available',
+            'status' => fake()->randomElement(['available', 'booked', 'off']),
             'created_by_id' => function () {
                 return User::inRandomOrder()->first()->id;
             }

@@ -118,11 +118,10 @@
                                 </div>
                                 <div class="lower-content">
                                     <div class="author-info clearfix">
-                                        <div class="author pull-left">
-                                            <figure class="author-thumb"><img src="{{ asset('frontend/images/feature/author-1.jpg') }}" alt=""></figure>
-                                            <h6> {{ $hostel->area->name ?? '' }} </h6>
+                                        <div class="author pl-0 pull-left">
+                                            <h5> {{ $hostel->area->name ?? '' }} </h5>
                                         </div>
-                                        <div class="buy-btn pull-right"><a href="#">{{ $hostel->total_seat ?? '' }}</a></div>
+                                        <div class="buy-btn pull-right"> <a href="#">Seats available {{ $hostel->available_room_count ?? '' }}</a></div>
                                     </div>
                                     <div class="title-text"><h4><a href="property-details.html">{{ $hostel->name ?? '' }}</a></h4></div>
                                     <div class="price-box clearfix">
