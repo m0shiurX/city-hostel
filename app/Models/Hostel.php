@@ -55,6 +55,11 @@ class Hostel extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
+    public function getAvailableRoomCountAttribute()
+    {
+        return $this->hostelRooms()->where('status', 'available')->count();
+    }
+
     public function hostelRooms()
     {
         return $this->hasMany(Room::class, 'hostel_id', 'id');

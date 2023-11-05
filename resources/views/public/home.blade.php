@@ -78,8 +78,8 @@
             <div class="auto-container">
                 <div class="inner-container wow slideInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                     <ul class="category-list clearfix">
-                         @foreach($categories as $key => $category)
-                          <li>
+                        @foreach($categories as $key => $category)
+                        <li>
                             <div class="category-block-one">
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon-{{ $category->id }}"></i></div>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                         </li>
-                         @endforeach
+                        @endforeach
                     </ul>
                     <div class="more-btn"><a href="{{ route('public.categories') }}" class="theme-btn btn-one">All Categories</a></div>
                 </div>
@@ -154,7 +154,7 @@
                     </div>
                     @endforeach
                 </div>
-                <div class="more-btn centred"><a href="property-list.html" class="theme-btn btn-one">View All Listing</a></div>
+                <div class="more-btn centred"><a href="{{ route('public.hostel') }}" class="theme-btn btn-one">View All Listing</a></div>
             </div>
         </section>
         <!-- feature-section end -->

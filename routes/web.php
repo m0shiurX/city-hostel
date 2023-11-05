@@ -2,6 +2,7 @@
 
 Route::get('/', 'PublicController@index')->name('public.home');
 Route::get('/categories', 'PublicController@categories')->name('public.categories');
+Route::get('/hostels', 'PublicController@hostel')->name('public.hostel');
 
 Auth::routes();
 
@@ -80,7 +81,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
     }
 });
-Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'front', 'as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
 

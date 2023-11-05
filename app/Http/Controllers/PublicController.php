@@ -26,4 +26,14 @@ class PublicController extends Controller
         $categories = Category::withCount('categoryHostels')->take(10)->orderBy('id')->get();
         return view('public.category', compact('categories'));
     }
+    public function hostel()
+    {
+        $areas = Area::select('id', 'name')->get();
+        $categories = Category::withCount('categoryHostels')->take(5)->orderBy('id')->get();
+        $hostels = Hostel::with(['area', 'hostelRooms' => function ($query) {
+            $query->select('hostel_id', DB::raw('MIN(price) as min_price'))->groupBy('hostel_id');
+        }])->paginate(6);
+        // dd($hostels);
+        return view('public.hostel', compact('hostels', 'areas', 'categories'));
+    }
 }
