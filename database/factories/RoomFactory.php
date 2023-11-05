@@ -25,7 +25,10 @@ class RoomFactory extends Factory
             'placement' => fake()->randomElement(['Window', 'Door', 'Side Wall']),
             'status' => fake()->randomElement(['available', 'booked', 'off']),
             'created_by_id' => function () {
-                return User::inRandomOrder()->first()->id;
+                $role = 2;
+                return User::whereHas('roles', function ($query) use ($role) {
+                    $query->where('id', $role);
+                })->inRandomOrder()->first()->id;
             }
         ];
     }
