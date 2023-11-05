@@ -112,7 +112,7 @@
                         <div class="feature-block-one wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('frontend/images/feature/feature-1.jpg') }}" alt=""></figure>
+                                    <figure class="image"><img src="https://picsum.photos/id/1/370/250" alt=""></figure>
                                     <div class="batch"><i class="icon-11"></i></div>
                                     <span class="category">{{ $hostel->categories->first()->name }}</span>
                                 </div>
@@ -137,7 +137,7 @@
                                     <p>{{ $hostel->address ?? '' }}</p>
                                     <ul class="more-details clearfix">
                                         <li><i class="icon-14"></i>{{ $hostel->total_seat ?? '' }} Seats</li>
-                                        <li><i class="icon-15"></i>2 Baths</li>
+                                        <li><i class="icon-15"></i>Since {{ $hostel->built_on ?? '' }}</li>
                                         <li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }}</li>
                                     </ul>
                                     <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See Details</a></div>
@@ -181,24 +181,24 @@
                                 <div class="deals-block-one">
                                     <div class="inner-box">
                                         <div class="batch"><i class="icon-11"></i></div>
-                                        <span class="category">Featured</span>
+                                        <span class="category">{{ $hostel->categories->first()->name }}</span>
                                         <div class="lower-content">
                                             <div class="title-text"><h4><a href="property-details.html">{{ $hostel->name ?? '' }}</a></h4></div>
                                             <div class="price-box clearfix">
                                                 <div class="price-info pull-left">
                                                     <h6>Start From</h6>
-                                                    <h4>$30,000.00</h4>
+                                                    <h4>BDT {{ $hostel->hostelRooms->first()->min_price ?? '' }}</h4>
                                                 </div>
                                                 <ul class="other-option pull-right clearfix">
                                                     <li><a href="property-details.html"><i class="icon-12"></i></a></li>
                                                     <li><a href="property-details.html"><i class="icon-13"></i></a></li>
                                                 </ul>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing sed eiusm tempor incididunt labore.</p>
+                                            <p>{{ $hostel->address ?? '' }}</p>
                                             <ul class="more-details clearfix">
-                                                <li><i class="icon-14"></i>{{ $hostel->total_seat ?? '' }} Beds</li>
-                                                <li><i class="icon-15"></i>2 Baths</li>
-                                                <li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }}</li>
+                                                <li><i class="icon-14"></i>Total {{ $hostel->total_seat ?? '' }} Seats</li>
+                                                <li><i class="icon-14"></i>{{ $hostel->available_room_count ?? '' }} Seats avl.</li>
+                                                <li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }} Garage</li>
                                             </ul>
                                             <div class="btn-box"><a href="property-details.html" class="theme-btn btn-one">See Details</a></div>
                                         </div>
@@ -207,7 +207,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 deals-block">
                                 <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('frontend/images/resource/deals-1.jpg') }}" alt=""></figure>
+                                    <figure class="image"><img src="https://picsum.photos/id/1/570/410" alt=""></figure>
                                 </div>
                             </div>
                         </div>
