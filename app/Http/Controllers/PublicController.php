@@ -52,8 +52,9 @@ class PublicController extends Controller
     {
 
         $hostel->load('area', 'facilities', 'categories', 'created_by', 'hostelRooms');
+        $availableRooms = $hostel->hostelRooms->where('status', 'available');
         $minPrice = $hostel->hostelRooms->where('status', 'available')->min('price');
 
-        return view('public.hostel-view', compact('hostel', 'minPrice'));
+        return view('public.hostel-view', compact('hostel', 'minPrice', 'availableRooms'));
     }
 }

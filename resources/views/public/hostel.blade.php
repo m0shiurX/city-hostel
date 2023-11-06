@@ -135,11 +135,7 @@
 											<div class="inner-box">
 												<div class="image-box">
 													<figure class="image">
-														@if($hostel->featured_image)
-															<img src="{{ $hostel->featured_image->getUrl() }}">
-														@else
-															<img src="https://picsum.photos/id/1/370/250" alt="">
-														@endif
+														<img src="{{ $hostel->featured_image?->getUrl()?? '/frontend/images/background/page-title-2.jpg' }}">
 													</figure>
 													<div class="batch"><i class="icon-11"></i></div>
 													<span class="category">{{ $hostel->categories->first()->name }}</span>
@@ -151,15 +147,15 @@
 														</div>
 														<div class="buy-btn pull-right"> <a href="#">Seats available {{ $hostel->available_room_count ?? '' }}</a></div>
 													</div>
-													<div class="title-text"><h4><a href="property-details.html">{{ $hostel->name ?? '' }}</a></h4></div>
+													<div class="title-text"><h4><a href="{{ route('public.hostel.show', $hostel->id)}}">{{ $hostel->name ?? '' }}</a></h4></div>
 													<div class="price-box clearfix">
 														<div class="price-info pull-left">
 															<h6>Starts from</h6>
 															<h4>BDT  {{ $hostel->hostelRooms->first()->min_price ?? '' }} <span class="font-xs">/month</span></h4>
 														</div>
 														<ul class="other-option pull-right clearfix">
-															<li><a href="property-details.html"><i class="icon-12"></i></a></li>
-															<li><a href="property-details.html"><i class="icon-13"></i></a></li>
+															<li><a href="{{ route('public.hostel.show', $hostel->id)}}"><i class="icon-12"></i></a></li>
+															<li><a href="{{ route('public.hostel.show', $hostel->id)}}"><i class="icon-13"></i></a></li>
 														</ul>
 													</div>
 													<p>{{ $hostel->address ?? '' }}</p>
@@ -168,7 +164,7 @@
 														<li class="pl-3"><i class="icon-3"></i>Since {{ $hostel->built_on ?? '' }}</li>
 														<li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }}</li>
 													</ul>
-													<div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See Details</a></div>
+													<div class="btn-box"><a href="{{ route('public.hostel.show', $hostel->id)}}" class="theme-btn btn-two">See Details</a></div>
 												</div>
 											</div>
 										</div>

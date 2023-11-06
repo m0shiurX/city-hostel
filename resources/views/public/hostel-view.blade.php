@@ -2,7 +2,7 @@
 @section('content')
         <!--Page Title-->
         
-        <section class="page-title centred pb-210" style="background-image: url({{ $hostel->featured_image->getUrl()?? '/frontend/images/background/page-title-2.jpg' }});">
+        <section class="page-title centred pb-210" style="background-image: url({{ $hostel->featured_image?->getUrl()?? '/frontend/images/background/page-title-2.jpg' }});">
             <div class="auto-container">
                 <div class="content-box clearfix">
                     <h1>{{ $hostel->name }}</h1>
@@ -48,10 +48,10 @@
                             </div>
                         </div>
                         <ul class="other-option pull-right clearfix">
-                            <li><a href="property-details.html"><i class="icon-37"></i></a></li>
-                            <li><a href="property-details.html"><i class="icon-38"></i></a></li>
-                            <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                            <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                            <li><a href="javascript:void"><i class="icon-37"></i></a></li>
+                            <li><a href="javascript:void"><i class="icon-38"></i></a></li>
+                            <li><a href="javascript:void"><i class="icon-12"></i></a></li>
+                            <li><a href="javascript:void"><i class="icon-13"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -60,20 +60,47 @@
                         <div class="property-details-content">
                             <div class="details-box content-widget">
                                 <div class="title-box">
-                                    <h4>Property Details</h4>
+                                    <h4>Hostel Details</h4>
                                 </div>
                                 <ul class="list clearfix">
-                                    <li>Property ID: <span>ZOP251C</span></li>
-                                    <li>Rooms: <span>06</span></li>
-                                    <li>Garage Size: <span>200 Sq Ft</span></li>
-                                    <li>Property Price: <span>$30,000</span></li>
-                                    <li>Bedrooms: <span>04</span></li>
-                                    <li>Year Built: <span>01 April, 2019</span></li>
-                                    <li>Property Type: <span>Apertment</span></li>
-                                    <li>Bathrooms: <span>03</span></li>
-                                    <li>Property Status: <span>For Sale</span></li>
-                                    <li>Property Size: <span>2024 Sq Ft</span></li>
-                                    <li>Garage: <span>01</span></li>
+                                    <li>Hostel Name: <span>{{ $hostel->name }}</span></li>
+                                    <li>Total Seats: <span>{{ $hostel->total_seat }}</span></li>
+                                    <li>Available Seats: <span>{{ $hostel->available_room_count }}</span></li>
+                                    <li>Garage: <span class="text-capitalize"> {{ $hostel->garage }} | {{ $hostel->garage_size ?? '0' }} (Sq. Ft)</span></li>
+                                    <li>Year Built: <span>{{ $hostel->built_on }}</span></li>
+                                    <li>Hostel Type: <span>{{ $hostel->categories->first()->name }}</span></li>
+                                    <li>Floor: <span>3rd</span></li>
+                                    <li>Address: <span>{{ $hostel->address }}, {{ $hostel->area->name }}</span></li>
+                                </ul>
+                            </div>
+                            <div class="floorplan-inner content-widget">
+                                <div class="title-box">
+                                    <h4>Available Seats</h4>
+                                </div>
+                                <ul class="accordion-box">
+                                    @foreach($availableRooms->values() as $key => $room)
+                                    <li key="{{$key}}" class="accordion block {{ $key == 0 ? 'active-block' : ''}}">
+                                        <div class="acc-btn  {{ $key == 0 ? 'active' : ''}}">
+                                            <div class="icon-outer"><i class="fas fa-angle-down"></i></div>
+                                            <h5>{{ $room->room_info }}</h5>
+                                        </div>
+                                        <div class="acc-content {{ $key == 0 ? 'current' : ''}}">
+                                            <div class="content-box">
+                                                <ul class="list clearfix">
+                                                    <li>Price   : BDT {{ $room->price }} (per month)</li>
+                                                    <li>Placement: {{ $room->placement }}</li>
+                                                    <li>Status   : {{ $room->status }}</li>
+                                                    <li>Capacity : {{ $room->capacity }} Persons</li>
+                                                </ul>
+                                                <figure class="image-box">
+                                                    @foreach($room->images as $key => $media)
+                                                        <img src="{{ $media->getUrl('preview') }}">
+                                                    @endforeach
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="amenities-box content-widget">
@@ -83,55 +110,6 @@
                                 <div class="list clearfix">
                                     {!! $hostel->amenities !!}
                                 </div>
-                            </div>
-                            <div class="floorplan-inner content-widget">
-                                <div class="title-box">
-                                    <h4>Floor Plan</h4>
-                                </div>
-                                <ul class="accordion-box">
-                                    <li class="accordion block active-block">
-                                        <div class="acc-btn active">
-                                            <div class="icon-outer"><i class="fas fa-angle-down"></i></div>
-                                            <h5>First Floor</h5>
-                                        </div>
-                                        <div class="acc-content current">
-                                            <div class="content-box">
-                                                <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim  est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem accusa dolore mque laudant.</p>
-                                                <figure class="image-box">
-                                                    <img src="/frontend/images/resource/floor-1.png" alt="">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="accordion block">
-                                        <div class="acc-btn">
-                                            <div class="icon-outer"><i class="fas fa-angle-down"></i></div>
-                                            <h5>Second Floor</h5>
-                                        </div>
-                                        <div class="acc-content">
-                                            <div class="content-box">
-                                                <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim  est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem accusa dolore mque laudant.</p>
-                                                <figure class="image-box">
-                                                    <img src="/frontend/images/resource/floor-1.png" alt="">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="accordion block">
-                                         <div class="acc-btn">
-                                            <div class="icon-outer"><i class="fas fa-angle-down"></i></div>
-                                            <h5>Third Floor</h5>
-                                        </div>
-                                        <div class="acc-content">
-                                            <div class="content-box">
-                                                <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim  est laborum. Sed perspiciatis unde omnis iste natus error sit voluptatem accusa dolore mque laudant.</p>
-                                                <figure class="image-box">
-                                                    <img src="/frontend/images/resource/floor-1.png" alt="">
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -149,7 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="form-inner">
-                                    <form action="" method="post" class="default-form">
+                                    <form action="" method="get" class="default-form">
                                         <div class="form-group">
                                             <input type="hidden" name="name" placeholder="Your name" required="">
                                         </div>
@@ -166,6 +144,20 @@
                                             <button type="submit" class="theme-btn btn-one">Send Message</button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                            <div class="sidebar-widget">
+                                <div class="card border-0">
+                                    <div class="card-title mb-2">
+                                        <h5>Available Facilities</h5>
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <ul class="list-group list-group-flush">
+                                        @foreach($hostel->facilities as $key => $facility)
+                                            <li class="list-group-item">{{$facility->name}}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

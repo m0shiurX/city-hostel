@@ -7202,7 +7202,7 @@ div#mCSB_1_container {
 	content: '';
 	background-color: #e5e7ec;
 	width: calc(100% - 90px);
-	height: 1px;
+	height: 0px;
 	left: 0px;
 	bottom: -4px;
 }
@@ -7628,7 +7628,7 @@ div#mCSB_1_container {
 	content: '';
 	background-color: #e5e7ec;
 	width: calc(100% - 90px);
-	height: 1px;
+	height: 0px;
 	left: 0px;
 	bottom: -4px;
 }

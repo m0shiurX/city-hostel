@@ -130,15 +130,15 @@
                                         </div>
                                         <div class="buy-btn pull-right"> <a href="#">Seats available {{ $hostel->available_room_count ?? '' }}</a></div>
                                     </div>
-                                    <div class="title-text"><h4><a href="property-details.html">{{ $hostel->name ?? '' }}</a></h4></div>
+                                    <div class="title-text"><h4><a href="{{ route('public.hostel.show', $hostel->id)}}">{{ $hostel->name ?? '' }}</a></h4></div>
                                     <div class="price-box clearfix">
                                         <div class="price-info pull-left">
                                             <h6>Starts from</h6>
                                             <h4>BDT  {{ $hostel->hostelRooms->first()->min_price ?? '' }} <span class="font-xs">/month</span></h4>
                                         </div>
                                         <ul class="other-option pull-right clearfix">
-                                            <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                            <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                                            <li><a href="{{ route('public.hostel.show', $hostel->id)}}"><i class="icon-12"></i></a></li>
+                                            <li><a href="{{ route('public.hostel.show', $hostel->id)}}"><i class="icon-13"></i></a></li>
                                         </ul>
                                     </div>
                                     <p>{{ $hostel->address ?? '' }}</p>
@@ -190,15 +190,15 @@
                                         <div class="batch"><i class="icon-11"></i></div>
                                         <span class="category">{{ $hostel->categories->first()->name }}</span>
                                         <div class="lower-content">
-                                            <div class="title-text"><h4><a href="property-details.html">{{ $hostel->name ?? '' }}</a></h4></div>
+                                            <div class="title-text"><h4><a href="{{ route('public.hostel.show', $hostel->id)}}">{{ $hostel->name ?? '' }}</a></h4></div>
                                             <div class="price-box clearfix">
                                                 <div class="price-info pull-left">
                                                     <h6>Start From</h6>
                                                     <h4>BDT {{ $hostel->hostelRooms->first()->min_price ?? '' }}</h4>
                                                 </div>
                                                 <ul class="other-option pull-right clearfix">
-                                                    <li><a href="property-details.html"><i class="icon-12"></i></a></li>
-                                                    <li><a href="property-details.html"><i class="icon-13"></i></a></li>
+                                                    <li><a href="{{ route('public.hostel.show', $hostel->id)}}"><i class="icon-12"></i></a></li>
+                                                    <li><a href="{{ route('public.hostel.show', $hostel->id)}}"><i class="icon-13"></i></a></li>
                                                 </ul>
                                             </div>
                                             <p>{{ $hostel->address ?? '' }}</p>
@@ -207,7 +207,7 @@
                                                 <li><i class="icon-14"></i>{{ $hostel->available_room_count ?? '' }} Seats avl.</li>
                                                 <li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }} Garage</li>
                                             </ul>
-                                            <div class="btn-box"><a href="property-details.html" class="theme-btn btn-one">See Details</a></div>
+                                            <div class="btn-box"><a href="{{ route('public.hostel.show', $hostel->id)}}" class="theme-btn btn-one">See Details</a></div>
                                         </div>
                                     </div>
                                 </div>
