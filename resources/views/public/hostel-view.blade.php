@@ -1,7 +1,8 @@
 @extends('layouts.public')
 @section('content')
         <!--Page Title-->
-        <section class="page-title centred pb-210" style="background-image: url(/frontend/images/background/page-title-2.jpg);">
+        
+        <section class="page-title centred pb-210" style="background-image: url({{ $hostel->featured_image->getUrl()?? '/frontend/images/background/page-title-2.jpg' }});">
             <div class="auto-container">
                 <div class="content-box clearfix">
                     <h1>{{ $hostel->name }}</h1>
