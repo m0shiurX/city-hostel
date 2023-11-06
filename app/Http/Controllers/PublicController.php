@@ -48,11 +48,12 @@ class PublicController extends Controller
         return view('public.hostel', compact('filteredHostels'));
     }
 
-    public function showHostel()
+    public function showHostel(Hostel $hostel)
     {
-        $hostels = Hostel::with(['area', 'hostelRooms' => function ($query) {
-            $query->select('hostel_id', DB::raw('MIN(price) as min_price'))->groupBy('hostel_id');
-        }])->paginate(6);
-        return view('public.hostel-view', compact('hostels'));
+
+        $hostel->load('area', 'facilities', 'categories', 'created_by', 'hostelRooms');
+        $minPrice = $hostel->hostelRooms->where('status', 'available')->min('price');
+
+        return view('public.hostel-view', compact('hostel', 'minPrice'));
     }
 }

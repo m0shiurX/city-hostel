@@ -4,10 +4,10 @@
         <section class="page-title centred pb-210" style="background-image: url(/frontend/images/background/page-title-2.jpg);">
             <div class="auto-container">
                 <div class="content-box clearfix">
-                    <h1>Property Details 04</h1>
+                    <h1>{{ $hostel->name }}</h1>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Property Details 04</li>
+                        <li><a href="{{ route('public.home') }}">Home</a></li>
+                        <li>{{ $hostel->name }}</li>
                     </ul>
                 </div>
             </div>
@@ -19,11 +19,11 @@
             <div class="auto-container">
                 <div class="top-details clearfix">
                     <div class="left-column pull-left clearfix">
-                        <h3>The Citizen Apartment</h3>
+                        <h3>{{ $hostel->name }}</h3>
                         <div class="author-info clearfix">
                             <div class="author-box pull-left">
                                 <figure class="author-thumb"><img src="/frontend/images/feature/author-1.jpg" alt=""></figure>
-                                <h6>Michael Bean</h6>
+                                <h6>{{ $hostel->created_by->name }}</h6>
                             </div>
                             <ul class="rating clearfix pull-left">
                                 <li><i class="icon-39"></i></li>
@@ -37,11 +37,13 @@
                     <div class="right-column pull-right clearfix">
                         <div class="price-inner clearfix">
                             <ul class="category clearfix pull-left">
-                                <li><a href="property-details.html">Building</a></li>
-                                <li><a href="property-details.html">For Buy</a></li>
+                                @foreach($hostel->categories as $key => $category)
+                                <li><a href="">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
                             <div class="price-box pull-right">
-                                <h3>$30,000.00</h3>
+                                <h6>Starting from</h6>
+                                <h3>BDT {{ $minPrice }}</h3>
                             </div>
                         </div>
                         <ul class="other-option pull-right clearfix">
@@ -77,19 +79,9 @@
                                 <div class="title-box">
                                     <h4>Amenities</h4>
                                 </div>
-                                <ul class="list clearfix">
-                                    <li>Air Conditioning</li>
-                                    <li>Cleaning Service</li>
-                                    <li>Dishwasher</li>
-                                    <li>Hardwood Flows</li>
-                                    <li>Swimming Pool</li>
-                                    <li>Outdoor Shower</li>
-                                    <li>Microwave</li>
-                                    <li>Pet Friendly</li>
-                                    <li>Basketball Court</li>
-                                    <li>Refrigerator</li>
-                                    <li>Gym</li>
-                                </ul>
+                                <div class="list clearfix">
+                                    {!! $hostel->amenities !!}
+                                </div>
                             </div>
                             <div class="floorplan-inner content-widget">
                                 <div class="title-box">
@@ -140,54 +132,6 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="schedule-box content-widget">
-                                <div class="title-box">
-                                    <h4>Reservation</h4>
-                                </div>
-                                <div class="form-inner">
-                                    <form action="property-details.html" method="post">
-                                        <div class="row clearfix">
-                                            <div class="col-lg-6 col-md-12 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <i class="far fa-calendar-alt"></i>
-                                                    <input type="text" name="date" placeholder="Tour Date" id="datepicker">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-12 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <i class="far fa-clock"></i>
-                                                    <input type="text" name="time" placeholder="Any Time">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <input type="text" name="name" placeholder="Your Name" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <input type="email" name="email" placeholder="Your Email" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <input type="tel" name="phone" placeholder="Your Phone" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                                <div class="form-group">
-                                                    <textarea name="message" placeholder="Your message"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 column">
-                                                <div class="form-group message-btn">
-                                                    <button type="submit" class="theme-btn btn-one">Submit Now</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
@@ -196,67 +140,29 @@
                                 <div class="author-box">
                                     <figure class="author-thumb"><img src="/frontend/images/resource/author-1.jpg" alt=""></figure>
                                     <div class="inner">
-                                        <h4>Michael Bean</h4>
+                                        <h4>{{ $hostel->created_by->name }}</h4>
                                         <ul class="info clearfix">
-                                            <li><i class="fas fa-map-marker-alt"></i>84 St. John Wood High Street, 
-                                            St Johns Wood</li>
-                                            <li><i class="fas fa-phone"></i><a href="tel:03030571965">030 3057 1965</a></li>
+                                            <li><i class="fas fa-map-marker-alt"></i>{{ $hostel->address }}</li>
+                                            <li><i class="fas fa-phone"></i><a href="tel:{{ $hostel->phone }}">{{ $hostel->phone }}</a></li>
                                         </ul>
-                                        <div class="btn-box"><a href="agents-details.html">View Listing</a></div>
                                     </div>
                                 </div>
                                 <div class="form-inner">
-                                    <form action="property-details.html" method="post" class="default-form">
+                                    <form action="" method="post" class="default-form">
                                         <div class="form-group">
-                                            <input type="text" name="name" placeholder="Your name" required="">
+                                            <input type="hidden" name="name" placeholder="Your name" required="">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" name="email" placeholder="Your Email" required="">
+                                            <input type="hidden" name="email" placeholder="Your Email" required="">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="phone" placeholder="Phone" required="">
+                                            <input type="hidden" name="phone" placeholder="Phone" required="">
                                         </div>
                                         <div class="form-group">
-                                            <textarea name="message" placeholder="Message"></textarea>
+                                            <textarea name="message" placeholder="Ask your question"></textarea>
                                         </div>
                                         <div class="form-group message-btn">
                                             <button type="submit" class="theme-btn btn-one">Send Message</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="calculator-widget sidebar-widget">
-                                <div class="calculate-inner">
-                                    <div class="widget-title">
-                                        <h4>Mortgage Calculator</h4>
-                                    </div>
-                                    <form method="post" action="mortgage-calculator.html" class="default-form">
-                                        <div class="form-group">
-                                            <i class="fas fa-dollar-sign"></i>
-                                            <input type="number" name="total_amount" placeholder="Total Amount">
-                                        </div>
-                                        <div class="form-group">
-                                            <i class="fas fa-dollar-sign"></i>
-                                            <input type="number" name="down_payment" placeholder="Down Payment">
-                                        </div>
-                                        <div class="form-group">
-                                            <i class="fas fa-percent"></i>
-                                            <input type="number" name="interest_rate" placeholder="Interest Rate">
-                                        </div>
-                                        <div class="form-group">
-                                            <i class="far fa-calendar-alt"></i>
-                                            <input type="number" name="loan" placeholder="Loan Terms(Years)">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="select-box">
-                                                <select class="wide">
-                                                   <option data-display="Monthly">Monthly</option>
-                                                   <option value="1">Yearly</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Calculate Now</button>
                                         </div>
                                     </form>
                                 </div>
