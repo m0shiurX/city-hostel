@@ -3,6 +3,7 @@
 Route::get('/', 'PublicController@index')->name('public.home');
 Route::get('/categories', 'PublicController@categories')->name('public.categories');
 Route::get('/hostels', 'PublicController@hostel')->name('public.hostel');
+Route::get('/hostels/{hostel}', 'PublicController@showHostel')->name('public.hostel.show');
 Route::get('/hostels/filter', 'PublicController@filterAjax');
 
 Auth::routes();

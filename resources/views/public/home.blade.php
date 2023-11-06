@@ -18,7 +18,7 @@
                                 <div class="tab active-tab" id="tab-1">
                                     <div class="inner-box">
                                         <div class="top-search">
-                                            <form action="#" method="post" class="search-form">
+                                            <form action="{{route('public.hostel')}}" method="get" class="search-form">
                                                 <div class="row clearfix">
                                                     <div class="col-lg-4 col-md-12 col-sm-12 column">
                                                         <div class="form-group">
@@ -147,7 +147,7 @@
                                         <li class="pl-3"><i class="icon-3"></i>Since {{ $hostel->built_on ?? '' }}</li>
                                         <li><i class="icon-16"></i>{{ $hostel->garage_size ?? '' }}</li>
                                     </ul>
-                                    <div class="btn-box"><a href="property-details.html" class="theme-btn btn-two">See Details</a></div>
+                                    <div class="btn-box"><a href="{{ route('public.hostel.show', $hostel->id)}}" class="theme-btn btn-two">See Details</a></div>
                                 </div>
                             </div>
                         </div>

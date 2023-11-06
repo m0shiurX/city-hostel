@@ -47,4 +47,12 @@ class PublicController extends Controller
         // Return the filtered data as JSON
         return view('public.hostel', compact('filteredHostels'));
     }
+
+    public function showHostel()
+    {
+        $hostels = Hostel::with(['area', 'hostelRooms' => function ($query) {
+            $query->select('hostel_id', DB::raw('MIN(price) as min_price'))->groupBy('hostel_id');
+        }])->paginate(6);
+        return view('public.hostel-view', compact('hostels'));
+    }
 }
