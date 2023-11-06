@@ -5,6 +5,7 @@ Route::get('/categories', 'PublicController@categories')->name('public.categorie
 Route::get('/hostels', 'PublicController@hostel')->name('public.hostel');
 Route::get('/hostels/{hostel}', 'PublicController@showHostel')->name('public.hostel.show');
 Route::get('/hostels/filter', 'PublicController@filterAjax');
+Route::get('/signup', 'PublicController@signup')->name('public.signup');
 
 Auth::routes();
 

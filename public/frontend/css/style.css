@@ -493,7 +493,7 @@ img {
 }
 
 .sec-pad {
-	padding: 114px 0px 120px 0px;
+	padding: 70px 0px 120px 0px;
 }
 
 .sec-pad-2 {
@@ -8912,7 +8912,7 @@ div#mCSB_1_container {
 
 .ragister-section .tab-btn-box .tab-btns {
 	position: relative;
-	max-width: 210px;
+	max-width: 300px;
 	margin: 0 auto;
 	border-radius: 5px;
 	border: 1px solid #e5e7ec;

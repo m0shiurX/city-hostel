@@ -57,4 +57,8 @@ class PublicController extends Controller
 
         return view('public.hostel-view', compact('hostel', 'minPrice', 'availableRooms'));
     }
+    public function signup()
+    {
+        return view('public.signup');
+    }
 }
