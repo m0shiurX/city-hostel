@@ -58,13 +58,15 @@
                                                 <a class="btn btn-xs btn-primary" href="{{ route('frontend.reservations.show', $reservation->id) }}">
                                                     {{ trans('global.view') }}
                                                 </a>
+                                                <a class="btn btn-xs btn-success" href="{{ route('frontend.payments.create', $reservation->id) }}">
+                                                    Make payment
+                                                </a>
                                             @endcan
-
-                                            @can('reservation_edit')
+                                            {{-- @can('reservation_edit')
                                                 <a class="btn btn-xs btn-info" href="{{ route('frontend.reservations.edit', $reservation->id) }}">
                                                     {{ trans('global.edit') }}
                                                 </a>
-                                            @endcan
+                                            @endcan --}}
 
                                             @can('reservation_delete')
                                                 <form action="{{ route('frontend.reservations.destroy', $reservation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">

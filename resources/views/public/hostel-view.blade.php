@@ -103,7 +103,16 @@
                                             </div>
                                             @auth
                                             <div class="mt-2">
-                                                <button class="btn btn-success">Make reservation</button>
+                                                <form method="POST" action="{{ route("frontend.reservations.store") }}" enctype="multipart/form-data">
+                                                    @method('POST')
+                                                    @csrf
+                                                    <input type="hidden" name="room_id" value="{{ $room->id }}">
+                                                    <input type="hidden" name="down_payment" value="{{ $room->price }}">
+                                                    <input type="hidden" name="status" value="pending">
+                                                    <div class="form-group">
+                                                        <button  type="submit" class="btn btn-success">Make reservation</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                             @endauth
                                         </div>
