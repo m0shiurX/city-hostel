@@ -90,7 +90,7 @@
                             </nav>
                         </div>
                         <div class="btn-box">
-                            <a href="{{ route('public.home') }}" class="theme-btn btn-one"><span>+</span>Add Hostel</a>
+                            <a href="{{ route('host.home') }}" class="theme-btn btn-one"><span>+</span>Add Hostel</a>
                         </div>
                     </div>
                 </div>

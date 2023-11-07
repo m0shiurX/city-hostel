@@ -126,7 +126,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="form-inner">
+                                {{-- <div class="form-inner">
                                     <form action="{{ route("frontend.messenger.storeTopic") }}" method="post" class="default-form">
                                         <div class="form-group">
                                             <input type="hidden" name="name" placeholder="Your name">
@@ -149,8 +149,29 @@
                                         <div class="form-group message-btn">
                                             <button type="submit" class="theme-btn btn-one">Send Message</button>
                                         </div>
-                                    </form>
-                                </div>
+                                    </form> --}}
+                                    
+                                    {{-- <form action="{{ route("frontend.reservations.store") }}" method="post" class="default-form" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <input type="hidden" name="recipient" value="{{ $hostel->created_by->id }}">
+                                        <input type="hidden" name="status" value="pending">
+                                        <select class="form-control" name="room_id" id="room_id" required>
+                                            @foreach($availableRooms->values() as $key => $room)
+                                                <option value="{{ $room->id }}">{{ $room->room_info }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="form-group">
+                                            <input type="text" name="down_payment" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="content" placeholder="Ask your question"></textarea>
+                                        </div>
+                                        <div class="form-group message-btn">
+                                            <button type="submit" class="theme-btn btn-one">Make Reservation</button>
+                                        </div>
+                                    </form> --}}
+                                {{-- </div> --}}
                             </div>
                             <div class="sidebar-widget">
                                 <div class="card border-0">
