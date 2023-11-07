@@ -57,7 +57,7 @@
                             @guest
                                 <a href="{{ route('login') }}"><i class="fas fa-user"></i>Sign In</a>
                             @else
-                                <a href="{{ route('frontend.home') }}"><i class="fas fa-user"></i>My Dashboard</a>
+                                <a href="{{ auth()->user()->is_host ? route('host.home') : route('frontend.home') }}"><i class="fas fa-user"></i>My Dashboard</a>
                             @endguest
 
                         </div>
