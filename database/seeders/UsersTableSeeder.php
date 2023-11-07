@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id'                 => 2,
                 'name'               => 'Hostel Owner',
-                'email'              => 'owner@admin.com',
+                'email'              => 'host@admin.com',
                 'password'           => bcrypt('password'),
                 'remember_token'     => null,
                 'approved'           => 1,
