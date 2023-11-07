@@ -83,7 +83,7 @@
                             <div class="category-block-one">
                                 <div class="inner-box">
                                     <div class="icon-box"><i class="icon-{{ $category->id }}"></i></div>
-                                    <h5><a href="#">{{ $category->name }}</a></h5>
+                                    <h5><a href="{{ route('public.hostel') }}">{{ $category->name }}</a></h5>
                                     <span>{{ $category->category_hostels_count }}</span>
                                 </div>
                             </div>

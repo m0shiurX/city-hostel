@@ -127,18 +127,24 @@
                                     </div>
                                 </div>
                                 <div class="form-inner">
-                                    <form action="" method="get" class="default-form">
+                                    <form action="{{ route("frontend.messenger.storeTopic") }}" method="post" class="default-form">
                                         <div class="form-group">
-                                            <input type="hidden" name="name" placeholder="Your name" required="">
+                                            <input type="hidden" name="name" placeholder="Your name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" name="email" placeholder="Your Email" required="">
+                                            <input type="hidden" name="email" placeholder="Your Email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="hidden" name="phone" placeholder="Phone" required="">
+                                            <input type="hidden" name="phone" placeholder="Phone">
                                         </div>
                                         <div class="form-group">
-                                            <textarea name="message" placeholder="Ask your question"></textarea>
+                                            <input type="hidden" name="recipient" value="{{ $hostel->created_by->id }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="subject" value="Query for {{ $hostel->name }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <textarea name="content" placeholder="Ask your question"></textarea>
                                         </div>
                                         <div class="form-group message-btn">
                                             <button type="submit" class="theme-btn btn-one">Send Message</button>

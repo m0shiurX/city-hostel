@@ -15,16 +15,6 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
-        @can('area_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("host.areas.index") }}" class="c-sidebar-nav-link {{ request()->is("host/areas") || request()->is("host/areas/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.area.title') }}
-                </a>
-            </li>
-        @endcan
         @can('hostel_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("host.hostels.index") }}" class="c-sidebar-nav-link {{ request()->is("host/hostels") || request()->is("host/hostels/*") ? "c-active" : "" }}">
@@ -45,16 +35,6 @@
                 </a>
             </li>
         @endcan
-        @can('facility_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("host.facilities.index") }}" class="c-sidebar-nav-link {{ request()->is("host/facilities") || request()->is("host/facilities/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-align-left c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.facility.title') }}
-                </a>
-            </li>
-        @endcan
         @can('reservation_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("host.reservations.index") }}" class="c-sidebar-nav-link {{ request()->is("host/reservations") || request()->is("host/reservations/*") ? "c-active" : "" }}">
@@ -62,16 +42,6 @@
 
                     </i>
                     {{ trans('cruds.reservation.title') }}
-                </a>
-            </li>
-        @endcan
-        @can('category_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("host.categories.index") }}" class="c-sidebar-nav-link {{ request()->is("host/categories") || request()->is("host/categories/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-bolt c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.category.title') }}
                 </a>
             </li>
         @endcan
@@ -105,49 +75,7 @@
                 </a>
             </li>
         @endcan
-        @can('user_management_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("host/permissions*") ? "c-show" : "" }} {{ request()->is("host/roles*") ? "c-show" : "" }} {{ request()->is("host/users*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-users c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.userManagement.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('permission_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("host.permissions.index") }}" class="c-sidebar-nav-link {{ request()->is("host/permissions") || request()->is("host/permissions/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-unlock-alt c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.permission.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('role_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("host.roles.index") }}" class="c-sidebar-nav-link {{ request()->is("host/roles") || request()->is("host/roles/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-briefcase c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.role.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('user_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("host.users.index") }}" class="c-sidebar-nav-link {{ request()->is("host/users") || request()->is("host/users/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-user c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.user.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @php($unread = \App\Models\QaTopic::unreadCount())
+        {{-- @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("host.messenger.index") }}" class="{{ request()->is("host/messenger") || request()->is("host/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
                     <i class="c-sidebar-nav-icon fa-fw fa fa-envelope">
@@ -159,18 +87,18 @@
                     @endif
 
                 </a>
+            </li> --}}
+        @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
+            @can('profile_password_edit')
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'c-active' : '' }}" href="{{ route('profile.password.edit') }}">
+                    <i class="fa-fw fas fa-key c-sidebar-nav-icon">
+                    </i>
+                    {{ trans('global.change_password') }}
+                </a>
             </li>
-            @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
-                @can('profile_password_edit')
-                    <li class="c-sidebar-nav-item">
-                        <a class="c-sidebar-nav-link {{ request()->is('profile/password') || request()->is('profile/password/*') ? 'c-active' : '' }}" href="{{ route('profile.password.edit') }}">
-                            <i class="fa-fw fas fa-key c-sidebar-nav-icon">
-                            </i>
-                            {{ trans('global.change_password') }}
-                        </a>
-                    </li>
-                @endcan
-            @endif
+            @endcan
+        @endif
             <li class="c-sidebar-nav-item">
                 <a href="#" class="c-sidebar-nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="c-sidebar-nav-icon fas fa-fw fa-sign-out-alt">
