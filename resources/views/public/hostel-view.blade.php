@@ -75,7 +75,10 @@
                             </div>
                             <div class="floorplan-inner content-widget">
                                 <div class="title-box">
-                                    <h4>Available Seats</h4>
+                                    <h4>Available Seats ({{ $hostel->available_room_count }})</h4>
+                                    @guest
+                                        <h6>Please <a href="{{ route('login') }}"> login </a> to make a reservation</h6>
+                                    @endguest
                                 </div>
                                 <ul class="accordion-box">
                                     @foreach($availableRooms->values() as $key => $room)
@@ -98,6 +101,11 @@
                                                     @endforeach
                                                 </figure>
                                             </div>
+                                            @auth
+                                            <div class="mt-2">
+                                                <button class="btn btn-success">Make reservation</button>
+                                            </div>
+                                            @endauth
                                         </div>
                                     </li>
                                     @endforeach
@@ -126,7 +134,12 @@
                                         </ul>
                                     </div>
                                 </div>
-                                {{-- <div class="form-inner">
+                                @guest
+                                    <p>Please <a href="{{ route('login') }}"> login </a> to send messages to the host directly from here.</p>
+                                @endguest
+                                @auth
+                                <div class="form-inner">
+                                    <p>Hi, {{Auth::user()->name }}. You can message to the host directly from here.</p>
                                     <form action="{{ route("frontend.messenger.storeTopic") }}" method="post" class="default-form">
                                         <div class="form-group">
                                             <input type="hidden" name="name" placeholder="Your name">
@@ -149,30 +162,11 @@
                                         <div class="form-group message-btn">
                                             <button type="submit" class="theme-btn btn-one">Send Message</button>
                                         </div>
-                                    </form> --}}
-                                    
-                                    {{-- <form action="{{ route("frontend.reservations.store") }}" method="post" class="default-form" enctype="multipart/form-data">
-                                        @method('POST')
-                                        @csrf
-                                        <input type="hidden" name="recipient" value="{{ $hostel->created_by->id }}">
-                                        <input type="hidden" name="status" value="pending">
-                                        <select class="form-control" name="room_id" id="room_id" required>
-                                            @foreach($availableRooms->values() as $key => $room)
-                                                <option value="{{ $room->id }}">{{ $room->room_info }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="form-group">
-                                            <input type="text" name="down_payment" required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea name="content" placeholder="Ask your question"></textarea>
-                                        </div>
-                                        <div class="form-group message-btn">
-                                            <button type="submit" class="theme-btn btn-one">Make Reservation</button>
-                                        </div>
-                                    </form> --}}
-                                {{-- </div> --}}
+                                    </form>
+                                </div>
+                                @endauth
                             </div>
+
                             <div class="sidebar-widget">
                                 <div class="card border-0">
                                     <div class="card-title mb-2">
