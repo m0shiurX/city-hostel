@@ -23,7 +23,7 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.payment.fields.amount_helper') }}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label class="required">{{ trans('cruds.payment.fields.status') }}</label>
                             @foreach(App\Models\Payment::STATUS_RADIO as $key => $label)
                                 <div>

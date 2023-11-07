@@ -23,11 +23,11 @@
                             @endif
                             <span class="help-block">{{ trans('cruds.payment.fields.amount_helper') }}</span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label class="required">{{ trans('cruds.payment.fields.status') }}</label>
                             @foreach(App\Models\Payment::STATUS_RADIO as $key => $label)
                                 <div>
-                                    <input type="radio" id="status_{{ $key }}" name="status" value="{{ $key }}" {{ old('status', 'unpaid') === (string) $key ? 'checked' : '' }} required>
+                                    <input type="radio" id="status_{{ $key }}" name="status" value="{{ $key }}" {{ old('status', 'pending') === (string) $key ? 'checked' : '' }} required>
                                     <label for="status_{{ $key }}">{{ $label }}</label>
                                 </div>
                             @endforeach
