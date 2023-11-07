@@ -75,7 +75,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('messenger/{topic}/reply', 'MessengerController@replyToTopic')->name('messenger.reply');
     Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
 });
-Route::group(['prefix' => 'host', 'as' => 'host.', 'namespace' => 'Admin', 'middleware' => ['auth', 'host']], function () {
+Route::group(['prefix' => 'host', 'as' => 'host.', 'namespace' => 'Host', 'middleware' => ['auth', 'host']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
