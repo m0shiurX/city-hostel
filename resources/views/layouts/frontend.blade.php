@@ -76,13 +76,20 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
-
+                                    @php($unread = \App\Models\QaTopic::unreadCount())
+                                        <a class="dropdown-item" href="{{ route('frontend.messenger.index') }}">
+                                            {{ trans('global.messages') }}
+                                            @if($unread > 0)
+                                                <strong>( {{ $unread }} )</strong>
+                                            @endif
+                                        </a>
                                     
                                     @can('reservation_access')
                                         <a class="dropdown-item" href="{{ route('frontend.reservations.index') }}">
                                             {{ trans('cruds.reservation.title') }}
                                         </a>
                                     @endcan
+
                                     @can('payment_access')
                                         <a class="dropdown-item" href="{{ route('frontend.payments.index') }}">
                                             {{ trans('cruds.payment.title') }}

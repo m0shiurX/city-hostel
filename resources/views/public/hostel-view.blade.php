@@ -150,7 +150,8 @@
                                 <div class="form-inner">
                                     <p>Hi, {{Auth::user()->name }}. You can message to the host directly from here.</p>
                                     <form action="{{ route("frontend.messenger.storeTopic") }}" method="post" class="default-form">
-                                        <div class="form-group">
+                                        @csrf
+                                        {{-- <div class="form-group">
                                             <input type="hidden" name="name" placeholder="Your name">
                                         </div>
                                         <div class="form-group">
@@ -158,7 +159,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="hidden" name="phone" placeholder="Phone">
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <input type="hidden" name="recipient" value="{{ $hostel->created_by->id }}">
                                         </div>
