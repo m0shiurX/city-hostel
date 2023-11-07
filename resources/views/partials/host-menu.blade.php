@@ -45,16 +45,6 @@
                 </a>
             </li>
         @endcan
-        @can('tag_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("host.tags.index") }}" class="c-sidebar-nav-link {{ request()->is("host/tags") || request()->is("host/tags/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-tags c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.tag.title') }}
-                </a>
-            </li>
-        @endcan
         @can('payment_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("host.payments.index") }}" class="c-sidebar-nav-link {{ request()->is("host/payments") || request()->is("host/payments/*") ? "c-active" : "" }}">
@@ -75,7 +65,7 @@
                 </a>
             </li>
         @endcan
-        {{-- @php($unread = \App\Models\QaTopic::unreadCount())
+        @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("host.messenger.index") }}" class="{{ request()->is("host/messenger") || request()->is("host/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
                     <i class="c-sidebar-nav-icon fa-fw fa fa-envelope">
@@ -87,7 +77,7 @@
                     @endif
 
                 </a>
-            </li> --}}
+            </li>
         @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
             <li class="c-sidebar-nav-item">

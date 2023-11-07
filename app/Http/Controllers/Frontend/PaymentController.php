@@ -17,7 +17,7 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $payments = Payment::with(['created_by'])->get();
+        $payments = Payment::with(['created_by'])->where('created_by_id', '=', auth()->user()->id)->get();
 
         return view('frontend.payments.index', compact('payments'));
     }
@@ -39,6 +39,7 @@ class PaymentController extends Controller
     public function edit(Payment $payment)
     {
         abort_if(Gate::denies('payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if($payment->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $payment->load('created_by');
 
@@ -55,6 +56,7 @@ class PaymentController extends Controller
     public function show(Payment $payment)
     {
         abort_if(Gate::denies('payment_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if($payment->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $payment->load('created_by');
 
@@ -64,6 +66,7 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         abort_if(Gate::denies('payment_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if($payment->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $payment->delete();
 

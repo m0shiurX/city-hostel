@@ -78,17 +78,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 Route::group(['prefix' => 'host', 'as' => 'host.', 'namespace' => 'Host', 'middleware' => ['auth', 'host']], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
-    // Permissions
-    Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
-    Route::resource('permissions', 'PermissionsController');
-
-    // Roles
-    Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
-    Route::resource('roles', 'RolesController');
-
-    // Users
-    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
-    Route::resource('users', 'UsersController');
 
     // User Alerts
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
@@ -111,25 +100,10 @@ Route::group(['prefix' => 'host', 'as' => 'host.', 'namespace' => 'Host', 'middl
     Route::delete('reservations/destroy', 'ReservationController@massDestroy')->name('reservations.massDestroy');
     Route::resource('reservations', 'ReservationController');
 
-    // Facility
-    Route::delete('facilities/destroy', 'FacilityController@massDestroy')->name('facilities.massDestroy');
-    Route::resource('facilities', 'FacilityController');
 
     // Payment
     Route::delete('payments/destroy', 'PaymentController@massDestroy')->name('payments.massDestroy');
     Route::resource('payments', 'PaymentController');
-
-    // Category
-    Route::delete('categories/destroy', 'CategoryController@massDestroy')->name('categories.massDestroy');
-    Route::resource('categories', 'CategoryController', ['except' => ['show']]);
-
-    // Tag
-    Route::delete('tags/destroy', 'TagController@massDestroy')->name('tags.massDestroy');
-    Route::resource('tags', 'TagController', ['except' => ['show']]);
-
-    // Area
-    Route::delete('areas/destroy', 'AreaController@massDestroy')->name('areas.massDestroy');
-    Route::resource('areas', 'AreaController', ['except' => ['show']]);
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -158,17 +132,6 @@ Route::group(['prefix' => 'front', 'as' => 'frontend.', 'namespace' => 'Frontend
     Route::delete('user-alerts/destroy', 'UserAlertsController@massDestroy')->name('user-alerts.massDestroy');
     Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
 
-    // Hostel
-    Route::delete('hostels/destroy', 'HostelController@massDestroy')->name('hostels.massDestroy');
-    Route::post('hostels/media', 'HostelController@storeMedia')->name('hostels.storeMedia');
-    Route::post('hostels/ckmedia', 'HostelController@storeCKEditorImages')->name('hostels.storeCKEditorImages');
-    Route::resource('hostels', 'HostelController');
-
-    // Room
-    Route::delete('rooms/destroy', 'RoomController@massDestroy')->name('rooms.massDestroy');
-    Route::post('rooms/media', 'RoomController@storeMedia')->name('rooms.storeMedia');
-    Route::post('rooms/ckmedia', 'RoomController@storeCKEditorImages')->name('rooms.storeCKEditorImages');
-    Route::resource('rooms', 'RoomController');
 
     // Messages
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
@@ -185,18 +148,10 @@ Route::group(['prefix' => 'front', 'as' => 'frontend.', 'namespace' => 'Frontend
     Route::delete('reservations/destroy', 'ReservationController@massDestroy')->name('reservations.massDestroy');
     Route::resource('reservations', 'ReservationController');
 
-    // Facility
-    Route::delete('facilities/destroy', 'FacilityController@massDestroy')->name('facilities.massDestroy');
-    Route::resource('facilities', 'FacilityController');
 
     // Payment
     Route::delete('payments/destroy', 'PaymentController@massDestroy')->name('payments.massDestroy');
     Route::resource('payments', 'PaymentController');
-
-
-    // Tag
-    Route::delete('tags/destroy', 'TagController@massDestroy')->name('tags.massDestroy');
-    Route::resource('tags', 'TagController', ['except' => ['show']]);
 
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');

@@ -18,7 +18,7 @@ class ReservationController extends Controller
     {
         abort_if(Gate::denies('reservation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservations = Reservation::with(['room', 'created_by'])->get();
+        $reservations = Reservation::with(['room', 'created_by'])->where('created_by_id', '=', auth()->user()->id)->get();
 
         return view('frontend.reservations.index', compact('reservations'));
     }
@@ -35,13 +35,13 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request)
     {
         $reservation = Reservation::create($request->all());
-
         return redirect()->route('frontend.reservations.index');
     }
 
     public function edit(Reservation $reservation)
     {
         abort_if(Gate::denies('reservation_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if($reservation->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $rooms = Room::pluck('room_info', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -60,6 +60,7 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         abort_if(Gate::denies('reservation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if($reservation->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $reservation->load('room', 'created_by');
 
@@ -69,6 +70,7 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         abort_if(Gate::denies('reservation_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if($reservation->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $reservation->delete();
 
