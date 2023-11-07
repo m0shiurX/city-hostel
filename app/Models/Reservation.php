@@ -22,14 +22,13 @@ class Reservation extends Model
 
     public const STATUS_RADIO = [
         'pending'   => 'Pending',
-        'booked'    => 'Booked',
-        'available' => 'Available',
-        'hidden'    => 'Hidden',
+        'approved'    => 'Approved',
+        'cancelled' => 'Cancelled',
     ];
 
     protected $fillable = [
         'room_id',
-        'down_payment',
+        'paid_amount',
         'status',
         'created_at',
         'updated_at',

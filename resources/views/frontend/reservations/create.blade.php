@@ -28,14 +28,14 @@
                             <span class="help-block">{{ trans('cruds.reservation.fields.room_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="down_payment">{{ trans('cruds.reservation.fields.down_payment') }}</label>
-                            <input class="form-control" type="number" name="down_payment" id="down_payment" value="{{ old('down_payment', '') }}" step="0.01">
-                            @if($errors->has('down_payment'))
+                            <label for="paid_amount">{{ trans('cruds.reservation.fields.paid_amount') }}</label>
+                            <input class="form-control" type="number" name="paid_amount" id="paid_amount" value="{{ old('paid_amount', '') }}" step="0.01">
+                            @if($errors->has('paid_amount'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('down_payment') }}
+                                    {{ $errors->first('paid_amount') }}
                                 </div>
                             @endif
-                            <span class="help-block">{{ trans('cruds.reservation.fields.down_payment_helper') }}</span>
+                            <span class="help-block">{{ trans('cruds.reservation.fields.paid_amount_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label>{{ trans('cruds.reservation.fields.status') }}</label>

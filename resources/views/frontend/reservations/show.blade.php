@@ -36,10 +36,10 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.down_payment') }}
+                                        {{ trans('cruds.reservation.fields.paid_amount') }}
                                     </th>
                                     <td>
-                                        {{ $reservation->down_payment }}
+                                        {{ $reservation->paid_amount }}
                                     </td>
                                 </tr>
                                 <tr>

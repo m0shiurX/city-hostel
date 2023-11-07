@@ -10,7 +10,7 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('down_payment', 15, 2)->nullable();
+            $table->decimal('paid_amount', 15, 2)->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();

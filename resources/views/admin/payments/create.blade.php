@@ -23,7 +23,7 @@
                 <label class="required">{{ trans('cruds.payment.fields.status') }}</label>
                 @foreach(App\Models\Payment::STATUS_RADIO as $key => $label)
                     <div class="form-check {{ $errors->has('status') ? 'is-invalid' : '' }}">
-                        <input class="form-check-input" type="radio" id="status_{{ $key }}" name="status" value="{{ $key }}" {{ old('status', 'unpaid') === (string) $key ? 'checked' : '' }} required>
+                        <input class="form-check-input" type="radio" id="status_{{ $key }}" name="status" value="{{ $key }}" {{ old('status', 'pending') === (string) $key ? 'checked' : '' }} required>
                         <label class="form-check-label" for="status_{{ $key }}">{{ $label }}</label>
                     </div>
                 @endforeach

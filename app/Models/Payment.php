@@ -23,7 +23,7 @@ class Payment extends Model
     public const STATUS_RADIO = [
         'pending'  => 'Pending',
         'approved' => 'Approved',
-        'unpaid'   => 'unpaid',
+        'cancelled'   => 'Cancelled',
     ];
 
     protected $fillable = [
