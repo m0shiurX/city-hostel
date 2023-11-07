@@ -77,16 +77,7 @@
 
                                     <a class="dropdown-item" href="{{ route('frontend.profile.index') }}">{{ __('My profile') }}</a>
 
-                                    @can('hostel_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.hostels.index') }}">
-                                            {{ trans('cruds.hostel.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('room_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.rooms.index') }}">
-                                            {{ trans('cruds.room.title') }}
-                                        </a>
-                                    @endcan
+                                    
                                     @can('reservation_access')
                                         <a class="dropdown-item" href="{{ route('frontend.reservations.index') }}">
                                             {{ trans('cruds.reservation.title') }}
