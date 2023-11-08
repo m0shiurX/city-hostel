@@ -84,7 +84,6 @@
                                         <li class=""><a href="{{ route('public.home') }}">Home</a></li>
                                         <li><a href="{{ route('public.hostel') }}">Hostels</a></li>
                                         <li><a href="{{ route('public.categories') }}">Categories</a></li>
-                                        <li><a href="#">Make Payment</a></li>
                                     </ul>
                                 </div>
                             </nav>
