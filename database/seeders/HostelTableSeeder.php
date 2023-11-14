@@ -20,8 +20,8 @@ class HostelTableSeeder extends Seeder
         $facilityIds = Facility::inRandomOrder()->get()->pluck('id');
 
         Hostel::factory()
-            ->has(Room::factory()->count(25), 'hostelRooms')
-            ->count(100)->create()
+            ->has(Room::factory()->count(10), 'hostelRooms')
+            ->count(50)->create()
             ->each(function (Hostel $hostel) use ($categoryIds, $facilityIds) {
                 $hostel->categories()->attach(fake()->randomElements($categoryIds));
                 $hostel->facilities()->attach(fake()->randomElements($facilityIds, 5));

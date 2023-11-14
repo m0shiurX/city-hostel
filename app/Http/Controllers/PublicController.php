@@ -61,4 +61,8 @@ class PublicController extends Controller
     {
         return view('public.signup');
     }
+    public function signin()
+    {
+        return view('public.signin');
+    }
 }

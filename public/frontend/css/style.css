@@ -8850,11 +8850,11 @@ div#mCSB_1_container {
 	overflow: hidden;
 }
 
-.ragister-section {
+.register-section {
 	position: relative;
 }
 
-.ragister-section .inner-box {
+.register-section .inner-box {
 	position: relative;
 	display: block;
 	background-color: #ffffff;
@@ -8863,7 +8863,7 @@ div#mCSB_1_container {
 	border-radius: 10px;
 }
 
-.ragister-section .inner-box h4 {
+.register-section .inner-box h4 {
 	display: block;
 	text-align: left;
 	font-size: 20px;
@@ -8872,12 +8872,12 @@ div#mCSB_1_container {
 	margin-bottom: 26px;
 }
 
-.ragister-section .inner-box .form-group {
+.register-section .inner-box .form-group {
 	position: relative;
 	margin-bottom: 24px;
 }
 
-.ragister-section .inner-box .form-group label {
+.register-section .inner-box .form-group label {
 	position: relative;
 	display: block;
 	text-align: left;
@@ -8888,29 +8888,29 @@ div#mCSB_1_container {
 	margin-bottom: 8px;
 }
 
-.ragister-section .inner-box .form-group .theme-btn {
+.register-section .inner-box .form-group .theme-btn {
 	display: block;
 	width: 100%;
 }
 
-.ragister-section .inner-box .othre-text p {
+.register-section .inner-box .othre-text p {
 	font-size: 15px;
 }
 
-.ragister-section .inner-box .othre-text p a {
+.register-section .inner-box .othre-text p a {
 }
 
-.ragister-section .inner-box .othre-text p a:hover {
+.register-section .inner-box .othre-text p a:hover {
 	text-decoration: underline;
 }
 
-.ragister-section .tab-btn-box {
+.register-section .tab-btn-box {
 	position: relative;
 	display: block;
 	margin-bottom: 50px;
 }
 
-.ragister-section .tab-btn-box .tab-btns {
+.register-section .tab-btn-box .tab-btns {
 	position: relative;
 	max-width: 300px;
 	margin: 0 auto;
@@ -8919,7 +8919,7 @@ div#mCSB_1_container {
 	overflow: hidden;
 }
 
-.ragister-section .tab-btn-box .tab-btns li {
+.register-section .tab-btn-box .tab-btns li {
 	position: relative;
 	display: inline-block;
 	float: left;
@@ -8934,7 +8934,7 @@ div#mCSB_1_container {
 	transition: all 500ms ease;
 }
 
-.ragister-section .tab-btn-box .tab-btns li.active-btn {
+.register-section .tab-btn-box .tab-btns li.active-btn {
 	color: #ffffff;
 }
 
@@ -9710,3 +9710,12 @@ div#mCSB_1_container {
 .search-field .top-search .search-btn button i {
 	margin-right: 8px;
 }
+
+.register-section .tab-btn-box {
+	margin-bottom: 20px;
+}
+.signup_padding {
+	padding: 30px 0px 120px 0px;
+}
+.main-menu .navigation > li:last-child  > a {border-right: 0px;}
+.main-menu .navigation > li:first-child > a {border-left: 0px;}
