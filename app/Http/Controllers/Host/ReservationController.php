@@ -67,7 +67,15 @@ class ReservationController extends Controller
 
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
+
         $reservation->update($request->all());
+        if ($request->status == 'approved') {
+            $reservation->room->update(['status' => 'booked']);
+        }
+
+        if ($request->status == 'cancelled') {
+            $reservation->room->update(['status' => 'available']);
+        }
 
         return redirect()->route('host.reservations.index');
     }
