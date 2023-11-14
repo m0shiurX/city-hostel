@@ -1,15 +1,45 @@
-### Installation
+## Installation Steps
 
--   `composer install`
+1. Install project dependencies using Composer:
 
--   `cp .env.example .env`
+```shell
+composer install
+```
 
--   `php artisan key:generate`
+2. Create a `.env` file by copying the example:
 
--   `touch database/database.sqlite`
+```shell
+cp .env.example .env
+```
 
--   `php artisan migrate:fresh --seed`
+3. Generate a unique application key:
 
--   `php artisan serve`
+```shell
+php artisan key:generate
+```
 
-*   Point your browser to http://127.0.0.1:8000
+4. Create a SQLite database:
+
+```shell
+touch database/database.sqlite
+```
+
+5. Run migrations and seed the database:
+
+```shell
+php artisan migrate:fresh --seed
+```
+
+6. Create a symbolic link for storage:
+
+```shell
+php artisan storage:link
+```
+
+7. Start the development server:
+
+```shell
+php artisan serve
+```
+
+8. Open your browser and go to [http://127.0.0.1:8000](http://127.0.0.1:8000) to access the application.
