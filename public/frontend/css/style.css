@@ -9717,5 +9717,13 @@ div#mCSB_1_container {
 .signup_padding {
 	padding: 30px 0px 120px 0px;
 }
-.main-menu .navigation > li:last-child  > a {border-right: 0px;}
-.main-menu .navigation > li:first-child > a {border-left: 0px;}
+.main-menu .navigation > li:last-child > a {
+	border-right: 0px;
+}
+.main-menu .navigation > li:first-child > a {
+	border-left: 0px;
+}
+
+.remember-check {
+	margin-top: 0.4rem !important;
+}

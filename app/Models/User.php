@@ -64,7 +64,7 @@ class User extends Authenticatable
         parent::__construct($attributes);
         self::created(function (self $user) {
             $registrationRole = config('panel.registration_default_role');
-            if (!$user->roles()->get()->contains($registrationRole)) {
+            if (!$user->roles()->get()->contains($registrationRole) && !$user->roles()->get()->contains('2')) {
                 $user->roles()->attach($registrationRole);
             }
         });
