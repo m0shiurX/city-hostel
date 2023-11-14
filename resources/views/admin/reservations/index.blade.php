@@ -32,7 +32,7 @@
                             {{ trans('cruds.room.fields.price') }}
                         </th>
                         <th>
-                            {{ trans('cruds.room.fields.status') }}
+                            Student {{ trans('cruds.user.fields.name') }}
                         </th>
                         <th>
                             {{ trans('cruds.reservation.fields.status') }}
@@ -58,9 +58,7 @@
                                 {{ $reservation->room->price ?? '' }}
                             </td>
                             <td>
-                                @if($reservation->room)
-                                    {{ $reservation->room::STATUS_RADIO[$reservation->room->status] ?? '' }}
-                                @endif
+                                {{ $reservation->created_by->name ?? '' }}
                             </td>
                             <td>
                                 {{ App\Models\Reservation::STATUS_RADIO[$reservation->status] ?? '' }}

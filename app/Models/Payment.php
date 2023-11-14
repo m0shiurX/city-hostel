@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\MultiTenantModelTrait;
+// use App\Traits\MultiTenantModelTrait;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
-    use SoftDeletes, MultiTenantModelTrait, HasFactory;
+    // use SoftDeletes, MultiTenantModelTrait, HasFactory;
+    use SoftDeletes, HasFactory;
 
     public $table = 'payments';
 

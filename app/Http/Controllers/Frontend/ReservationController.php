@@ -19,7 +19,6 @@ class ReservationController extends Controller
         abort_if(Gate::denies('reservation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $reservations = Reservation::with(['room', 'created_by'])->where('created_by_id', '=', auth()->user()->id)->get();
-
         return view('frontend.reservations.index', compact('reservations'));
     }
 
@@ -34,6 +33,7 @@ class ReservationController extends Controller
 
     public function store(StoreReservationRequest $request)
     {
+        $request->merge(['created_by_id' => auth()->user()->id]);
         $reservation = Reservation::create($request->all());
         return redirect()->route('frontend.reservations.index');
     }

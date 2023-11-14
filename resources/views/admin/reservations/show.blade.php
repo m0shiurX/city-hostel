@@ -47,6 +47,14 @@
                             {{ App\Models\Reservation::STATUS_RADIO[$reservation->status] ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Created by
+                        </th>
+                        <td>
+                            {{ $reservation->created_by->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

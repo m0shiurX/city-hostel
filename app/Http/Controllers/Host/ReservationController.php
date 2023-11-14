@@ -8,6 +8,7 @@ use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
 use App\Models\Room;
+use Illuminate\Support\Facades\Auth;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,19 @@ class ReservationController extends Controller
     {
         abort_if(Gate::denies('reservation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservations = Reservation::with(['room', 'created_by'])->get();
+        // $reservations = Reservation::whereIn('room_id', auth()->user()->rooms->pluck('id'))->with(['room', 'created_by'])->get();
+        // Get the currently logged-in user
+        $user = Auth::user();
+
+        // Check if the user has the "host" role (you may need to adjust the role check based on your setup)
+        // Retrieve reservations for rooms created by the hostel owner
+        $reservations = Reservation::whereHas('room', function ($query) use ($user) {
+            $query->where('created_by_id', $user->id);
+        })->get();
+
+        // return view('reservations.index', compact('reservations'));
+
+        // $reservations = Reservation::whereIn('room_id', auth()->user()->rooms->pluck('id'))->with(['room', 'created_by'])->get();
 
         return view('host.reservations.index', compact('reservations'));
     }
