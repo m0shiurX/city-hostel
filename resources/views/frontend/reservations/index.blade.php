@@ -23,10 +23,10 @@
                                         {{ trans('cruds.room.fields.price') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.room.fields.status') }}
+                                        Room Status
                                     </th>
                                     <th>
-                                        {{ trans('cruds.reservation.fields.status') }}
+                                        Reservation Status
                                     </th>
                                     <th>
                                         &nbsp;

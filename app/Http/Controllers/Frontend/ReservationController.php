@@ -8,6 +8,7 @@ use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\Reservation;
 use App\Models\Room;
+use Illuminate\Support\Facades\DB;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,7 @@ class ReservationController extends Controller
         return view('frontend.reservations.index', compact('reservations'));
     }
 
+    // Not required
     public function create()
     {
         abort_if(Gate::denies('reservation_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -33,8 +35,18 @@ class ReservationController extends Controller
 
     public function store(StoreReservationRequest $request)
     {
-        $request->merge(['created_by_id' => auth()->user()->id]);
-        $reservation = Reservation::create($request->all());
+        $request->merge([
+            'created_by_id' => auth()->user()->id,
+            'status' => 'pending'
+        ]);
+
+        DB::transaction(
+            function () use ($request) {
+                Reservation::create($request->all());
+                Room::whereId($request->room_id)->update(['status' => 'pending']);
+            }
+        );
+
         return redirect()->route('frontend.reservations.index');
     }
 
@@ -67,6 +79,7 @@ class ReservationController extends Controller
         return view('frontend.reservations.show', compact('reservation'));
     }
 
+    // Not required
     public function destroy(Reservation $reservation)
     {
         abort_if(Gate::denies('reservation_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -77,6 +90,7 @@ class ReservationController extends Controller
         return back();
     }
 
+    // Not required
     public function massDestroy(MassDestroyReservationRequest $request)
     {
         $reservations = Reservation::find(request('ids'));

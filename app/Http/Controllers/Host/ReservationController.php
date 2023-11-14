@@ -36,6 +36,7 @@ class ReservationController extends Controller
         return view('host.reservations.index', compact('reservations'));
     }
 
+    // Not required
     public function create()
     {
         abort_if(Gate::denies('reservation_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -45,6 +46,7 @@ class ReservationController extends Controller
         return view('host.reservations.create', compact('rooms'));
     }
 
+    // Not required
     public function store(StoreReservationRequest $request)
     {
         $reservation = Reservation::create($request->all());
@@ -79,6 +81,7 @@ class ReservationController extends Controller
         return view('host.reservations.show', compact('reservation'));
     }
 
+
     public function destroy(Reservation $reservation)
     {
         abort_if(Gate::denies('reservation_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -88,6 +91,7 @@ class ReservationController extends Controller
         return back();
     }
 
+    // Not required
     public function massDestroy(MassDestroyReservationRequest $request)
     {
         $reservations = Reservation::find(request('ids'));
