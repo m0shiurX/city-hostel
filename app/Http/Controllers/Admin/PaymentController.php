@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyPaymentRequest;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\Payment;
+use App\Models\Reservation;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $payments = Payment::with(['created_by'])->get();
+        $payments = Payment::with(['reservation', 'created_by'])->get();
 
         return view('admin.payments.index', compact('payments'));
     }
@@ -25,8 +26,9 @@ class PaymentController extends Controller
     public function create()
     {
         abort_if(Gate::denies('payment_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $reservations = Reservation::pluck('room_id', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.payments.create');
+        return view('admin.payments.create', compact('reservations'));
     }
 
     public function store(StorePaymentRequest $request)
@@ -40,9 +42,11 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $payment->load('created_by');
+        $reservations = Reservation::pluck('room_id', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.payments.edit', compact('payment'));
+        $payment->load('reservation', 'created_by');
+
+        return view('admin.payments.edit', compact('payment', 'reservations'));
     }
 
     public function update(UpdatePaymentRequest $request, Payment $payment)
@@ -56,7 +60,7 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $payment->load('created_by');
+        $payment->load('reservation', 'created_by');
 
         return view('admin.payments.show', compact('payment'));
     }

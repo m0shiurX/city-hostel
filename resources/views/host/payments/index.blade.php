@@ -29,10 +29,16 @@
                             {{ trans('cruds.payment.fields.amount') }}
                         </th>
                         <th>
-                            {{ trans('cruds.payment.fields.status') }}
+                            Payment {{ trans('cruds.payment.fields.status') }}
                         </th>
                         <th>
                             {{ trans('cruds.payment.fields.description') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.payment.fields.reservation') }}
+                        </th>
+                        <th>
+                            Reservation {{ trans('cruds.reservation.fields.status') }}
                         </th>
                         <th>
                             &nbsp;
@@ -55,7 +61,15 @@
                                 {{ App\Models\Payment::STATUS_RADIO[$payment->status] ?? '' }}
                             </td>
                             <td>
-                                {{ $payment->description ?? '' }}
+                                {{ $payment->description ?? '' }} - {{ $payment->created_by->name ?? ''}}
+                            </td>
+                             <td>
+                                {{ $payment->reservation->room->room_info ?? '' }}
+                            </td>
+                            <td>
+                                @if($payment->reservation)
+                                    {{ $payment->reservation::STATUS_RADIO[$payment->reservation->status] ?? '' }}
+                                @endif
                             </td>
                             <td>
                                 @can('payment_show')

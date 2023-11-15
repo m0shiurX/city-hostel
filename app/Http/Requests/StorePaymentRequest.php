@@ -27,6 +27,10 @@ class StorePaymentRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'reservation_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

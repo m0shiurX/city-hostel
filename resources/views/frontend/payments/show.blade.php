@@ -28,6 +28,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.payment.fields.reservation') }}
+                                    </th>
+                                    <td>
+                                        {{ $payment->reservation->down_payment ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.payment.fields.amount') }}
                                     </th>
                                     <td>

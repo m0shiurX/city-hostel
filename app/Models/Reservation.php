@@ -42,6 +42,15 @@ class Reservation extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function reservationPayments()
+    {
+        return $this->hasMany(
+            Payment::class,
+            'reservation_id',
+            'id'
+        );
+    }
+
     public function room()
     {
         return $this->belongsTo(Room::class, 'room_id');

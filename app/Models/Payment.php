@@ -31,6 +31,7 @@ class Payment extends Model
         'amount',
         'status',
         'description',
+        'reservation_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -40,6 +41,11 @@ class Payment extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class, 'reservation_id');
     }
 
     public function created_by()

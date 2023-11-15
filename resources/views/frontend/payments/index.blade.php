@@ -17,16 +17,19 @@
                                         {{ trans('cruds.payment.fields.id') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.payment.fields.reservation') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.payment.fields.amount') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.payment.fields.status') }}
+                                        Payment {{ trans('cruds.payment.fields.status') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.payment.fields.description') }}
                                     </th>
                                     <th>
-                                        &nbsp;
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
@@ -35,6 +38,12 @@
                                     <tr data-entry-id="{{ $payment->id }}">
                                         <td>
                                             {{ $payment->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            @if($payment->reservation)
+                                                {{ $payment->reservation->room->room_info }} -
+                                                {{ $payment->reservation::STATUS_RADIO[$payment->reservation->status] ?? '' }}
+                                            @endif
                                         </td>
                                         <td>
                                             {{ $payment->amount ?? '' }}

@@ -27,6 +27,10 @@ class UpdatePaymentRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'reservation_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

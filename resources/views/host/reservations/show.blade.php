@@ -58,6 +58,24 @@
     </div>
 </div>
 
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#reservation_payments" role="tab" data-toggle="tab">
+                {{ trans('cruds.payment.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="reservation_payments">
+            @includeIf('host.reservations.relationships.reservationPayments', ['payments' => $reservation->reservationPayments])
+        </div>
+    </div>
+</div>
+
 
 
 @endsection

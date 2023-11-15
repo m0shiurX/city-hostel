@@ -45,6 +45,20 @@
                 <span class="help-block">{{ trans('cruds.payment.fields.description_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="reservation_id">{{ trans('cruds.payment.fields.reservation') }}</label>
+                <select class="form-control select2 {{ $errors->has('reservation') ? 'is-invalid' : '' }}" name="reservation_id" id="reservation_id" required>
+                    @foreach($reservations as $id => $entry)
+                        <option value="{{ $id }}" {{ old('reservation_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('reservation'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('reservation') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.payment.fields.reservation_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
