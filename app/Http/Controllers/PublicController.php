@@ -6,7 +6,6 @@ use App\Models\Hostel;
 use App\Models\Area;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
@@ -36,17 +35,7 @@ class PublicController extends Controller
         }])->paginate(6);
         return view('public.hostel', compact('hostels', 'areas', 'categories'));
     }
-    public function filterAjax(Request $request)
-    {
-        // Get filter criteria from the request
-        $area = $request->input('area');
 
-        // Perform filtering using Eloquent and retrieve filtered data
-        $filteredHostels = Hostel::where('area', $area)->get();
-
-        // Return the filtered data as JSON
-        return view('public.hostel', compact('filteredHostels'));
-    }
 
     public function showHostel(Hostel $hostel)
     {
@@ -56,13 +45,5 @@ class PublicController extends Controller
         $minPrice = $hostel->hostelRooms->where('status', 'available')->min('price');
 
         return view('public.hostel-view', compact('hostel', 'minPrice', 'availableRooms'));
-    }
-    public function signup()
-    {
-        return view('public.signup');
-    }
-    public function signin()
-    {
-        return view('public.signin');
     }
 }

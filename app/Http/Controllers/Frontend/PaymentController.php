@@ -31,6 +31,8 @@ class PaymentController extends Controller
 
     public function store(StorePaymentRequest $request)
     {
+
+        $request->merge(['created_by_id' => auth()->user()->id]);
         $payment = Payment::create($request->all());
 
         return redirect()->route('frontend.payments.index');

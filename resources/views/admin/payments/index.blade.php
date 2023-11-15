@@ -55,7 +55,7 @@
                                 {{ App\Models\Payment::STATUS_RADIO[$payment->status] ?? '' }}
                             </td>
                             <td>
-                                {{ $payment->description ?? '' }}
+                                {{ $payment->description ?? '' }} - {{ $payment->created_by->name ?? ''}}
                             </td>
                             <td>
                                 @can('payment_show')
