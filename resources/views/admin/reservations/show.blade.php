@@ -79,7 +79,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="payment">
-            @includeIf('host.reservations.relationships.payment', ['payments' => $reservation->payment])
+            @includeIf('admin.reservations.relationships.payment', ['payment' => $reservation->payment])
         </div>
     </div>
 </div>

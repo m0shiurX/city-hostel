@@ -42,16 +42,12 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservations = Reservation::pluck('room_id', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $payment->load('reservation', 'created_by');
-
-        return view('admin.payments.edit', compact('payment', 'reservations'));
+        return view('admin.payments.edit', compact('payment'));
     }
 
     public function update(UpdatePaymentRequest $request, Payment $payment)
     {
-        $payment->update($request->all());
+        $payment->update($request->validated());
 
         return redirect()->route('admin.payments.index');
     }

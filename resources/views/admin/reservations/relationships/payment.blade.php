@@ -39,7 +39,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $key => $payment)
                         <tr data-entry-id="{{ $payment->id }}">
                             <td>
 
@@ -80,7 +79,6 @@
                             </td>
 
                         </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
