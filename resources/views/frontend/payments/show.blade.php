@@ -28,15 +28,18 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.payment.fields.reservation') }}
+                                        {{ trans('cruds.payment.fields.reservation') }} - Price
                                     </th>
                                     <td>
-                                        {{ $payment->reservation->down_payment ?? '' }}
+                                        @if($payment->reservation)
+                                                {{ $payment->reservation->room->room_info }} -
+                                                {{ $payment->reservation->room->price ?? '' }}
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.payment.fields.amount') }}
+                                        Paid {{ trans('cruds.payment.fields.amount') }}
                                     </th>
                                     <td>
                                         {{ $payment->amount }}

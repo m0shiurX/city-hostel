@@ -23,18 +23,28 @@ class PaymentController extends Controller
         return view('frontend.payments.index', compact('payments'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         abort_if(Gate::denies('payment_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $reservations = Reservation::where('created_by_id', auth()->id())->pluck('room_id', 'id')->prepend(trans('global.pleaseSelect'), '');
-        return view('frontend.payments.create', compact('reservations'));
+        if ($request->has('reservation_id')) {
+            $reservationId = $request->input('reservation_id');
+            // Retrieve the reservation
+            $reservation = Reservation::find($reservationId);
+            $roomPrice = $reservation->room->price;
+            // Check if the reservation exists and was created by the currently authenticated user
+            if ($reservation && $reservation->created_by_id === auth()->user()->id) {
+                return view('frontend.payments.create', ['reservationId' => $reservationId, 'room_price' => $roomPrice]);
+            }
+        }
+        return redirect()->route('home')->with('error', 'Invalid reservation or unauthorized access.');
     }
 
     public function store(StorePaymentRequest $request)
     {
 
         $request->merge(['created_by_id' => auth()->user()->id]);
-        $payment = Payment::create($request->all());
+        Payment::create($request->validated());
+        Reservation::whereId($request->reservation_id)->update(['status' => 'pending']);
 
         return redirect()->route('frontend.payments.index');
     }

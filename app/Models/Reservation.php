@@ -25,6 +25,7 @@ class Reservation extends Model
         'pending'   => 'Pending',
         'approved'    => 'Approved',
         'cancelled' => 'Cancelled',
+        'unpaid'   => 'Unpaid',
     ];
 
     protected $fillable = [

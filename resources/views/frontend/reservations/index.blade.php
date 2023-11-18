@@ -19,8 +19,8 @@
                                     <th>
                                         {{ trans('cruds.reservation.fields.room') }}
                                     </th>
-                                    <th>
-                                        {{ trans('cruds.room.fields.price') }}
+                                    <th class="text-center">
+                                        Total {{ trans('cruds.room.fields.price') }}
                                     </th>
                                     <th>
                                         Room Status
@@ -42,7 +42,7 @@
                                         <td>
                                             {{ $reservation->room->room_info ?? '' }}
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             {{ $reservation->room->price ?? '' }}
                                         </td>
                                         <td>
@@ -55,18 +55,20 @@
                                         </td>
                                         <td>
                                             @can('reservation_show')
+                                                @if ($reservation->status === 'approved')
                                                 <a class="btn btn-xs btn-primary" href="{{ route('frontend.reservations.show', $reservation->id) }}">
-                                                    {{ trans('global.view') }}
+                                                    {{ trans('global.view') }} Details
                                                 </a>
-                                                <a class="btn btn-xs btn-success" href="{{ route('frontend.payments.create', $reservation->id) }}">
+                                                @elseif($reservation->status === 'unpaid')
+                                                <a class="btn btn-xs btn-success" href="{{ route('frontend.payments.create', ['reservation_id' => $reservation->id]) }}">
                                                     Make payment
                                                 </a>
-                                            @endcan
-                                            {{-- @can('reservation_edit')
-                                                <a class="btn btn-xs btn-info" href="{{ route('frontend.reservations.edit', $reservation->id) }}">
-                                                    {{ trans('global.edit') }}
+                                                @else
+                                                <a class="btn btn-xs btn-warning" href="javascript:void">
+                                                    Awaiting Approval
                                                 </a>
-                                            @endcan --}}
+                                                @endif
+                                            @endcan
 
                                             @can('reservation_delete')
                                                 <form action="{{ route('frontend.reservations.destroy', $reservation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">

@@ -17,10 +17,10 @@
                                         {{ trans('cruds.payment.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.payment.fields.reservation') }}
+                                        {{ trans('cruds.payment.fields.reservation') }} - Total Price
                                     </th>
                                     <th>
-                                        {{ trans('cruds.payment.fields.amount') }}
+                                        Paid {{ trans('cruds.payment.fields.amount') }}
                                     </th>
                                     <th>
                                         Payment {{ trans('cruds.payment.fields.status') }}
@@ -42,10 +42,10 @@
                                         <td>
                                             @if($payment->reservation)
                                                 {{ $payment->reservation->room->room_info }} -
-                                                {{ $payment->reservation::STATUS_RADIO[$payment->reservation->status] ?? '' }}
+                                                {{ $payment->reservation->room->price ?? '' }}
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             {{ $payment->amount ?? '' }}
                                         </td>
                                         <td>

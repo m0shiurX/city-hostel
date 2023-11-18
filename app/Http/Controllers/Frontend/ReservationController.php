@@ -37,12 +37,12 @@ class ReservationController extends Controller
     {
         $request->merge([
             'created_by_id' => auth()->user()->id,
-            'status' => 'pending'
+            'status' => 'unpaid'
         ]);
 
         DB::transaction(
             function () use ($request) {
-                Reservation::create($request->all());
+                Reservation::create($request->validated());
                 Room::whereId($request->room_id)->update(['status' => 'pending']);
             }
         );
