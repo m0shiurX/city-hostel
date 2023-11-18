@@ -74,6 +74,18 @@ class PaymentController extends Controller
         return back();
     }
 
+    public function approve(Payment $payment)
+    {
+        if (auth()->user()->id === $payment->reservation()->room()->created_by_id) {
+
+            $payment->update(['status' => 'approved']);
+
+            return redirect()->back()->with('success', 'Payment approved successfully.');
+        }
+
+        return redirect()->back()->with('error', 'You are not authorized to approve this reservation.');
+    }
+
     public function massDestroy(MassDestroyPaymentRequest $request)
     {
         $payments = Payment::find(request('ids'));

@@ -20,25 +20,24 @@
                 <thead>
                     <tr>
                         <th width="10">
-
                         </th>
-                        <th>
+                        <th  width="15">
                             {{ trans('cruds.payment.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.payment.fields.amount') }}
+                            Reservation - Status
+                        </th>
+                        <th class="text-center">
+                            Room Price
                         </th>
                         <th>
-                            Payment {{ trans('cruds.payment.fields.status') }}
+                            Paid Amount
                         </th>
                         <th>
-                            {{ trans('cruds.payment.fields.description') }}
+                            Transaction ID
                         </th>
                         <th>
-                            {{ trans('cruds.payment.fields.reservation') }}
-                        </th>
-                        <th>
-                            Reservation {{ trans('cruds.reservation.fields.status') }}
+                            Payment Status
                         </th>
                         <th>
                             &nbsp;
@@ -49,41 +48,57 @@
                     @foreach($payments as $key => $payment)
                         <tr data-entry-id="{{ $payment->id }}">
                             <td>
-
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $payment->id ?? '' }}
                             </td>
                             <td>
+                                {{ $payment->reservation->room->room_info ?? '' }} -
+                                @if($payment->reservation)
+                                    {{ $payment->reservation::STATUS_RADIO[$payment->reservation->status] ?? '' }}
+                                @endif
+                            </td>
+                            <td class="text-center">
+                                {{ $payment->reservation->room->price ?? '' }}
+                                
+                            </td>
+                            <td>
                                 {{ $payment->amount ?? '' }}
+                            </td>
+                             <td>
+                                 {{ $payment->description ?? ''}}
+                                
                             </td>
                             <td>
                                 {{ App\Models\Payment::STATUS_RADIO[$payment->status] ?? '' }}
                             </td>
                             <td>
-                                {{ $payment->description ?? '' }} - {{ $payment->created_by->name ?? ''}}
-                            </td>
-                             <td>
-                                {{ $payment->reservation->room->room_info ?? '' }}
-                            </td>
-                            <td>
-                                @if($payment->reservation)
-                                    {{ $payment->reservation::STATUS_RADIO[$payment->reservation->status] ?? '' }}
-                                @endif
-                            </td>
-                            <td>
+                                @can('payment_edit')
+                                        <form action="" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button class="btn btn-xs btn-info" type="submit">Approve</button>
+                                        </form>
+                                @endcan
+                                @can('payment_edit')
+                                        <form action="" method="post">
+                                            @csrf
+                                            @method('POST')
+                                            <button class="btn btn-xs btn-danger" type="submit">Cancel</button>
+                                        </form>
+                                @endcan
+
                                 @can('payment_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('host.payments.show', $payment->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
-
+                                {{-- 
                                 @can('payment_edit')
                                     <a class="btn btn-xs btn-info" href="{{ route('host.payments.edit', $payment->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
-                                @endcan
-
+                                @endcan --}}
                                 @can('payment_delete')
                                     <form action="{{ route('host.payments.destroy', $payment->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
@@ -91,9 +106,7 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
-
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
