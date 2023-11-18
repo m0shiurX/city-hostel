@@ -15,6 +15,16 @@
     </div>
 
     <div class="card-body">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="table-responsive">
             <table class=" table table-bordered table-striped table-hover datatable datatable-Payment">
                 <thead>
@@ -27,19 +37,19 @@
                         <th>
                             Reservation - Status
                         </th>
-                        <th class="text-center">
+                        <th width="80" class="text-center">
                             Room Price
                         </th>
-                        <th>
+                        <th width="110" >
                             Payable Amount
                         </th>
-                        <th>
+                        <th width="115" >
                             Transaction ID
                         </th>
-                        <th>
+                        <th width="120">
                             Payment Status
                         </th>
-                        <th>
+                        <th width="100">
                             &nbsp;
                         </th>
                     </tr>
@@ -74,31 +84,24 @@
                             </td>
                             <td>
                                 @can('payment_edit')
-                                        <form action="" method="post">
-                                            @csrf
-                                            @method('POST')
-                                            <button class="btn btn-xs btn-info" type="submit">Approve</button>
-                                        </form>
+                                    @if($payment->status !== 'approved')
+                                    <form method="POST" action="{{ route("host.payments.approve", $payment->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-xs btn-success">Approve</button>
+                                        </div>
+                                    </form>
+                                    @elseif($payment->status !== 'cancelled')
+                                    <form method="POST" action="{{ route("host.payments.disapprove", $payment->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-xs btn-warning">Cancel</button>
+                                        </div>
+                                    </form>
+                                    @endif
                                 @endcan
-                                @can('payment_edit')
-                                        <form action="" method="post">
-                                            @csrf
-                                            @method('POST')
-                                            <button class="btn btn-xs btn-danger" type="submit">Cancel</button>
-                                        </form>
-                                @endcan
-
-                                @can('payment_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('host.payments.show', $payment->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-                                {{-- 
-                                @can('payment_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('host.payments.edit', $payment->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan --}}
                                 @can('payment_delete')
                                     <form action="{{ route('host.payments.destroy', $payment->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">

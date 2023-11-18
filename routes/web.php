@@ -97,11 +97,15 @@ Route::group(['prefix' => 'host', 'as' => 'host.', 'namespace' => 'Host', 'middl
 
     // Reservation
     Route::delete('reservations/destroy', 'ReservationController@massDestroy')->name('reservations.massDestroy');
+    Route::post('reservations/approve/{reservation}', 'ReservationController@approve')->name('reservations.approve');
+    Route::post('reservations/disapprove/{reservation}', 'ReservationController@disApprove')->name('reservations.disapprove');
     Route::resource('reservations', 'ReservationController');
 
 
     // Payment
     Route::delete('payments/destroy', 'PaymentController@massDestroy')->name('payments.massDestroy');
+    Route::post('payments/approve/{payment}', 'PaymentController@approve')->name('payments.approve');
+    Route::post('payments/disapprove/{payment}', 'PaymentController@disApprove')->name('payments.disapprove');
     Route::resource('payments', 'PaymentController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

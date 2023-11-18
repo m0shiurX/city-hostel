@@ -10,18 +10,15 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.payment.title_singular') }} {{ trans('global.list') }}
+        {{ trans('cruds.payment.title_singular') }} Information
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-reservationPayments">
+            <table class=" table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th width="10">
-
-                        </th>
-                        <th>
                             {{ trans('cruds.payment.fields.id') }}
                         </th>
                         <th>
@@ -31,7 +28,7 @@
                             Payment {{ trans('cruds.payment.fields.status') }}
                         </th>
                         <th>
-                            {{ trans('cruds.payment.fields.description') }}
+                            Transaction ID
                         </th>
                         <th>
                             &nbsp;
@@ -39,11 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $key => $payment)
                         <tr data-entry-id="{{ $payment->id }}">
-                            <td>
-
-                            </td>
                             <td>
                                 {{ $payment->id ?? '' }}
                             </td>
@@ -57,16 +50,21 @@
                                 {{ $payment->description ?? '' }}
                             </td>
                             <td>
-                                @can('payment_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.payments.show', $payment->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
-
                                 @can('payment_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.payments.edit', $payment->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
+                                    <form method="POST" action="{{ route("host.payments.approve", $payment->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-success">Approve</button>
+                                        </div>
+                                    </form>
+                                    <form method="POST" action="{{ route("host.payments.disapprove", $payment->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-success">Cancel</button>
+                                        </div>
+                                    </form>
                                 @endcan
 
                                 @can('payment_delete')
@@ -76,11 +74,8 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                                 @endcan
-
                             </td>
-
                         </tr>
-                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -127,7 +122,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-reservationPayments:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-payment:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

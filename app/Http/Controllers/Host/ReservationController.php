@@ -20,10 +20,9 @@ class ReservationController extends Controller
 
         $user = Auth::user();
 
-        $reservations = Reservation::whereHas('room', function ($query) use ($user) {
+        $reservations = Reservation::with('payment')->whereHas('room', function ($query) use ($user) {
             $query->where('created_by_id', $user->id);
         })->get();
-
         return view('host.reservations.index', compact('reservations'));
     }
 
@@ -75,7 +74,7 @@ class ReservationController extends Controller
     {
         abort_if(Gate::denies('reservation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservation->load('room', 'created_by');
+        $reservation->load('payment', 'room', 'created_by');
 
         return view('host.reservations.show', compact('reservation'));
     }
@@ -90,7 +89,7 @@ class ReservationController extends Controller
         return back();
     }
 
-    // Not required
+
     public function massDestroy(MassDestroyReservationRequest $request)
     {
         $reservations = Reservation::find(request('ids'));
@@ -100,5 +99,29 @@ class ReservationController extends Controller
         }
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function approve(Reservation $reservation)
+    {
+        if (auth()->user()->id === $reservation->room->created_by_id) {
+
+            $reservation->update(['status' => 'approved']);
+
+            return redirect()->back()->with('success', 'Reservation approved successfully.');
+        }
+
+        return redirect()->back()->with('error', 'You are not authorized to approve this reservation.');
+    }
+
+    public function disApprove(Reservation $reservation)
+    {
+        if (auth()->user()->id === $reservation->room->created_by_id) {
+
+            $reservation->update(['status' => 'cancelled']);
+
+            return redirect()->back()->with('success', 'Reservation Cancelled.');
+        }
+
+        return redirect()->back()->with('error', 'You are not authorized to cancel this reservation.');
     }
 }

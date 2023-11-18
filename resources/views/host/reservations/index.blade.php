@@ -22,7 +22,7 @@
                         <th width="10">
 
                         </th>
-                        <th>
+                        <th width="15">
                             {{ trans('cruds.reservation.fields.id') }}
                         </th>
                         <th>
@@ -32,10 +32,10 @@
                             {{ trans('cruds.room.fields.price') }}
                         </th>
                         <th>
-                            Room {{ trans('cruds.room.fields.status') }}
+                            Reservation {{ trans('cruds.reservation.fields.status') }}
                         </th>
                         <th>
-                            Reservation {{ trans('cruds.reservation.fields.status') }}
+                            {{ trans('cruds.payment.title') }}
                         </th>
                         <th>
                             &nbsp;
@@ -46,9 +46,8 @@
                     @foreach($reservations as $key => $reservation)
                         <tr data-entry-id="{{ $reservation->id }}">
                             <td>
-
                             </td>
-                            <td>
+                            <td class="text-center">
                                 {{ $reservation->id ?? '' }}
                             </td>
                             <td>
@@ -57,26 +56,44 @@
                             <td>
                                 {{ $reservation->room->price ?? '' }}
                             </td>
-                            <td>
-                                @if($reservation->room)
-                                    {{ $reservation->room::STATUS_RADIO[$reservation->room->status] ?? '' }}
-                                @endif
-                            </td>
+                            
                             <td>
                                 {{ App\Models\Reservation::STATUS_RADIO[$reservation->status] ?? '' }}
                             </td>
                             <td>
-                                @can('reservation_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('host.reservations.show', $reservation->id) }}">
-                                        {{ trans('global.view') }}
+                                {{ $reservation->payment?->status ?? 'Waiting for Payment' }}
+                            </td>
+                            <td>
+                                @if($reservation->payment?->status === 'pending')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('host.payments.show', $reservation->payment->id) }}">
+                                        Check Payment
                                     </a>
-                                @endcan
-
-                                @can('reservation_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('host.reservations.edit', $reservation->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                @elseif($reservation->payment?->status === 'approved' && $reservation->status !== 'approved')
+                                    <form method="POST" action="{{ route("host.reservations.approve", $reservation->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-xs  btn-success">Approve</button>
+                                        </div>
+                                    </form>
+                                @elseif($reservation->payment?->status === 'unpaid' || is_null($reservation->payment))
+                                    <form method="POST" action="{{ route("host.reservations.disapprove", $reservation->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-xs  btn-warning">Cancel</button>
+                                        </div>
+                                    </form>
+                                @elseif($reservation->payment?->status === 'cancelled' && $reservation->status !== 'cancelled')
+                                    <form method="POST" action="{{ route("host.reservations.disapprove", $reservation->id) }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
+                                        <div class="form-group">
+                                            <button  type="submit" class="btn btn-xs  btn-warning">Cancel</button>
+                                        </div>
+                                    </form>
+                                @endif
+                                
 
                                 @can('reservation_delete')
                                     <form action="{{ route('host.reservations.destroy', $reservation->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">

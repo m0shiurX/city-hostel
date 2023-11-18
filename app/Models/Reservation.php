@@ -43,9 +43,9 @@ class Reservation extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function reservationPayments()
+    public function payment()
     {
-        return $this->hasMany(
+        return $this->hasOne(
             Payment::class,
             'reservation_id',
             'id'

@@ -53,16 +53,13 @@ class PaymentController extends Controller
     {
         abort_if(Gate::denies('payment_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         abort_if($payment->created_by_id !== auth()->user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $reservations = Reservation::where('created_by_id', auth()->id())->pluck('id')->prepend(trans('global.pleaseSelect'), '');
-        $payment->load('created_by');
 
-        return view('frontend.payments.edit', compact('payment', 'reservations'));
+        return view('frontend.payments.edit', compact('payment'));
     }
 
     public function update(UpdatePaymentRequest $request, Payment $payment)
     {
-        $payment->update($request->all());
-
+        $payment->update($request->validated());
         return redirect()->route('frontend.payments.index');
     }
 

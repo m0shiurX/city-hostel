@@ -72,14 +72,14 @@
     </div>
     <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
         <li class="nav-item">
-            <a class="nav-link" href="#reservation_payments" role="tab" data-toggle="tab">
+            <a class="nav-link" href="#payment" role="tab" data-toggle="tab">
                 {{ trans('cruds.payment.title') }}
             </a>
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane" role="tabpanel" id="reservation_payments">
-            @includeIf('host.reservations.relationships.reservationPayments', ['payments' => $reservation->reservationPayments])
+        <div class="tab-pane" role="tabpanel" id="payment">
+            @includeIf('host.reservations.relationships.payment', ['payments' => $reservation->payment])
         </div>
     </div>
 </div>

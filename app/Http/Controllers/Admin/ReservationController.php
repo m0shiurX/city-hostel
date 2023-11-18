@@ -61,7 +61,7 @@ class ReservationController extends Controller
     {
         abort_if(Gate::denies('reservation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $reservation->load('room', 'created_by', 'reservationPayments');
+        $reservation->load('room', 'created_by', 'payment');
 
         return view('admin.reservations.show', compact('reservation'));
     }
