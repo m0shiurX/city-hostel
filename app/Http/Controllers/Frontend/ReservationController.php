@@ -39,10 +39,9 @@ class ReservationController extends Controller
             'created_by_id' => auth()->user()->id,
             'status' => 'unpaid'
         ]);
-
         DB::transaction(
             function () use ($request) {
-                Reservation::create($request->validated());
+                Reservation::create($request->all());
                 Room::whereId($request->room_id)->update(['status' => 'pending']);
             }
         );

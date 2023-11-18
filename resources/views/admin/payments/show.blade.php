@@ -52,7 +52,7 @@
                             {{ trans('cruds.payment.fields.reservation') }}
                         </th>
                         <td>
-                            {{ $payment->reservation->down_payment ?? '' }}
+                            {{ $payment->reservation->payable_amount ?? '' }}
                         </td>
                     </tr>
                 </tbody>

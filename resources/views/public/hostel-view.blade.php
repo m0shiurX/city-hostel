@@ -107,8 +107,7 @@
                                                     @method('POST')
                                                     @csrf
                                                     <input type="hidden" name="room_id" value="{{ $room->id }}">
-                                                    <input type="hidden" name="paid_amount" value="{{ $room->price }}">
-                                                    <input type="hidden" name="status" value="unpaid">
+                                                    <input type="hidden" name="payable_amount" value="{{ $room->price }}">
                                                     <div class="form-group">
                                                         <button  type="submit" class="btn btn-success">Make reservation</button>
                                                     </div>

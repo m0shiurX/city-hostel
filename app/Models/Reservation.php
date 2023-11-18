@@ -30,7 +30,7 @@ class Reservation extends Model
 
     protected $fillable = [
         'room_id',
-        'paid_amount',
+        'payable_amount',
         'status',
         'created_at',
         'updated_at',

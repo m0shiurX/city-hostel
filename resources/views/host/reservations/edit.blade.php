@@ -25,14 +25,14 @@
                 <span class="help-block">{{ trans('cruds.reservation.fields.room_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="paid_amount">{{ trans('cruds.reservation.fields.paid_amount') }}</label>
-                <input class="form-control {{ $errors->has('paid_amount') ? 'is-invalid' : '' }}" type="number" name="paid_amount" id="paid_amount" value="{{ old('paid_amount', $reservation->paid_amount) }}" step="0.01">
-                @if($errors->has('paid_amount'))
+                <label for="payable_amount">{{ trans('cruds.reservation.fields.payable_amount') }}</label>
+                <input class="form-control {{ $errors->has('payable_amount') ? 'is-invalid' : '' }}" type="number" name="payable_amount" id="payable_amount" value="{{ old('payable_amount', $reservation->payable_amount) }}" step="0.01">
+                @if($errors->has('payable_amount'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('paid_amount') }}
+                        {{ $errors->first('payable_amount') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.reservation.fields.paid_amount_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.reservation.fields.payable_amount_helper') }}</span>
             </div>
             <div class="form-group">
                 <label>{{ trans('cruds.reservation.fields.status') }}</label>

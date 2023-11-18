@@ -31,7 +31,7 @@
                             Room Price
                         </th>
                         <th>
-                            Paid Amount
+                            Payable Amount
                         </th>
                         <th>
                             Transaction ID
